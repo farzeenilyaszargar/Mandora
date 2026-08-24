@@ -298,7 +298,6 @@ function topicId(pageId: string, title: string) {
 
 export default function DocsClient() {
   const [activePageId, setActivePageId] = useState(docPages[0].id);
-  const [hoveredPageId, setHoveredPageId] = useState<string | null>(null);
   const activePage = docPages.find((page) => page.id === activePageId) ?? docPages[0];
   const [activeMiniTopicId, setActiveMiniTopicId] = useState(topicId(activePage.id, activePage.topics[0].title));
 
@@ -376,8 +375,7 @@ export default function DocsClient() {
         <section className="grid md:grid-cols-[260px_1fr] xl:grid-cols-[260px_1fr_220px]">
           <aside className="border-b border-white/10 px-8 py-8 md:border-b-0 md:border-r">
             <div className="sticky top-24">
-              <nav className="relative flex max-h-[calc(100vh-150px)] flex-col gap-7 overflow-y-auto pl-4 pr-2" aria-label="Docs pages">
-                <span className="absolute bottom-0 left-0 top-0 w-px rounded-full bg-white/10" />
+              <nav className="flex max-h-[calc(100vh-150px)] flex-col gap-7 overflow-y-auto pr-2" aria-label="Docs pages">
                 {sidebarGroups.map((group) => (
                   <div key={group.title}>
                     <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/26">
@@ -386,29 +384,17 @@ export default function DocsClient() {
                     <div className="flex flex-col gap-1">
                       {group.items.map((item) => {
                         const isActive = activePage.id === item.id;
-                        const isLit = isActive || hoveredPageId === item.id;
 
                         return (
                           <a
                             key={item.id}
                             href={`#${item.id}`}
                             onClick={(event) => openPage(event, item.id)}
-                            onMouseEnter={() => setHoveredPageId(item.id)}
-                            onMouseLeave={() => setHoveredPageId(null)}
-                            onFocus={() => setHoveredPageId(item.id)}
-                            onBlur={() => setHoveredPageId(null)}
-                            className={`group relative rounded-md py-2 text-sm font-semibold transition duration-200 ${
-                              isActive ? "text-white" : "text-white/45 hover:text-white"
+                            className={`rounded-md px-3 py-2 text-sm font-semibold transition duration-200 ${
+                              isActive ? "bg-white/[0.055] text-white" : "text-white/45 hover:bg-white/[0.03] hover:text-white"
                             }`}
                             aria-current={isActive ? "location" : undefined}
                           >
-                            <span
-                              className={`absolute -left-4 top-1.5 h-[calc(100%-12px)] w-px rounded-full transition duration-200 ${
-                                isLit
-                                  ? "bg-white shadow-[0_0_18px_rgba(255,255,255,0.95),0_0_34px_rgba(255,255,255,0.35)]"
-                                  : "bg-transparent group-hover:bg-white/35"
-                              }`}
-                            />
                             {item.title}
                           </a>
                         );
