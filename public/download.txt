@@ -1,0 +1,3 @@
+Nap download placeholder.
+
+This temporary file stands in for the MacOS app download.
