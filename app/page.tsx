@@ -309,8 +309,12 @@ function FeatureIcon({ name }: { name: string }) {
   if (name === "command") {
     return (
       <svg {...sharedProps} aria-hidden="true">
-        <path d="M9 9H7.5A2.5 2.5 0 1 1 10 6.5V17.5A2.5 2.5 0 1 1 7.5 15H15" />
-        <path d="M15 15h1.5A2.5 2.5 0 1 0 14 17.5V6.5A2.5 2.5 0 1 0 16.5 9H9" />
+        <rect x="3" y="6" width="18" height="12" rx="2" />
+        <path d="M7 10h.01" />
+        <path d="M11 10h.01" />
+        <path d="M15 10h.01" />
+        <path d="M17 14h.01" />
+        <path d="M7 14h6" />
       </svg>
     );
   }
