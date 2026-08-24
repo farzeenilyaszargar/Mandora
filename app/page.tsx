@@ -58,9 +58,24 @@ const features = [
   },
 ];
 
+type DownloadPlatform = {
+  label: string;
+  icon: "apple" | "windows" | "linux";
+  href: string;
+  download: boolean;
+};
+
+const defaultDownloadPlatform: DownloadPlatform = {
+  label: "macOS",
+  icon: "apple",
+  href: "/download.txt",
+  download: true,
+};
+
 export default function Home() {
   const [peopleCount, setPeopleCount] = useState(0);
   const [isInitialCounting, setIsInitialCounting] = useState(true);
+  const [downloadPlatform, setDownloadPlatform] = useState<DownloadPlatform>(defaultDownloadPlatform);
   const previousPeopleCount = usePrevious(peopleCount);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -115,6 +130,33 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const platform = window.navigator.platform.toLowerCase();
+    const userAgent = window.navigator.userAgent.toLowerCase();
+
+    if (platform.includes("win") || userAgent.includes("windows")) {
+      setDownloadPlatform({
+        label: "Windows",
+        icon: "windows",
+        href: "/download",
+        download: false,
+      });
+      return;
+    }
+
+    if (platform.includes("linux") || userAgent.includes("linux")) {
+      setDownloadPlatform({
+        label: "Linux",
+        icon: "linux",
+        href: "/download",
+        download: false,
+      });
+      return;
+    }
+
+    setDownloadPlatform(defaultDownloadPlatform);
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#050505] px-4 text-white">
       <div className="mx-auto min-h-screen max-w-[1120px] border-x border-white/10">
@@ -163,15 +205,7 @@ export default function Home() {
               Nap brings your agent CLIs into one fast workspace for sessions, context, commands, and handoffs.
             </p>
             <div className="mt-9 flex items-center justify-center gap-5">
-              <a
-                href="/download.txt"
-                download
-                className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-[#d8d8d8]"
-              >
-                <span aria-hidden="true">↓</span>
-                Download
-              </a>
-              <span className="font-mono text-xs font-bold text-white/35">v0.0.12</span>
+              <DownloadButton platform={downloadPlatform} />
             </div>
           </div>
 
@@ -236,20 +270,9 @@ export default function Home() {
         </section>
 
         <section className="border-b border-white/10 px-8 py-20 text-center">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-white/28">
-            Download
-          </p>
-          <h2 className="mt-5 text-3xl font-bold">Get Nap</h2>
+          <h2 className="text-3xl font-bold">Get Nap</h2>
           <div className="mt-7 flex items-center justify-center gap-5">
-            <a
-              href="/download.txt"
-              download
-              className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-[#d8d8d8]"
-            >
-              <span aria-hidden="true">↓</span>
-              Download
-            </a>
-            <span className="font-mono text-xs font-bold text-white/35">v0.0.12</span>
+            <DownloadButton platform={downloadPlatform} />
           </div>
         </section>
 
@@ -274,6 +297,54 @@ function usePrevious<T>(value: T) {
   }, [value]);
 
   return ref.current;
+}
+
+function DownloadButton({ platform }: { platform: DownloadPlatform }) {
+  return (
+    <a
+      href={platform.href}
+      download={platform.download || undefined}
+      className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-[#d8d8d8]"
+    >
+      <PlatformIcon name={platform.icon} />
+      Download for {platform.label}
+    </a>
+  );
+}
+
+function PlatformIcon({ name }: { name: DownloadPlatform["icon"] }) {
+  const props = {
+    className: "h-4 w-4",
+    fill: "currentColor",
+    viewBox: "0 0 24 24",
+    "aria-hidden": true,
+  };
+
+  if (name === "apple") {
+    return (
+      <svg {...props}>
+        <path d="M16.4 13.1c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.2-.8-1.7 0-3.2 1-4 2.5-1.7 2.9-.4 7.1 1.2 9.4.8 1.1 1.7 2.4 3 2.3 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8s2.2-1.1 3-2.3c.9-1.3 1.3-2.6 1.3-2.7-.1-.1-2.5-1-2.5-3.7z" />
+        <path d="M14 5.9c.7-.8 1.1-1.9 1-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.9-1 2.9 1 .1 2-.5 2.7-1.3z" />
+      </svg>
+    );
+  }
+
+  if (name === "windows") {
+    return (
+      <svg {...props}>
+        <path d="M3 5.2 10.8 4v7.5H3V5.2z" />
+        <path d="M12 3.8 21 2.5v9h-9V3.8z" />
+        <path d="M3 12.7h7.8v7.4L3 18.9v-6.2z" />
+        <path d="M12 12.7h9v8.8l-9-1.3v-7.5z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...props}>
+      <path d="M12 2.2c-2.1 0-3.8 1.7-3.8 3.9 0 1.4.7 2.5 1.4 3.2-1.4.8-2.4 2.4-2.4 4.3 0 3 2.2 5.3 4.8 5.3s4.8-2.3 4.8-5.3c0-1.9-1-3.5-2.4-4.3.7-.7 1.4-1.8 1.4-3.2 0-2.2-1.7-3.9-3.8-3.9zM9 19.7l-2.2 1.7c-.4.3-1 .2-1.3-.2-.3-.4-.2-1 .2-1.3l2-1.5c.4.5.8.9 1.3 1.3zm6 0c.5-.4.9-.8 1.3-1.3l2 1.5c.4.3.5.9.2 1.3-.3.4-.9.5-1.3.2L15 19.7z" />
+    </svg>
+  );
 }
 
 function FeatureIcon({ name }: { name: string }) {
