@@ -24,7 +24,7 @@ export default function WaitlistPage() {
   return (
     <main className="min-h-screen bg-[#050505] px-4 text-white">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
-        <nav className="fixed left-1/2 top-0 z-50 w-[calc(100%-2rem)] max-w-[1120px] -translate-x-1/2 border-x border-b border-white/10 bg-[#050505]/75 backdrop-blur-xl">
+        <nav className="border-b border-white/10">
           <div className="flex items-center justify-between px-8 py-3">
             <a href="/" aria-label="Nap home">
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
