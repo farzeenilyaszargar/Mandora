@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nap Website
+
+Landing website for Nap, a native interface for running coding agents from one focused workspace.
+
+## Tech Stack
+
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- `next/font` with Fustat and Ma Shan Zheng
+
+## Pages
+
+- `/` - Main landing page with hero, agent support, preview image, trusted logos, feature grid, and download modal.
+- `/docs` - Documentation-style page with a left topic nav and scroll-aware active section.
+- `/enterprise` - Enterprise page with team benefits and an inquiry form.
+- `/waitlist` - Waitlist form for Windows/Linux interest.
+
+The old `/download` page has been removed. Download actions now open a floating modal from the navbar. The macOS download currently points to `public/download.txt` as a placeholder, and Windows/Linux route to the waitlist.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server on port 3000:
+
+```bash
+npm run dev -- --port 3000
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Notes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Main page: `app/page.tsx`
+- Shared download modal: `app/components/download-modal.tsx`
+- Docs interactive content: `app/docs/docs-client.tsx`
+- Waitlist form logic: `app/waitlist/waitlist-form.tsx`
+- Waitlist API route: `app/api/waitlist/route.ts`
+- Supabase migration: `supabase/migrations/20260824170000_create_wishlist_saves.sql`
+- Static assets live in `public/`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Supabase
 
-## Learn More
+The waitlist form writes to the `public.wishlist_saves` table in Supabase project `ywfkomtyadqkyugiibhi`.
 
-To learn more about Next.js, take a look at the following resources:
+Required environment variables:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+SUPABASE_URL=https://ywfkomtyadqkyugiibhi.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Apply the migration with Supabase CLI after linking the project:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+supabase link --project-ref ywfkomtyadqkyugiibhi
+supabase db push
+```

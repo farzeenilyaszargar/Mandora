@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import DownloadModalButton from "./components/download-modal";
 
 const trustedLogos = [
-  { name: "Nestle", src: "/nestle-logo.png", width: 1280, height: 352, className: "h-5 w-auto" },
-  { name: "SAEL", src: "/sael-logo.png", width: 1869, height: 474, className: "h-5 w-auto" },
-  { name: "Domino's", src: "/dominos-logo.png", width: 555, height: 209, className: "h-12 w-auto" },
-  { name: "CP PLUS", src: "/cp-plus-logo.png", width: 1895, height: 300, className: "h-5 w-auto" },
-  { name: "Healthkart", src: "/healthkart-logo.png", width: 646, height: 220, className: "h-11 w-auto" },
+  { name: "Nestle", src: "/nestle-logo.png", width: 1280, height: 352, className: "h-5 w-auto brightness-0 invert" },
+  { name: "SAEL", src: "/sael-logo.png", width: 1869, height: 474, className: "h-5 w-auto brightness-0 invert" },
+  { name: "Domino's", src: "/dominos-logo.png", width: 555, height: 209, className: "h-12 w-auto brightness-0 invert" },
+  { name: "CP PLUS", src: "/cp-plus-logo.png", width: 1895, height: 300, className: "h-5 w-auto brightness-0 invert" },
+  { name: "Healthkart", src: "/healthkart-logo.png", width: 646, height: 220, className: "h-11 w-auto brightness-0 invert" },
 ];
 
 const subscriptionAgents = [
@@ -94,7 +95,7 @@ export default function Home() {
       const delay = (Math.floor(Math.random() * 6) + 5) * 1000;
 
       timeoutRef.current = setTimeout(() => {
-        setPeopleCount((count) => count + (Math.random() < 0.8 ? 1 : 2));
+        setPeopleCount((count) => count + 1);
         scheduleIncrease();
       }, delay);
     };
@@ -138,7 +139,7 @@ export default function Home() {
       setDownloadPlatform({
         label: "Windows",
         icon: "windows",
-        href: "/download",
+        href: "/waitlist",
         download: false,
       });
       return;
@@ -148,7 +149,7 @@ export default function Home() {
       setDownloadPlatform({
         label: "Linux",
         icon: "linux",
-        href: "/download",
+        href: "/waitlist",
         download: false,
       });
       return;
@@ -159,7 +160,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#050505] px-4 text-white">
-      <div className="mx-auto min-h-screen max-w-[1120px] border-x border-white/10">
+      <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
         <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/75 backdrop-blur-xl">
           <div className="flex items-center justify-between px-8 py-4">
             <a href="/" className="flex items-center gap-3 text-sm font-bold">
@@ -168,9 +169,7 @@ export default function Home() {
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
               <a href="/docs" className="transition hover:text-white">Docs</a>
               <a href="/enterprise" className="transition hover:text-white">Enterprise</a>
-              <a href="/download" className="rounded-md bg-white px-4 py-2 text-xs font-bold text-black transition hover:bg-[#d8d8d8]">
-                Download
-              </a>
+              <DownloadModalButton />
             </div>
           </div>
         </nav>
@@ -198,10 +197,10 @@ export default function Home() {
               </span>
               People Using Worldwide
             </div>
-            <h1 className="mx-auto mt-8 w-full text-5xl font-bold leading-[1.02] text-white md:whitespace-nowrap md:text-6xl -tracking-0.02">
+            <h1 className="mx-auto mt-8 w-full text-5xl font-bold leading-[1.02] text-white md:whitespace-nowrap md:text-6xl">
               The Interface That Loves You
             </h1>
-            <p className="mx-auto mt-6 max-w-[560px] text-lg leading-8 text-white/48 -tracking-0.02">
+            <p className="mx-auto mt-6 max-w-[560px] text-lg leading-8 text-white/48">
               Nap brings your agent CLIs into one fast workspace for sessions, context, commands, and handoffs.
             </p>
             <div className="mt-9 flex items-center justify-center gap-5">
@@ -258,11 +257,13 @@ export default function Home() {
         <section className="border-y border-white/10">
           <div className="grid md:grid-cols-3">
             {features.map((feature) => (
-              <article key={feature.title} className="flex min-h-48 flex-col items-center border-b border-white/10 px-8 py-8 text-center md:border-r md:[&:nth-child(3n)]:border-r-0">
-                <span className="mb-7 flex h-9 w-9 items-center justify-center rounded-md border border-white/10 bg-white/[0.03] text-white/28">
-                  <FeatureIcon name={feature.icon} />
-                </span>
-                <h2 className="text-base font-bold text-white">{feature.title}</h2>
+              <article key={feature.title} className="flex min-h-48 flex-col justify-center border-b border-white/10 px-8 py-8 text-left md:border-r md:[&:nth-child(3n)]:border-r-0">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center text-white">
+                    <FeatureIcon name={feature.icon} />
+                  </span>
+                  <h2 className="text-base font-bold text-white">{feature.title}</h2>
+                </div>
                 <p className="mt-4 text-sm leading-6 text-white/45">{feature.description}</p>
               </article>
             ))}
@@ -276,12 +277,11 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="flex flex-wrap items-center justify-between gap-4 px-8 py-8 text-xs text-white/35">
+        <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-8 py-8 text-xs text-white/35">
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
             <a href="/docs" className="transition hover:text-white">Docs</a>
             <a href="/enterprise" className="transition hover:text-white">Enterprise</a>
-            <a href="/download" className="transition hover:text-white">Download</a>
           </div>
         </footer>
       </div>
@@ -306,8 +306,8 @@ function DownloadButton({ platform }: { platform: DownloadPlatform }) {
       download={platform.download || undefined}
       className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-[#d8d8d8]"
     >
-      <PlatformIcon name={platform.icon} />
       Download for {platform.label}
+      <PlatformIcon name={platform.icon} />
     </a>
   );
 }

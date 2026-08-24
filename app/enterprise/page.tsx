@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import DownloadModalButton from "../components/download-modal";
 
 export const metadata: Metadata = {
   title: "Enterprise",
@@ -30,18 +31,10 @@ const benefits = [
   "Quiet controls for security-conscious work",
 ];
 
-const trustedLogos = [
-  { name: "Nestle", src: "/nestle-logo.png", width: 1280, height: 352, className: "h-5 w-auto" },
-  { name: "SAEL", src: "/sael-logo.png", width: 1869, height: 474, className: "h-5 w-auto" },
-  { name: "Domino's", src: "/dominos-logo.png", width: 555, height: 209, className: "h-11 w-auto" },
-  { name: "CP PLUS", src: "/cp-plus-logo.png", width: 1895, height: 300, className: "h-5 w-auto" },
-  { name: "Healthkart", src: "/healthkart-logo.png", width: 646, height: 220, className: "h-10 w-auto" },
-];
-
 export default function EnterprisePage() {
   return (
     <main className="min-h-screen bg-[#050505] px-4 text-white">
-      <div className="mx-auto min-h-screen max-w-[1120px] border-x border-white/10">
+      <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
         <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/75 backdrop-blur-xl">
           <div className="flex items-center justify-between px-8 py-4">
             <a href="/" aria-label="Nap home">
@@ -50,17 +43,14 @@ export default function EnterprisePage() {
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
               <a href="/docs" className="transition hover:text-white">Docs</a>
               <a href="/enterprise" className="text-white">Enterprise</a>
-              <a href="/download" className="rounded-md bg-white px-4 py-2 text-xs font-bold text-black transition hover:bg-[#d8d8d8]">
-                Download
-              </a>
+              <DownloadModalButton />
             </div>
           </div>
         </nav>
 
         <section className="grid border-b border-white/10 md:grid-cols-[1fr_420px]">
           <div className="px-8 py-24">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-white/28">Enterprise</p>
-            <h1 className="mt-6 max-w-[640px] text-5xl font-bold leading-[1.02] md:text-6xl">
+            <h1 className="max-w-[640px] text-5xl font-bold leading-[1.02] md:text-6xl">
               Put agent work on rails for the whole team.
             </h1>
             <p className="mt-6 max-w-[560px] text-lg leading-8 text-white/48">
@@ -116,30 +106,11 @@ export default function EnterprisePage() {
           </form>
         </section>
 
-        <section className="border-b border-white/10 px-8 py-16">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-white/28">
-            Trusted by brands
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-11 gap-y-7">
-            {trustedLogos.map((logo) => (
-              <Image
-                key={logo.name}
-                className={logo.className}
-                src={logo.src}
-                alt={logo.name}
-                width={logo.width}
-                height={logo.height}
-              />
-            ))}
-          </div>
-        </section>
-
-        <footer className="flex flex-wrap items-center justify-between gap-4 px-8 py-8 text-xs text-white/35">
+        <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-8 py-8 text-xs text-white/35">
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
             <a href="/" className="transition hover:text-white">Home</a>
             <a href="/docs" className="transition hover:text-white">Docs</a>
-            <a href="/download" className="transition hover:text-white">Download</a>
           </div>
         </footer>
       </div>

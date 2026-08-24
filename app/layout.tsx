@@ -17,7 +17,7 @@ export const maShanZheng = Ma_Shan_Zheng({
 export const metadata: Metadata = {
   metadataBase: new URL("https://nap-code.com"),
   title: {
-    default: "Nap - One App For All Your Agents",
+    default: "Nap | The Interface For All Your Agents",
     template: "%s | Nap",
   },
   description:
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Nap - One App For All Your Agents",
+    title: "Nap | The Interface For All Your Agents",
     description:
       "Run your coding agents from one fast native workspace for sessions, context, commands, and handoffs.",
     url: "/",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Nap - One App For All Your Agents",
+    title: "Nap | The Interface For All Your Agents",
     description:
       "One native app for Claude Code, Codex CLI, Cursor, OpenCode, Grok CLI, and the coding agents you already use.",
   },

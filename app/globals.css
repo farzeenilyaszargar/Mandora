@@ -11,6 +11,10 @@ body {
   font-family: var(--font-fustat), sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .font-ma-shan-zheng {
   font-family: var(--font-ma-shan-zheng), cursive;
 }
