@@ -75,10 +75,8 @@ const defaultDownloadPlatform: DownloadPlatform = {
 
 export default function Home() {
   const [peopleCount, setPeopleCount] = useState(0);
-  const [isInitialCounting, setIsInitialCounting] = useState(true);
   const [downloadPlatform, setDownloadPlatform] = useState<DownloadPlatform>(defaultDownloadPlatform);
   const previousPeopleCount = usePrevious(peopleCount);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const peopleCountDigits = peopleCount.toString();
   const previousCountDigits = (previousPeopleCount ?? peopleCount)
@@ -86,19 +84,10 @@ export default function Home() {
     .padStart(peopleCountDigits.length, "0");
 
   useEffect(() => {
-    const targetCount = 9489;
+    const targetCount = 3642;
     const loadDuration = 1800;
     const loadSteps = 72;
     let currentStep = 0;
-
-    const scheduleIncrease = () => {
-      const delay = (Math.floor(Math.random() * 6) + 5) * 1000;
-
-      timeoutRef.current = setTimeout(() => {
-        setPeopleCount((count) => count + 1);
-        scheduleIncrease();
-      }, delay);
-    };
 
     intervalRef.current = setInterval(() => {
       currentStep += 1;
@@ -116,15 +105,9 @@ export default function Home() {
       }
 
       setPeopleCount(targetCount);
-      setIsInitialCounting(false);
-      scheduleIncrease();
     }, loadDuration / loadSteps);
 
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
@@ -182,7 +165,7 @@ export default function Home() {
                 {peopleCountDigits
                   .split("")
                   .map((digit, index) => {
-                    const didDigitChange = !isInitialCounting && previousCountDigits[index] !== digit;
+                    const didDigitChange = previousCountDigits[index] !== digit;
 
                     return (
                       <span
