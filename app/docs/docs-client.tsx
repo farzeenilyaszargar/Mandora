@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import DownloadModalButton from "../components/download-modal";
 
 const sidebarGroups = [
@@ -304,14 +304,33 @@ function topicId(pageId: string, title: string) {
 }
 
 export default function DocsClient() {
-  const flatItems = useMemo(() => sidebarGroups.flatMap((group) => group.items), []);
-  const [activeTopic, setActiveTopic] = useState(0);
-  const [hoveredTopicId, setHoveredTopicId] = useState<string | null>(null);
-  const activePage = docPages[activeTopic] ?? docPages[0];
+  const [activePageId, setActivePageId] = useState(docPages[0].id);
+  const [hoveredPageId, setHoveredPageId] = useState<string | null>(null);
+  const activePage = docPages.find((page) => page.id === activePageId) ?? docPages[0];
+  const [activeMiniTopicId, setActiveMiniTopicId] = useState(topicId(activePage.id, activePage.topics[0].title));
 
   useEffect(() => {
-    const sections = docPages
-      .map((page) => document.getElementById(page.id))
+    const syncPageFromHash = () => {
+      const nextId = window.location.hash.replace("#", "");
+      const nextPage = docPages.find((page) => page.id === nextId);
+
+      if (nextPage) {
+        setActivePageId(nextPage.id);
+      }
+    };
+
+    syncPageFromHash();
+    window.addEventListener("hashchange", syncPageFromHash);
+
+    return () => window.removeEventListener("hashchange", syncPageFromHash);
+  }, []);
+
+  useEffect(() => {
+    const firstTopicId = topicId(activePage.id, activePage.topics[0].title);
+    setActiveMiniTopicId(firstTopicId);
+
+    const sections = activePage.topics
+      .map((topic) => document.getElementById(topicId(activePage.id, topic.title)))
       .filter((section): section is HTMLElement => Boolean(section));
 
     const observer = new IntersectionObserver(
@@ -324,22 +343,25 @@ export default function DocsClient() {
           return;
         }
 
-        const nextIndex = docPages.findIndex((page) => page.id === visible.target.id);
-
-        if (nextIndex !== -1) {
-          setActiveTopic(nextIndex);
-        }
+        setActiveMiniTopicId(visible.target.id);
       },
       {
-        rootMargin: "-16% 0px -58% 0px",
-        threshold: [0.15, 0.35, 0.6],
+        rootMargin: "-20% 0px -55% 0px",
+        threshold: [0.25, 0.5, 0.75],
       },
     );
 
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, []);
+  }, [activePage]);
+
+  function openPage(event: MouseEvent<HTMLAnchorElement>, pageId: string) {
+    event.preventDefault();
+    setActivePageId(pageId);
+    window.history.pushState(null, "", `#${pageId}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
   return (
     <main className="min-h-screen bg-[#050505] px-4 text-white">
@@ -361,41 +383,39 @@ export default function DocsClient() {
         <section className="grid md:grid-cols-[260px_1fr] xl:grid-cols-[260px_1fr_220px]">
           <aside className="border-b border-white/10 px-8 py-8 md:border-b-0 md:border-r">
             <div className="sticky top-24">
-              <nav className="flex max-h-[calc(100vh-150px)] flex-col gap-7 overflow-y-auto pr-2" aria-label="Docs pages">
+              <nav className="relative flex max-h-[calc(100vh-150px)] flex-col gap-7 overflow-y-auto pl-4 pr-2" aria-label="Docs pages">
+                <span className="absolute bottom-0 left-0 top-0 w-px rounded-full bg-white/10" />
                 {sidebarGroups.map((group) => (
                   <div key={group.title}>
-                    <p className="mb-2 px-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white/26">
+                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-white/26">
                       {group.title}
                     </p>
                     <div className="flex flex-col gap-1">
                       {group.items.map((item) => {
-                        const index = flatItems.findIndex((flatItem) => flatItem.id === item.id);
                         const isActive = activePage.id === item.id;
-                        const isLit = isActive || hoveredTopicId === item.id;
+                        const isLit = isActive || hoveredPageId === item.id;
 
                         return (
                           <a
                             key={item.id}
                             href={`#${item.id}`}
-                            onMouseEnter={() => setHoveredTopicId(item.id)}
-                            onMouseLeave={() => setHoveredTopicId(null)}
-                            onFocus={() => setHoveredTopicId(item.id)}
-                            onBlur={() => setHoveredTopicId(null)}
-                            className={`group relative rounded-md px-4 py-2 text-sm font-semibold transition duration-200 ${
+                            onClick={(event) => openPage(event, item.id)}
+                            onMouseEnter={() => setHoveredPageId(item.id)}
+                            onMouseLeave={() => setHoveredPageId(null)}
+                            onFocus={() => setHoveredPageId(item.id)}
+                            onBlur={() => setHoveredPageId(null)}
+                            className={`group relative rounded-md py-2 text-sm font-semibold transition duration-200 ${
                               isActive ? "text-white" : "text-white/45 hover:text-white"
                             }`}
                             aria-current={isActive ? "location" : undefined}
                           >
                             <span
-                              className={`absolute left-0 top-2 h-[calc(100%-16px)] w-px rounded-full transition duration-200 ${
+                              className={`absolute -left-4 top-1.5 h-[calc(100%-12px)] w-px rounded-full transition duration-200 ${
                                 isLit
-                                  ? "bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)]"
-                                  : "bg-white/10 group-hover:bg-white/45"
+                                  ? "bg-white shadow-[0_0_18px_rgba(255,255,255,0.95),0_0_34px_rgba(255,255,255,0.35)]"
+                                  : "bg-transparent group-hover:bg-white/35"
                               }`}
                             />
-                            <span className="text-[11px] font-bold text-white/24">
-                              {String(index + 1).padStart(2, "0")}
-                            </span>{" "}
                             {item.title}
                           </a>
                         );
@@ -423,17 +443,16 @@ export default function DocsClient() {
               </div>
             </section>
 
-            {docPages.map((page) => (
-              <article key={page.id} id={page.id} className="scroll-mt-24 border-b border-white/10 px-8 py-14">
+            <article key={activePage.id} id={activePage.id} className="border-b border-white/10 px-8 py-14">
                 <div className="max-w-[720px]">
-                  <h2 className="text-3xl font-bold">{page.title}</h2>
-                  <p className="mt-4 text-base font-medium leading-8 text-white/52">{page.summary}</p>
+                  <h2 className="text-3xl font-bold">{activePage.title}</h2>
+                  <p className="mt-4 text-base font-medium leading-8 text-white/52">{activePage.summary}</p>
                 </div>
                 <div className="mt-9 grid gap-5">
-                  {page.topics.map((topic) => (
+                  {activePage.topics.map((topic) => (
                     <section
                       key={topic.title}
-                      id={topicId(page.id, topic.title)}
+                      id={topicId(activePage.id, topic.title)}
                       className="scroll-mt-24 rounded-xl border border-white/10 bg-white/[0.02] p-5"
                     >
                       <h3 className="text-base font-bold text-white">{topic.title}</h3>
@@ -454,20 +473,26 @@ export default function DocsClient() {
                   ))}
                 </div>
               </article>
-            ))}
           </div>
 
           <aside className="hidden border-l border-white/10 px-6 py-8 xl:block">
             <div className="sticky top-24">
               <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white/26">On this page</p>
-              <div className="flex flex-col gap-2">
+              <div className="relative flex flex-col gap-2 pl-4">
+                <span className="absolute bottom-0 left-0 top-0 w-px rounded-full bg-white/10" />
                 {activePage.topics.map((topic) => (
                   <a
                     key={topic.title}
                     href={`#${topicId(activePage.id, topic.title)}`}
                     className="group relative rounded-md py-2 pl-4 text-xs font-semibold leading-5 text-white/42 transition hover:text-white"
                   >
-                    <span className="absolute left-0 top-2 h-[calc(100%-16px)] w-px rounded-full bg-white/12 transition group-hover:bg-white group-hover:shadow-[0_0_14px_rgba(255,255,255,0.85)]" />
+                    <span
+                      className={`absolute -left-4 top-2 h-[calc(100%-16px)] w-px rounded-full transition ${
+                        activeMiniTopicId === topicId(activePage.id, topic.title)
+                          ? "bg-white shadow-[0_0_16px_rgba(255,255,255,0.9),0_0_32px_rgba(255,255,255,0.3)]"
+                          : "bg-transparent group-hover:bg-white/35"
+                      }`}
+                    />
                     {topic.title}
                   </a>
                 ))}
