@@ -201,8 +201,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-b border-white/10 px-8 py-25 text-center">
-          <h2 className="text-4xl font-bold">Let Nap Take It From Here</h2>
+        <section className="border-b border-white/10 bg-[url('/cloud-bg.png')] bg-cover bg-center px-8 py-25 text-center">
+          <h2 className="text-4xl font-bold text-black">Let Nap Take It From Here</h2>
           <div className="mt-7 flex items-center justify-center gap-5">
             <DownloadButton platform={downloadPlatform} />
           </div>
