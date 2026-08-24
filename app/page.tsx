@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import DownloadModalButton from "./components/download-modal";
 
 const trustedLogos = [
@@ -74,45 +74,7 @@ const defaultDownloadPlatform: DownloadPlatform = {
 };
 
 export default function Home() {
-  const [peopleCount, setPeopleCount] = useState(0);
   const [downloadPlatform, setDownloadPlatform] = useState<DownloadPlatform>(defaultDownloadPlatform);
-  const previousPeopleCount = usePrevious(peopleCount);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const peopleCountDigits = peopleCount.toString();
-  const previousCountDigits = (previousPeopleCount ?? peopleCount)
-    .toString()
-    .padStart(peopleCountDigits.length, "0");
-
-  useEffect(() => {
-    const targetCount = 3642;
-    const loadDuration = 1800;
-    const loadSteps = 72;
-    let currentStep = 0;
-
-    intervalRef.current = setInterval(() => {
-      currentStep += 1;
-
-      const progress = Math.min(currentStep / loadSteps, 1);
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-      setPeopleCount(Math.floor(targetCount * easedProgress));
-
-      if (progress < 1) {
-        return;
-      }
-
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-
-      setPeopleCount(targetCount);
-    }, loadDuration / loadSteps);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     const platform = window.navigator.platform.toLowerCase();
@@ -161,22 +123,7 @@ export default function Home() {
           <div className="mx-auto flex  flex-col items-center">
             <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-semibold text-white/55">
               <span className="mr-1 inline-flex min-w-[5ch] justify-end overflow-hidden align-bottom font-bold text-white/75">
-                <span>+</span>
-                {peopleCountDigits
-                  .split("")
-                  .map((digit, index) => {
-                    const didDigitChange = previousCountDigits[index] !== digit;
-
-                    return (
-                      <span
-                        key={didDigitChange ? `${index}-${digit}-${peopleCount}` : index}
-                        className={didDigitChange ? "animate-counter-digit-slide inline-block" : "inline-block"}
-                        style={{ animationDelay: `${index * 18}ms` }}
-                      >
-                        {digit}
-                      </span>
-                    );
-                  })}
+                +3642
               </span>
               People Using Worldwide
             </div>
@@ -270,16 +217,6 @@ export default function Home() {
       </div>
     </main>
   );
-}
-
-function usePrevious<T>(value: T) {
-  const ref = useRef<T | undefined>(undefined);
-
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-
-  return ref.current;
 }
 
 function DownloadButton({ platform }: { platform: DownloadPlatform }) {
