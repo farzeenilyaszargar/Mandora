@@ -66,11 +66,13 @@ type DownloadPlatform = {
   download: boolean;
 };
 
+const macDownloadUrl = "https://github.com/farzeenilyaszargar/NotNap/releases/latest/download/NotNap-macos.dmg";
+
 const defaultDownloadPlatform: DownloadPlatform = {
   label: "macOS",
   icon: "apple",
-  href: "/download.txt",
-  download: true,
+  href: macDownloadUrl,
+  download: false,
 };
 
 export default function Home() {

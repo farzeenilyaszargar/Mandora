@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+const macDownloadUrl = "https://github.com/farzeenilyaszargar/NotNap/releases/latest/download/NotNap-macos.dmg";
+
 export default function DownloadModalButton() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,8 +45,7 @@ export default function DownloadModalButton() {
 
             <div className="mt-8 grid gap-3">
               <a
-                href="/download.txt"
-                download
+                href={macDownloadUrl}
                 className="flex items-center justify-between gap-3 rounded-lg bg-white px-5 py-3 text-left text-sm font-bold text-black transition hover:bg-[#d8d8d8]"
               >
                 <span>Download For MacOS</span>
