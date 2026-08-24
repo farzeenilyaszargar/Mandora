@@ -187,7 +187,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3">
             {features.map((feature) => (
               <article key={feature.title} className="flex min-h-48 flex-col justify-center border-b border-white/10 px-8 py-8 text-left md:border-r md:[&:nth-child(3n)]:border-r-0">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center text-white">
                     <FeatureIcon name={feature.icon} />
                   </span>
