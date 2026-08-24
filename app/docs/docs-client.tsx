@@ -292,13 +292,6 @@ const docPages = [
   },
 ];
 
-const quickCommands = [
-  ["Install", "bun install"],
-  ["Generate", "bun run protocol:generate"],
-  ["Test", "cargo test --workspace"],
-  ["Develop", "bun run dev"],
-];
-
 function topicId(pageId: string, title: string) {
   return `${pageId}-${title.toLowerCase().replaceAll(" ", "-")}`;
 }
@@ -428,21 +421,6 @@ export default function DocsClient() {
           </aside>
 
           <div className="min-w-0">
-            <section className="border-b border-white/10 px-8 py-10">
-              <h1 className="max-w-[720px] text-4xl font-bold leading-[1.05] md:text-5xl">Nap documentation</h1>
-              <p className="mt-5 max-w-[650px] text-base font-medium leading-8 text-white/50">
-                Practical reference for installing, running, building, and describing Nap from the source documentation.
-              </p>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {quickCommands.map(([label, command]) => (
-                  <div key={label} className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
-                    <p className="text-xs font-bold text-white/35">{label}</p>
-                    <code className="mt-2 block truncate font-mono text-sm font-bold text-white/70">{command}</code>
-                  </div>
-                ))}
-              </div>
-            </section>
-
             <article key={activePage.id} id={activePage.id} className="border-b border-white/10 px-8 py-14">
                 <div className="max-w-[720px]">
                   <h2 className="text-3xl font-bold">{activePage.title}</h2>
