@@ -1,134 +1,313 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DownloadModalButton from "../components/download-modal";
 
-const navItems = [
-  "Overview",
-  "Local architecture",
-  "Development",
-  "macOS build",
-  "GitHub actions",
-  "Platforms",
-  "Providers",
-  "Copy guidance",
+const sidebarGroups = [
+  {
+    title: "Start",
+    items: [
+      { title: "Overview", id: "overview" },
+      { title: "Installation", id: "installation" },
+    ],
+  },
+  {
+    title: "Workspace",
+    items: [
+      { title: "Local architecture", id: "local-architecture" },
+      { title: "Sessions", id: "sessions" },
+      { title: "Checkpoints", id: "checkpoints" },
+    ],
+  },
+  {
+    title: "Develop",
+    items: [
+      { title: "Development setup", id: "development-setup" },
+      { title: "macOS build", id: "macos-build" },
+      { title: "GitHub actions", id: "github-actions" },
+    ],
+  },
+  {
+    title: "Reference",
+    items: [
+      { title: "Providers", id: "providers" },
+      { title: "Platforms", id: "platforms" },
+      { title: "Copy guidance", id: "copy-guidance" },
+    ],
+  },
 ];
 
 const docPages = [
   {
     id: "overview",
     title: "Overview",
-    body: "Nap is a Rust and GPUI desktop workspace for local coding agents. It brings agent sessions, transcripts, tool activity, worktrees, and checkpoints into one native interface.",
-    callout: "Current app version: 0.0.4.",
-    items: [
-      "Native performance with Rust and GPUI",
-      "Provider-neutral agent sessions",
-      "Transcript and tool activity in one timeline",
-      "Working tree and conversation checkpoints",
+    summary:
+      "Nap is a Rust and GPUI desktop workspace for local coding agents. It brings sessions, transcripts, tool activity, worktrees, and checkpoints into one native interface.",
+    topics: [
+      {
+        title: "What Nap does",
+        body:
+          "Nap gives every supported agent a shared place to run, review work, follow tool activity, and keep the project thread intact.",
+      },
+      {
+        title: "What it is built for",
+        body:
+          "The product is optimized for native performance, provider-neutral workflows, checkpointed project work, and keyboard-first operation.",
+      },
+      {
+        title: "Current version",
+        body: "The current app reference version is 0.0.4.",
+      },
+    ],
+  },
+  {
+    id: "installation",
+    title: "Installation",
+    summary:
+      "Nap is currently documented around local development and macOS app builds. Public release distribution should only be described when a real release artifact exists.",
+    topics: [
+      {
+        title: "Install dependencies",
+        body:
+          "Install JavaScript tooling first, then generate protocol bindings before starting the app when interfaces have changed.",
+        code: ["bun install", "bun run protocol:generate"],
+      },
+      {
+        title: "Run locally",
+        body: "Use the development script to launch the local app workflow.",
+        code: ["bun run dev"],
+      },
+      {
+        title: "Verify the workspace",
+        body:
+          "Run the Rust test suite before cutting builds or changing provider behavior.",
+        code: ["cargo test --workspace"],
+      },
     ],
   },
   {
     id: "local-architecture",
     title: "Local architecture",
-    body: "Nap is local by design. Projects, sessions, transcripts, and provider state live on the user's machine rather than in a hosted account.",
-    callout: "The app currently has no telemetry service, no automatic updater, and no public release endpoint.",
-    items: [
-      "Product data: ~/.nap",
-      "macOS app data: Application Support/Nap",
-      "No hosted cloud sync",
-      "No analytics pipeline configured",
+    summary:
+      "Nap is local by design. Projects, sessions, transcripts, and provider state live on the user's machine rather than in a hosted account.",
+    topics: [
+      {
+        title: "Where data lives",
+        body: "Product data is stored under ~/.nap. macOS app data lives in Application Support/Nap.",
+      },
+      {
+        title: "No hosted sync",
+        body:
+          "The reference docs do not describe hosted cloud sync, telemetry, an analytics pipeline, or a public automatic update endpoint.",
+      },
+      {
+        title: "Why it matters",
+        body:
+          "Local architecture keeps project context, provider IDs, transcripts, and working state close to the machine doing the work.",
+      },
     ],
   },
   {
-    id: "development",
-    title: "Development",
-    body: "The app is developed from the local workspace using Bun for web/tooling tasks and Cargo for the Rust workspace. Protocol generation should run before development when interfaces change.",
-    callout: "The macOS development bundle is target/debug/Nap.app.",
-    code: ["bun install", "bun run protocol:generate", "cargo test --workspace", "bun run dev"],
+    id: "sessions",
+    title: "Sessions",
+    summary:
+      "Sessions are the running workspace for each provider. They keep prompts, responses, normalized events, tool calls, and file activity together.",
+    topics: [
+      {
+        title: "One timeline",
+        body:
+          "Provider events are normalized so commands, file changes, searches, plans, reasoning, and text can live in a shared transcript model.",
+      },
+      {
+        title: "Long-lived drivers",
+        body:
+          "Nap talks to coding-agent CLIs through long-lived driver sessions rather than treating each prompt as a disconnected command.",
+      },
+      {
+        title: "Project context",
+        body:
+          "Sessions are meant to preserve the useful working context around a project instead of scattering it across terminals.",
+      },
+    ],
+  },
+  {
+    id: "checkpoints",
+    title: "Checkpoints",
+    summary:
+      "Checkpoints help connect working tree changes to the conversation that produced them, making it easier to rewind or inspect agent work.",
+    topics: [
+      {
+        title: "Working tree state",
+        body:
+          "Nap tracks project work around the same session view that contains the transcript and provider activity.",
+      },
+      {
+        title: "Rollback context",
+        body:
+          "The product direction is to rewind the work and the conversation together, rather than only preserving chat text.",
+      },
+      {
+        title: "Agent accountability",
+        body:
+          "Tool activity and file changes stay visible beside the agent's reasoning and output.",
+      },
+    ],
+  },
+  {
+    id: "development-setup",
+    title: "Development setup",
+    summary:
+      "The app is developed from the local workspace using Bun for web and tooling tasks, and Cargo for the Rust workspace.",
+    topics: [
+      {
+        title: "Install and generate",
+        body: "Set up packages and generated protocol code before running the development bundle.",
+        code: ["bun install", "bun run protocol:generate"],
+      },
+      {
+        title: "Run tests",
+        body: "Use the workspace test command for Rust verification.",
+        code: ["cargo test --workspace"],
+      },
+      {
+        title: "Start development",
+        body: "The macOS development bundle is target/debug/Nap.app.",
+        code: ["bun run dev"],
+      },
+    ],
   },
   {
     id: "macos-build",
     title: "macOS build",
-    body: "macOS is the primary packaged platform. A local unsigned release bundle can be created from the release script and packaged into target/release/Nap.app.",
-    callout: "Without Apple signing credentials, release bundles are ad-hoc signed. Notarized public distribution is not set up yet.",
-    code: ["bun run release"],
-    items: [
-      "Development bundle identifier: app.nap.dev",
-      "Release bundle identifier: app.nap",
-      "Release script: scripts/release.ts",
-      "Bundle script: scripts/bundle.sh release",
+    summary:
+      "macOS is the primary packaged platform. A local release bundle can be created with the release script and packaged into target/release/Nap.app.",
+    topics: [
+      {
+        title: "Create a release bundle",
+        body: "Run the release script from the app workspace.",
+        code: ["bun run release"],
+      },
+      {
+        title: "Bundle identifiers",
+        body:
+          "The development bundle identifier is app.nap.dev. The release bundle identifier is app.nap.",
+      },
+      {
+        title: "Signing status",
+        body:
+          "Without Apple signing credentials, release bundles are ad-hoc signed. Notarized public distribution is not set up yet.",
+      },
     ],
   },
   {
     id: "github-actions",
     title: "GitHub actions",
-    body: "The repository includes macOS-only workflows for binaries and tests. The binary workflow is manually triggered and produces a macOS app zip plus a tarball of binaries.",
-    callout: "Expected artifact name: nap-macos.",
-    code: [
-      'gh workflow run "macOS Binaries" --repo farzeenilyaszargar/NotNap --ref main',
-      "gh run watch --repo farzeenilyaszargar/NotNap",
-    ],
-    items: [
-      ".github/workflows/macos-binaries.yml",
-      ".github/workflows/test.yml",
-      "Nap-macos.app.zip",
-      "nap-macos-binaries.tar.gz",
-    ],
-  },
-  {
-    id: "platforms",
-    title: "Platforms",
-    body: "macOS is the primary platform today. Linux and Windows packaging notes exist, but official public Linux binaries and Windows installers are not published yet.",
-    callout: "Linux users build locally from the Rust workspace. Windows installer packaging can use resources/windows/nap.iss.",
-    items: [
-      "Linux desktop file: resources/linux/app.nap.desktop",
-      "Windows installer script: resources/windows/nap.iss",
-      "Publisher, support, website, and update URLs are not configured",
+    summary:
+      "The repository includes macOS-only workflows for binaries and tests. The binary workflow is manually triggered and produces downloadable artifacts.",
+    topics: [
+      {
+        title: "Run the binary workflow",
+        body: "Trigger the macOS binary workflow manually when a build artifact is needed.",
+        code: [
+          'gh workflow run "macOS Binaries" --repo farzeenilyaszargar/NotNap --ref main',
+          "gh run watch --repo farzeenilyaszargar/NotNap",
+        ],
+      },
+      {
+        title: "Artifacts",
+        body: "Expected artifacts include nap-macos, Nap-macos.app.zip, and nap-macos-binaries.tar.gz.",
+      },
+      {
+        title: "Workflow files",
+        body: "The relevant references are .github/workflows/macos-binaries.yml and .github/workflows/test.yml.",
+      },
     ],
   },
   {
     id: "providers",
     title: "Providers",
-    body: "Nap talks to coding-agent CLIs through long-lived driver sessions. Provider events are normalized into shared transcript activity types for commands, file changes, searches, plans, tool calls, reasoning, and text.",
-    callout: "Provider implementation details live in docs/providers.md and crates/nap-core/src/driver/mod.rs.",
-    items: [
-      "Codex CLI",
-      "Claude Code",
-      "Cursor CLI",
-      "OpenCode",
-      "Amp",
-      "Pi and Oh My Pi",
-      "Grok Build",
-      "Kimi Code",
-      "DeepSeek Harness",
+    summary:
+      "Nap talks to coding-agent CLIs through provider drivers and presents their activity through shared transcript types.",
+    topics: [
+      {
+        title: "Supported agents",
+        body:
+          "Reference providers include Codex CLI, Claude Code, Cursor CLI, OpenCode, Amp, Pi and Oh My Pi, Grok Build, Kimi Code, and DeepSeek Harness.",
+      },
+      {
+        title: "Driver reference",
+        body:
+          "Provider implementation details live in docs/providers.md and crates/nap-core/src/driver/mod.rs.",
+      },
+      {
+        title: "Shared events",
+        body:
+          "Provider output is normalized into events for commands, file changes, searches, plans, tool calls, reasoning, and text.",
+      },
+    ],
+  },
+  {
+    id: "platforms",
+    title: "Platforms",
+    summary:
+      "macOS is the primary platform today. Linux and Windows packaging notes exist, but official public Linux binaries and Windows installers are not published yet.",
+    topics: [
+      {
+        title: "macOS",
+        body:
+          "macOS is the primary packaged platform and the only platform described as release-ready in the reference material.",
+      },
+      {
+        title: "Linux",
+        body: "Linux users build locally from the Rust workspace. A desktop file exists at resources/linux/app.nap.desktop.",
+      },
+      {
+        title: "Windows",
+        body: "Windows installer packaging can use resources/windows/nap.iss, but published installers are not documented yet.",
+      },
     ],
   },
   {
     id: "copy-guidance",
     title: "Copy guidance",
-    body: "Website copy should present Nap as native, local, provider-neutral, and careful about release status. Avoid claiming hosted sync, telemetry, automatic updates, notarized releases, or official Linux and Windows binaries until those are actually configured.",
-    callout: "Downloads should only be advertised when a build artifact or release exists.",
-    items: [
-      "Say: native, local, provider-neutral",
-      "Say: release bundles are unsigned/ad-hoc unless signing is configured",
-      "Do not say: hosted cloud service or remote account sync",
-      "Do not say: automatic updates or public release endpoint",
+    summary:
+      "Website copy should present Nap as native, local, provider-neutral, and careful about release status.",
+    topics: [
+      {
+        title: "Use these claims",
+        body:
+          "Use native, local, provider-neutral, transcript-aware, checkpointed, and keyboard-first language.",
+      },
+      {
+        title: "Avoid these claims",
+        body:
+          "Do not claim hosted cloud sync, telemetry, automatic updates, notarized releases, or official Linux and Windows binaries until those are configured.",
+      },
+      {
+        title: "Download copy",
+        body: "Downloads should only be advertised when a build artifact or release exists.",
+      },
     ],
   },
 ];
 
-const snippets = [
-  ["Install dependencies", "bun install"],
-  ["Generate protocols", "bun run protocol:generate"],
-  ["Run tests", "cargo test --workspace"],
-  ["Start development", "bun run dev"],
+const quickCommands = [
+  ["Install", "bun install"],
+  ["Generate", "bun run protocol:generate"],
+  ["Test", "cargo test --workspace"],
+  ["Develop", "bun run dev"],
 ];
 
+function topicId(pageId: string, title: string) {
+  return `${pageId}-${title.toLowerCase().replaceAll(" ", "-")}`;
+}
+
 export default function DocsClient() {
+  const flatItems = useMemo(() => sidebarGroups.flatMap((group) => group.items), []);
   const [activeTopic, setActiveTopic] = useState(0);
-  const [hoveredTopic, setHoveredTopic] = useState<number | null>(null);
-  const markerIndex = hoveredTopic ?? activeTopic;
+  const [hoveredTopicId, setHoveredTopicId] = useState<string | null>(null);
+  const activePage = docPages[activeTopic] ?? docPages[0];
 
   useEffect(() => {
     const sections = docPages
@@ -152,8 +331,8 @@ export default function DocsClient() {
         }
       },
       {
-        rootMargin: "-18% 0px -56% 0px",
-        threshold: [0.2, 0.45, 0.7],
+        rootMargin: "-16% 0px -58% 0px",
+        threshold: [0.15, 0.35, 0.6],
       },
     );
 
@@ -171,85 +350,138 @@ export default function DocsClient() {
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
             </a>
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
-              <a href="/docs" className="text-white">Docs</a>
+              <a href="/docs" className="text-white">
+                Docs
+              </a>
               <DownloadModalButton />
             </div>
           </div>
         </nav>
 
-        <section className="grid pt-14 md:grid-cols-[260px_1fr]">
+        <section className="grid pt-14 md:grid-cols-[260px_1fr] xl:grid-cols-[260px_1fr_220px]">
           <aside className="border-b border-white/10 px-8 py-8 md:border-b-0 md:border-r">
             <div className="sticky top-24">
-              <div className="relative flex max-h-[calc(100vh-160px)] flex-col gap-1 overflow-y-auto pr-2">
-                <span
-                  className="pointer-events-none absolute left-0 right-2 h-9 rounded-md bg-white/[0.055] transition-transform duration-300 ease-out"
-                  style={{ transform: `translateY(${markerIndex * 40}px)` }}
-                />
-                {navItems.map((item, index) => (
+              <nav className="flex max-h-[calc(100vh-150px)] flex-col gap-7 overflow-y-auto pr-2" aria-label="Docs pages">
+                {sidebarGroups.map((group) => (
+                  <div key={group.title}>
+                    <p className="mb-2 px-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white/26">
+                      {group.title}
+                    </p>
+                    <div className="flex flex-col gap-1">
+                      {group.items.map((item) => {
+                        const index = flatItems.findIndex((flatItem) => flatItem.id === item.id);
+                        const isActive = activePage.id === item.id;
+                        const isLit = isActive || hoveredTopicId === item.id;
+
+                        return (
+                          <a
+                            key={item.id}
+                            href={`#${item.id}`}
+                            onMouseEnter={() => setHoveredTopicId(item.id)}
+                            onMouseLeave={() => setHoveredTopicId(null)}
+                            onFocus={() => setHoveredTopicId(item.id)}
+                            onBlur={() => setHoveredTopicId(null)}
+                            className={`group relative rounded-md px-4 py-2 text-sm font-semibold transition duration-200 ${
+                              isActive ? "text-white" : "text-white/45 hover:text-white"
+                            }`}
+                            aria-current={isActive ? "location" : undefined}
+                          >
+                            <span
+                              className={`absolute left-0 top-2 h-[calc(100%-16px)] w-px rounded-full transition duration-200 ${
+                                isLit
+                                  ? "bg-white shadow-[0_0_16px_rgba(255,255,255,0.9)]"
+                                  : "bg-white/10 group-hover:bg-white/45"
+                              }`}
+                            />
+                            <span className="text-[11px] font-bold text-white/24">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>{" "}
+                            {item.title}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </nav>
+            </div>
+          </aside>
+
+          <div className="min-w-0">
+            <section className="border-b border-white/10 px-8 py-10">
+              <h1 className="max-w-[720px] text-4xl font-bold leading-[1.05] md:text-5xl">Nap documentation</h1>
+              <p className="mt-5 max-w-[650px] text-base font-medium leading-8 text-white/50">
+                Practical reference for installing, running, building, and describing Nap from the source documentation.
+              </p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {quickCommands.map(([label, command]) => (
+                  <div key={label} className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+                    <p className="text-xs font-bold text-white/35">{label}</p>
+                    <code className="mt-2 block truncate font-mono text-sm font-bold text-white/70">{command}</code>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {docPages.map((page) => (
+              <article key={page.id} id={page.id} className="scroll-mt-24 border-b border-white/10 px-8 py-14">
+                <div className="max-w-[720px]">
+                  <h2 className="text-3xl font-bold">{page.title}</h2>
+                  <p className="mt-4 text-base font-medium leading-8 text-white/52">{page.summary}</p>
+                </div>
+                <div className="mt-9 grid gap-5">
+                  {page.topics.map((topic) => (
+                    <section
+                      key={topic.title}
+                      id={topicId(page.id, topic.title)}
+                      className="scroll-mt-24 rounded-xl border border-white/10 bg-white/[0.02] p-5"
+                    >
+                      <h3 className="text-base font-bold text-white">{topic.title}</h3>
+                      <p className="mt-3 max-w-[680px] text-sm font-medium leading-7 text-white/48">{topic.body}</p>
+                      {"code" in topic && topic.code ? (
+                        <div className="mt-5 overflow-hidden rounded-lg border border-white/10 bg-black">
+                          {topic.code.map((line) => (
+                            <code
+                              key={line}
+                              className="block border-b border-white/10 px-4 py-3 font-mono text-xs font-bold text-white/62 last:border-b-0"
+                            >
+                              {line}
+                            </code>
+                          ))}
+                        </div>
+                      ) : null}
+                    </section>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <aside className="hidden border-l border-white/10 px-6 py-8 xl:block">
+            <div className="sticky top-24">
+              <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white/26">On this page</p>
+              <div className="flex flex-col gap-2">
+                {activePage.topics.map((topic) => (
                   <a
-                    key={item}
-                    href={`#${item.toLowerCase().replaceAll(" ", "-")}`}
-                    onMouseEnter={() => setHoveredTopic(index)}
-                    onMouseLeave={() => setHoveredTopic(null)}
-                    onFocus={() => setHoveredTopic(index)}
-                    onBlur={() => setHoveredTopic(null)}
-                    className={`relative z-10 rounded-md px-3 py-2 text-sm font-semibold transition-colors duration-200 ${
-                      index === markerIndex ? "text-white" : "text-white/45 hover:text-white"
-                    }`}
+                    key={topic.title}
+                    href={`#${topicId(activePage.id, topic.title)}`}
+                    className="group relative rounded-md py-2 pl-4 text-xs font-semibold leading-5 text-white/42 transition hover:text-white"
                   >
-                    {item}
+                    <span className="absolute left-0 top-2 h-[calc(100%-16px)] w-px rounded-full bg-white/12 transition group-hover:bg-white group-hover:shadow-[0_0_14px_rgba(255,255,255,0.85)]" />
+                    {topic.title}
                   </a>
                 ))}
               </div>
             </div>
           </aside>
-
-          <div>
-            <section className="grid border-b border-white/10 md:grid-cols-2">
-              {snippets.map(([label, command]) => (
-                <div key={label} className="border-b border-white/10 px-8 py-7 md:border-r md:[&:nth-child(even)]:border-r-0">
-                  <p className="text-xs font-bold text-white/35">{label}</p>
-                  <code className="mt-3 block rounded-md border border-white/10 bg-black px-3 py-2 font-mono text-sm font-bold text-white/75">
-                    {command}
-                  </code>
-                </div>
-              ))}
-            </section>
-
-            {docPages.map((page) => (
-              <article key={page.id} id={page.id} className="scroll-mt-24 border-b border-white/10 px-8 py-12">
-                <h2 className="text-3xl font-bold">{page.title}</h2>
-                <p className="mt-5 max-w-[680px] text-base leading-8 text-white/52">{page.body}</p>
-                {page.code ? (
-                  <div className="mt-7 max-w-[680px] overflow-hidden rounded-xl border border-white/10 bg-black">
-                    {page.code.map((line) => (
-                      <code key={line} className="block border-b border-white/10 px-5 py-3 font-mono text-sm font-bold text-white/62 last:border-b-0">
-                        {line}
-                      </code>
-                    ))}
-                  </div>
-                ) : null}
-                {page.items ? (
-                  <div className="mt-7 flex max-w-[680px] flex-wrap gap-2">
-                    {page.items.map((item) => (
-                      <span key={item} className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-semibold text-white/55">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                ) : null}
-                <div className="mt-7 max-w-[680px] rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm font-semibold leading-6 text-white/58">
-                  {page.callout}
-                </div>
-              </article>
-            ))}
-          </div>
         </section>
 
         <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-8 py-8 text-xs text-white/35">
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
-            <a href="/" className="transition hover:text-white">Home</a>
+            <a href="/" className="transition hover:text-white">
+              Home
+            </a>
           </div>
         </footer>
       </div>
