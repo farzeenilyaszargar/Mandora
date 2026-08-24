@@ -120,7 +120,7 @@ export default function Home() {
           </div>
         </nav>
 
-        <section className="px-8 pb-16 pt-16 text-center">
+        <section className="px-8 pb-16 pt-24 text-center">
           <div className="mx-auto flex  flex-col items-center">
             <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-semibold text-white/55">
               <span className="mr-1 inline-flex min-w-[5ch] justify-end overflow-hidden align-bottom font-bold text-white/75">
