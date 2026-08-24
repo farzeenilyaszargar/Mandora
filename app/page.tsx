@@ -107,7 +107,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#050505] px-4 text-white">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
         <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/75 backdrop-blur-xl">
-          <div className="flex items-center justify-between px-8 py-4">
+          <div className="flex items-center justify-between px-8 py-3">
             <a href="/" className="flex items-center gap-3 text-sm font-bold">
               <Image className="brightness-0 invert" src="/logo.png" alt="Nap" width={28} height={28} priority />
             </a>

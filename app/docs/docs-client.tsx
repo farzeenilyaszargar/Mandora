@@ -6,71 +6,123 @@ import DownloadModalButton from "../components/download-modal";
 
 const navItems = [
   "Overview",
-  "Installation",
-  "Connect agents",
-  "Projects",
-  "Sessions",
-  "Shortcuts",
-  "Preferences",
-  "Troubleshooting",
+  "Local architecture",
+  "Development",
+  "macOS build",
+  "GitHub actions",
+  "Platforms",
+  "Providers",
+  "Copy guidance",
 ];
 
 const docPages = [
   {
     id: "overview",
     title: "Overview",
-    body: "Nap is a native command center for coding agents. It keeps Claude Code, Codex CLI, Cursor, OpenCode, and Grok CLI in one focused surface so every run has context, history, and a clean way back.",
-    callout: "Think of Nap as the operating desk for agent work: launch, observe, compare, resume.",
+    body: "Nap is a Rust and GPUI desktop workspace for local coding agents. It brings agent sessions, transcripts, tool activity, worktrees, and checkpoints into one native interface.",
+    callout: "Current app version: 0.0.4.",
+    items: [
+      "Native performance with Rust and GPUI",
+      "Provider-neutral agent sessions",
+      "Transcript and tool activity in one timeline",
+      "Working tree and conversation checkpoints",
+    ],
   },
   {
-    id: "installation",
-    title: "Installation",
-    body: "Download the macOS build, move Nap into Applications, then open a project folder. Nap will check for supported CLIs and show which providers are ready to use.",
-    callout: "For now the download button uses a placeholder file while the installer is prepared.",
+    id: "local-architecture",
+    title: "Local architecture",
+    body: "Nap is local by design. Projects, sessions, transcripts, and provider state live on the user's machine rather than in a hosted account.",
+    callout: "The app currently has no telemetry service, no automatic updater, and no public release endpoint.",
+    items: [
+      "Product data: ~/.nap",
+      "macOS app data: Application Support/Nap",
+      "No hosted cloud sync",
+      "No analytics pipeline configured",
+    ],
   },
   {
-    id: "connect-agents",
-    title: "Connect agents",
-    body: "Nap uses the accounts and keys you already configured through first-party tools. If Claude Code, Codex CLI, Cursor, OpenCode, or Grok CLI are authenticated locally, Nap can route work to them.",
-    callout: "No new provider account is required to test the core workflow.",
+    id: "development",
+    title: "Development",
+    body: "The app is developed from the local workspace using Bun for web/tooling tasks and Cargo for the Rust workspace. Protocol generation should run before development when interfaces change.",
+    callout: "The macOS development bundle is target/debug/Nap.app.",
+    code: ["bun install", "bun run protocol:generate", "cargo test --workspace", "bun run dev"],
   },
   {
-    id: "projects",
-    title: "Projects",
-    body: "A project is a local workspace with its own preferred agents, instructions, recent sessions, and file activity. Nap keeps each workspace quiet and separate.",
-    callout: "Use project defaults when one repo prefers Codex while another works better with Claude Code.",
+    id: "macos-build",
+    title: "macOS build",
+    body: "macOS is the primary packaged platform. A local unsigned release bundle can be created from the release script and packaged into target/release/Nap.app.",
+    callout: "Without Apple signing credentials, release bundles are ad-hoc signed. Notarized public distribution is not set up yet.",
+    code: ["bun run release"],
+    items: [
+      "Development bundle identifier: app.nap.dev",
+      "Release bundle identifier: app.nap",
+      "Release script: scripts/release.ts",
+      "Bundle script: scripts/bundle.sh release",
+    ],
   },
   {
-    id: "sessions",
-    title: "Sessions",
-    body: "Every prompt creates a session with the selected provider. Nap tracks the request, response, notes, run status, and workspace activity so you can resume without rebuilding context.",
-    callout: "Sessions are designed for messy real work: starts, stops, revisions, and handoffs.",
+    id: "github-actions",
+    title: "GitHub actions",
+    body: "The repository includes macOS-only workflows for binaries and tests. The binary workflow is manually triggered and produces a macOS app zip plus a tarball of binaries.",
+    callout: "Expected artifact name: nap-macos.",
+    code: [
+      'gh workflow run "macOS Binaries" --repo farzeenilyaszargar/NotNap --ref main',
+      "gh run watch --repo farzeenilyaszargar/NotNap",
+    ],
+    items: [
+      ".github/workflows/macos-binaries.yml",
+      ".github/workflows/test.yml",
+      "Nap-macos.app.zip",
+      "nap-macos-binaries.tar.gz",
+    ],
   },
   {
-    id: "shortcuts",
-    title: "Shortcuts",
-    body: "Nap is keyboard-first. Use shortcuts to open the command palette, start a run, switch providers, jump to the previous session, and move through the timeline.",
-    callout: "The goal is fewer clicks when you are already thinking in code.",
+    id: "platforms",
+    title: "Platforms",
+    body: "macOS is the primary platform today. Linux and Windows packaging notes exist, but official public Linux binaries and Windows installers are not published yet.",
+    callout: "Linux users build locally from the Rust workspace. Windows installer packaging can use resources/windows/nap.iss.",
+    items: [
+      "Linux desktop file: resources/linux/app.nap.desktop",
+      "Windows installer script: resources/windows/nap.iss",
+      "Publisher, support, website, and update URLs are not configured",
+    ],
   },
   {
-    id: "preferences",
-    title: "Preferences",
-    body: "Set default agents per project, choose how dense the interface feels, tune notification behavior, and decide which provider should be first in the launcher.",
-    callout: "Preferences are intentionally local so each machine can match the way you actually work.",
+    id: "providers",
+    title: "Providers",
+    body: "Nap talks to coding-agent CLIs through long-lived driver sessions. Provider events are normalized into shared transcript activity types for commands, file changes, searches, plans, tool calls, reasoning, and text.",
+    callout: "Provider implementation details live in docs/providers.md and crates/nap-core/src/driver/mod.rs.",
+    items: [
+      "Codex CLI",
+      "Claude Code",
+      "Cursor CLI",
+      "OpenCode",
+      "Amp",
+      "Pi and Oh My Pi",
+      "Grok Build",
+      "Kimi Code",
+      "DeepSeek Harness",
+    ],
   },
   {
-    id: "troubleshooting",
-    title: "Troubleshooting",
-    body: "If an agent does not appear, confirm the CLI is installed, authenticated, and available in your shell path. Nap surfaces provider checks so setup problems are easier to spot.",
-    callout: "Most issues come from missing local authentication or a CLI that is not reachable from the app environment.",
+    id: "copy-guidance",
+    title: "Copy guidance",
+    body: "Website copy should present Nap as native, local, provider-neutral, and careful about release status. Avoid claiming hosted sync, telemetry, automatic updates, notarized releases, or official Linux and Windows binaries until those are actually configured.",
+    callout: "Downloads should only be advertised when a build artifact or release exists.",
+    items: [
+      "Say: native, local, provider-neutral",
+      "Say: release bundles are unsigned/ad-hoc unless signing is configured",
+      "Do not say: hosted cloud service or remote account sync",
+      "Do not say: automatic updates or public release endpoint",
+    ],
   },
 ];
 
 const snippets = [
-  ["Check local agents", "nap agents"],
-  ["Open a workspace", "nap open ~/code/app"],
-  ["Start a Codex run", "nap run codex"],
-  ["Resume previous work", "nap resume last"],
+  ["Install dependencies", "bun install"],
+  ["Generate protocols", "bun run protocol:generate"],
+  ["Run tests", "cargo test --workspace"],
+  ["Start development", "bun run dev"],
 ];
 
 export default function DocsClient() {
@@ -114,7 +166,7 @@ export default function DocsClient() {
     <main className="min-h-screen bg-[#050505] px-4 text-white">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
         <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/75 backdrop-blur-xl">
-          <div className="flex items-center justify-between px-8 py-4">
+          <div className="flex items-center justify-between px-8 py-3">
             <a href="/" aria-label="Nap home">
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
             </a>
@@ -168,6 +220,24 @@ export default function DocsClient() {
               <article key={page.id} id={page.id} className="scroll-mt-24 border-b border-white/10 px-8 py-12">
                 <h2 className="text-3xl font-bold">{page.title}</h2>
                 <p className="mt-5 max-w-[680px] text-base leading-8 text-white/52">{page.body}</p>
+                {page.code ? (
+                  <div className="mt-7 max-w-[680px] overflow-hidden rounded-xl border border-white/10 bg-black">
+                    {page.code.map((line) => (
+                      <code key={line} className="block border-b border-white/10 px-5 py-3 font-mono text-sm font-bold text-white/62 last:border-b-0">
+                        {line}
+                      </code>
+                    ))}
+                  </div>
+                ) : null}
+                {page.items ? (
+                  <div className="mt-7 flex max-w-[680px] flex-wrap gap-2">
+                    {page.items.map((item) => (
+                      <span key={item} className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-semibold text-white/55">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
                 <div className="mt-7 max-w-[680px] rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm font-semibold leading-6 text-white/58">
                   {page.callout}
                 </div>
