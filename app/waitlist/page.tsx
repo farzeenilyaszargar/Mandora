@@ -31,7 +31,6 @@ export default function WaitlistPage() {
             </a>
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
               <a href="/docs" className="transition hover:text-white">Docs</a>
-              <a href="/enterprise" className="transition hover:text-white">Enterprise</a>
               <DownloadModalButton />
             </div>
           </div>

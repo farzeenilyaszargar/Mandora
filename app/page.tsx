@@ -113,7 +113,6 @@ export default function Home() {
             </a>
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
               <a href="/docs" className="transition hover:text-white">Docs</a>
-              <a href="/enterprise" className="transition hover:text-white">Enterprise</a>
               <DownloadModalButton />
             </div>
           </div>
@@ -211,7 +210,6 @@ export default function Home() {
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
             <a href="/docs" className="transition hover:text-white">Docs</a>
-            <a href="/enterprise" className="transition hover:text-white">Enterprise</a>
           </div>
         </footer>
       </div>
