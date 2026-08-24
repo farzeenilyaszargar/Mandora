@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from "react";
 const trustedLogos = [
   { name: "Nestle", src: "/nestle-logo.png", width: 1280, height: 352, className: "h-5 w-auto" },
   { name: "SAEL", src: "/sael-logo.png", width: 1869, height: 474, className: "h-5 w-auto" },
-  { name: "Domino's", src: "/dominos-logo.png", width: 555, height: 209, className: "h-11 w-auto" },
+  { name: "Domino's", src: "/dominos-logo.png", width: 555, height: 209, className: "h-12 w-auto" },
   { name: "CP PLUS", src: "/cp-plus-logo.png", width: 1895, height: 300, className: "h-5 w-auto" },
-  { name: "Healthkart", src: "/healthkart-logo.png", width: 646, height: 220, className: "h-10 w-auto" },
+  { name: "Healthkart", src: "/healthkart-logo.png", width: 646, height: 220, className: "h-11 w-auto" },
 ];
 
 const subscriptionAgents = [
@@ -176,7 +176,7 @@ export default function Home() {
         </nav>
 
         <section className="px-8 pb-16 pt-28 text-center">
-          <div className="mx-auto flex max-w-[650px] flex-col items-center">
+          <div className="mx-auto flex  flex-col items-center">
             <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-semibold text-white/55">
               <span className="mr-1 inline-flex min-w-[5ch] justify-end overflow-hidden align-bottom font-bold text-white/75">
                 <span>+</span>
@@ -198,10 +198,10 @@ export default function Home() {
               </span>
               People Using Worldwide
             </div>
-            <h1 className="mx-auto mt-8 max-w-[920px] text-5xl font-bold leading-[1.02] text-white md:whitespace-nowrap md:text-6xl">
+            <h1 className="mx-auto mt-8 w-full text-5xl font-bold leading-[1.02] text-white md:whitespace-nowrap md:text-6xl -tracking-0.02">
               The Interface That Loves You
             </h1>
-            <p className="mx-auto mt-6 max-w-[560px] text-lg leading-8 text-white/48">
+            <p className="mx-auto mt-6 max-w-[560px] text-lg leading-8 text-white/48 -tracking-0.02">
               Nap brings your agent CLIs into one fast workspace for sessions, context, commands, and handoffs.
             </p>
             <div className="mt-9 flex items-center justify-center gap-5">
@@ -269,8 +269,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-b border-white/10 px-8 py-20 text-center">
-          <h2 className="text-3xl font-bold">Get Nap</h2>
+        <section className="border-b border-white/10 px-8 py-25 text-center">
+          <h2 className="text-4xl font-bold">Let Nap Take It From Here</h2>
           <div className="mt-7 flex items-center justify-center gap-5">
             <DownloadButton platform={downloadPlatform} />
           </div>
