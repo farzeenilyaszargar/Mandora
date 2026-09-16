@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import Image from "next/image";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_RESUME_BYTES = 5 * 1024 * 1024;
@@ -81,17 +80,9 @@ export default function ApplyForm() {
 
   if (isSubmitted) {
     return (
-      <div className="application-success mt-8 flex justify-center sm:mt-10" role="status" aria-live="polite">
+      <div className="mt-8 flex justify-center sm:mt-10" role="status" aria-live="polite">
         <div className="relative w-full max-w-[520px] overflow-hidden border border-white/10 bg-white/[0.035] px-6 py-10 text-center shadow-[0_24px_80px_rgba(0,0,0,0.35)] sm:px-10 sm:py-14">
-          <Image
-            src="/application-confirmation.gif"
-            alt=""
-            width={48}
-            height={48}
-            className="success-tick mx-auto h-16 w-16 sm:h-20 sm:w-20"
-            unoptimized
-          />
-          <h2 className="mt-6 text-lg font-bold sm:text-2xl">Application received.</h2>
+          <h2 className="text-lg font-bold sm:text-2xl">Application received.</h2>
           <p className="mx-auto mt-3 max-w-[360px] text-xs leading-5 text-white/48 sm:text-sm sm:leading-6">
           Thanks for applying. We saved your details and resume for review.
           </p>
