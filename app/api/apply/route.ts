@@ -150,7 +150,7 @@ function validateApplication(application: ApplicationPayload) {
     return "Graduation year should be a 4 digit year.";
   }
 
-  if (!["Software dev", "Video editing"].includes(application.roleWanted)) {
+  if (!["Software Developer", "Video Editing"].includes(application.roleWanted)) {
     return "Please select a valid role.";
   }
 

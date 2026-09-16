@@ -11,7 +11,7 @@ const initialForm = {
   phone: "",
   degree: "",
   graduationYear: "",
-  roleWanted: "Software dev",
+  roleWanted: "Software Developer",
   portfolioUrl: "",
   githubUrl: "",
   linkedinUrl: "",
@@ -97,7 +97,7 @@ export default function ApplyForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 rounded-xl border border-white/10 bg-white/[0.025] p-4 text-left sm:mt-10 sm:p-6">
+    <form onSubmit={handleSubmit} className="mt-8 rounded-xl border border-white/10 bg-white/[0.02] p-4 text-left sm:mt-10 sm:p-6">
       <div className="grid gap-4 lg:grid-cols-2 lg:gap-5">
         <TextField label="Full name" value={form.fullName} onChange={(value) => updateField("fullName", value)} required />
         <TextField label="Email" type="email" value={form.email} onChange={(value) => updateField("email", value)} required />
@@ -111,22 +111,14 @@ export default function ApplyForm() {
             onChange={(event) => updateField("roleWanted", event.target.value)}
             className="mt-2 h-12 w-full rounded-lg border border-white/10 bg-black px-4 text-base font-semibold text-white outline-none transition focus:border-white/35 sm:text-sm"
           >
-            <option>Software dev</option>
-            <option>Video editing</option>
+            <option>Software Developer</option>
+            <option>Video Editing</option>
           </select>
         </label>
         <TextField label="Portfolio (if applicable)" value={form.portfolioUrl} onChange={(value) => updateField("portfolioUrl", value)} placeholder="https://..." />
         <TextField label="GitHub (if applicable)" value={form.githubUrl} onChange={(value) => updateField("githubUrl", value)} placeholder="https://github.com/..." />
         <TextField label="LinkedIn" value={form.linkedinUrl} onChange={(value) => updateField("linkedinUrl", value)} placeholder="https://linkedin.com/in/..." />
-        <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
-          Resume
-          <input
-            type="file"
-            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            onChange={(event) => setResume(event.target.files?.[0] ?? null)}
-            className="mt-2 block w-full overflow-hidden rounded-lg border border-white/10 bg-black text-sm font-semibold text-white file:mr-3 file:min-h-12 file:border-0 file:bg-white file:px-3 file:text-xs file:font-bold file:text-black"
-          />
-        </label>
+        <ResumeField resume={resume} onChange={setResume} />
       </div>
 
       <TextArea
@@ -146,6 +138,39 @@ export default function ApplyForm() {
         {isSubmitting ? "Submitting..." : "Submit application"}
       </button>
     </form>
+  );
+}
+
+function ResumeField({
+  resume,
+  onChange,
+}: {
+  resume: File | null;
+  onChange: (file: File | null) => void;
+}) {
+  return (
+    <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
+      Resume
+      <span className="mt-2 flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-white/10 bg-black px-4 text-sm font-semibold text-white transition hover:border-white/25">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white text-black">
+          <FileIcon />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-white/75">
+            {resume ? resume.name : "Upload resume"}
+          </span>
+          <span className="mt-0.5 block text-[11px] font-semibold normal-case tracking-normal text-white/32">
+            PDF, DOC, or DOCX under 5 MB
+          </span>
+        </span>
+      </span>
+      <input
+        type="file"
+        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        onChange={(event) => onChange(event.target.files?.[0] ?? null)}
+        className="sr-only"
+      />
+    </label>
   );
 }
 
@@ -237,4 +262,15 @@ function validateForm(form: FormState, resume: File | null) {
   }
 
   return "";
+}
+
+function FileIcon() {
+  return (
+    <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <path d="M14 2v6h6" />
+      <path d="M9 15h6" />
+      <path d="M9 18h4" />
+    </svg>
+  );
 }
