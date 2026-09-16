@@ -12,7 +12,7 @@ export default function DownloadModalButton() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="rounded-md bg-white px-4 py-2 text-sm font-bold text-black transition hover:bg-[#d8d8d8]"
+        className="hidden rounded-md bg-white px-4 py-2 text-sm font-bold text-black transition hover:bg-[#d8d8d8] sm:inline-flex"
       >
         Download
       </button>
