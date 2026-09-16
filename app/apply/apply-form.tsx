@@ -81,14 +81,14 @@ export default function ApplyForm() {
   if (isSubmitted) {
     return (
       <div className="mt-8 text-center sm:mt-10">
-        <h2 className="text-xl font-bold sm:text-2xl">Application received.</h2>
-        <p className="mt-3 text-sm leading-6 text-white/48">
+        <h2 className="text-lg font-bold sm:text-2xl">Application received.</h2>
+        <p className="mt-3 text-xs leading-5 text-white/48 sm:text-sm sm:leading-6">
           Thanks for applying. We saved your details and resume for review.
         </p>
         <button
           type="button"
           onClick={() => setIsSubmitted(false)}
-          className="mt-6 w-full rounded-lg border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-bold text-white/60 transition hover:border-white/20 hover:text-white sm:w-auto"
+          className="mt-6 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 text-xs font-bold text-white/60 transition hover:border-white/20 hover:text-white sm:w-auto sm:px-5 sm:py-3 sm:text-sm"
         >
           Submit another application
         </button>
@@ -104,12 +104,12 @@ export default function ApplyForm() {
         <TextField label="Phone" value={form.phone} onChange={(value) => updateField("phone", value)} />
         <TextField label="Degree / program" value={form.degree} onChange={(value) => updateField("degree", value)} />
         <TextField label="Graduation year" value={form.graduationYear} onChange={(value) => updateField("graduationYear", value)} placeholder="2027" required />
-        <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
+        <label className="block text-[10px] font-bold uppercase tracking-[0.12em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
           Role wanted
           <select
             value={form.roleWanted}
             onChange={(event) => updateField("roleWanted", event.target.value)}
-            className="mt-2 h-12 w-full rounded-lg border border-white/10 bg-black px-4 text-base font-semibold text-white outline-none transition focus:border-white/35 sm:text-sm"
+            className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-sm font-semibold text-white outline-none transition focus:border-white/35 sm:h-12 sm:px-4"
           >
             <option>Software Developer</option>
             <option>Video Editing</option>
@@ -128,12 +128,12 @@ export default function ApplyForm() {
         placeholder="Tell us about yourself, what you like building or creating, and anything we should know."
       />
 
-      {error ? <p className="mt-5 text-sm font-semibold text-red-300">{error}</p> : null}
+      {error ? <p className="mt-5 text-xs font-semibold text-red-300 sm:text-sm">{error}</p> : null}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-6 min-h-12 w-full rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-[#d8d8d8] disabled:cursor-not-allowed disabled:opacity-60 sm:mt-7"
+        className="mt-6 min-h-11 w-full rounded-lg bg-white px-4 py-2.5 text-xs font-bold text-black transition hover:bg-[#d8d8d8] disabled:cursor-not-allowed disabled:opacity-60 sm:mt-7 sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm"
       >
         {isSubmitting ? "Submitting..." : "Submit application"}
       </button>
@@ -149,14 +149,14 @@ function ResumeField({
   onChange: (file: File | null) => void;
 }) {
   return (
-    <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
+    <label className="block text-[10px] font-bold uppercase tracking-[0.12em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
       Resume
-      <span className="mt-2 flex min-h-12 items-center gap-3">
-        <span className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-bold normal-case tracking-normal text-black transition hover:bg-[#d8d8d8]">
+      <span className="mt-2 flex min-h-10 items-center gap-2 sm:min-h-12 sm:gap-3">
+        <span className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs font-bold normal-case tracking-normal text-black transition hover:bg-[#d8d8d8] sm:px-4 sm:py-3 sm:text-sm">
           <UploadIcon />
           Upload Resume
         </span>
-        <span className="min-w-0 flex-1 truncate text-sm font-semibold normal-case tracking-normal text-white/42">
+        <span className="min-w-0 flex-1 truncate text-xs font-semibold normal-case tracking-normal text-white/42 sm:text-sm">
           {resume ? resume.name : "PDF, DOC, or DOCX"}
         </span>
       </span>
@@ -186,14 +186,14 @@ function TextField({
   required?: boolean;
 }) {
   return (
-    <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
+    <label className="block text-[10px] font-bold uppercase tracking-[0.12em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
       {label}
       <input
         type={type}
         value={value}
         onChange={(event) => onChange(event.target.value)}
         required={required}
-        className="mt-2 h-12 w-full rounded-lg border border-white/10 bg-black px-4 text-base font-semibold text-white outline-none transition placeholder:text-white/20 focus:border-white/35 sm:text-sm"
+        className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-sm font-semibold text-white outline-none transition placeholder:text-white/20 focus:border-white/35 sm:h-12 sm:px-4"
         placeholder={placeholder}
       />
     </label>
@@ -212,12 +212,12 @@ function TextArea({
   placeholder: string;
 }) {
   return (
-    <label className="mt-4 block text-[11px] font-bold uppercase tracking-[0.14em] text-white/32 sm:mt-5 sm:text-xs sm:tracking-[0.16em]">
+    <label className="mt-4 block text-[10px] font-bold uppercase tracking-[0.12em] text-white/32 sm:mt-5 sm:text-xs sm:tracking-[0.16em]">
       {label}
       <textarea
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 min-h-32 w-full resize-y rounded-lg border border-white/10 bg-black px-4 py-3 text-base font-semibold leading-7 text-white outline-none transition placeholder:text-white/20 focus:border-white/35 sm:min-h-36 sm:text-sm sm:leading-6"
+        className="mt-2 min-h-28 w-full resize-y rounded-lg border border-white/10 bg-black px-3 py-2.5 text-sm font-semibold leading-6 text-white outline-none transition placeholder:text-white/20 focus:border-white/35 sm:min-h-36 sm:px-4 sm:py-3"
         placeholder={placeholder}
       />
     </label>
@@ -262,7 +262,7 @@ function validateForm(form: FormState, resume: File | null) {
 
 function UploadIcon() {
   return (
-    <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+    <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
       <path d="M17 8l-5-5-5 5" />
       <path d="M12 3v12" />
