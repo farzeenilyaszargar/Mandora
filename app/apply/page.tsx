@@ -50,9 +50,6 @@ export default function ApplyPage() {
 
         <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-5 py-7 text-xs text-white/35 sm:px-8">
           <span>© 2026 Nap</span>
-          <div className="flex flex-wrap gap-5">
-            <a href="/" className="transition hover:text-white">Home</a>
-          </div>
         </footer>
       </div>
     </main>
