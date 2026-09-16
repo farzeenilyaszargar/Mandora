@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const TICK_ANIMATION_DURATION_MS = 1250;
 
 export default function WaitlistForm() {
   const [name, setName] = useState("");
@@ -15,7 +16,7 @@ export default function WaitlistForm() {
   useEffect(() => {
     if (!showTickAnimation) return;
 
-    const timeout = window.setTimeout(() => setShowTickAnimation(false), 1400);
+    const timeout = window.setTimeout(() => setShowTickAnimation(false), TICK_ANIMATION_DURATION_MS);
     return () => window.clearTimeout(timeout);
   }, [showTickAnimation]);
 
@@ -77,8 +78,9 @@ export default function WaitlistForm() {
     return (
       <div className="mt-8 flex justify-center sm:mt-10" role="status" aria-live="polite">
         <div className="relative w-full max-w-[520px] overflow-hidden border border-white/10 bg-white/[0.035] px-6 py-10 text-center shadow-[0_24px_80px_rgba(0,0,0,0.35)] sm:px-10 sm:py-14">
-          <img
-            src={showTickAnimation ? "/application-tick.gif" : "/application-tick-static.png"}
+        <img
+          key={showTickAnimation ? "animated-tick" : "static-tick"}
+          src={showTickAnimation ? "/application-tick.gif" : "/application-tick-static.png"}
             alt=""
             aria-hidden="true"
             className="mx-auto mb-5 h-16 w-16 object-contain sm:mb-6 sm:h-20 sm:w-20"
