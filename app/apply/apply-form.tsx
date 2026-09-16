@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Image from "next/image";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_RESUME_BYTES = 5 * 1024 * 1024;
@@ -80,18 +81,23 @@ export default function ApplyForm() {
 
   if (isSubmitted) {
     return (
-      <div className="mt-8 text-center sm:mt-10">
-        <h2 className="text-lg font-bold sm:text-2xl">Application received.</h2>
-        <p className="mt-3 text-xs leading-5 text-white/48 sm:text-sm sm:leading-6">
+      <div className="application-success mt-8 flex justify-center sm:mt-10" role="status" aria-live="polite">
+        <div className="relative w-full max-w-[520px] overflow-hidden border border-white/10 bg-white/[0.035] px-6 py-10 text-center shadow-[0_24px_80px_rgba(0,0,0,0.35)] sm:px-10 sm:py-14">
+          <div className="success-tick mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#4caf50]/10 ring-1 ring-[#4caf50]/20 sm:h-24 sm:w-24">
+            <Image src="/application-success.gif" alt="" width={48} height={48} className="h-14 w-14 sm:h-16 sm:w-16" unoptimized />
+          </div>
+          <h2 className="mt-6 text-lg font-bold sm:text-2xl">Application received.</h2>
+          <p className="mx-auto mt-3 max-w-[360px] text-xs leading-5 text-white/48 sm:text-sm sm:leading-6">
           Thanks for applying. We saved your details and resume for review.
-        </p>
-        <button
-          type="button"
-          onClick={() => setIsSubmitted(false)}
-          className="mt-6 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 text-xs font-bold text-white/60 transition hover:border-white/20 hover:text-white sm:w-auto sm:px-5 sm:py-3 sm:text-sm"
-        >
-          Submit another application
-        </button>
+          </p>
+          <button
+            type="button"
+            onClick={() => setIsSubmitted(false)}
+            className="mt-7 w-full bg-white px-4 py-2.5 text-xs font-bold text-black transition hover:bg-[#d8d8d8] sm:w-auto sm:px-5 sm:py-3 sm:text-sm"
+          >
+            Submit another application
+          </button>
+        </div>
       </div>
     );
   }
