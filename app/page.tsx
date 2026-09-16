@@ -131,7 +131,7 @@ export default function Home() {
             <h1 className="mx-auto mt-8 w-full text-4xl font-bold leading-[1.04] text-white sm:text-5xl md:whitespace-nowrap md:text-6xl">
               The Interface That Loves You
             </h1>
-            <p className="mx-auto mt-6 max-w-[560px] text-lg leading-8 text-white/48">
+            <p className="mx-auto mt-6 max-w-[560px] text-sm leading-6 text-white/48 sm:text-lg sm:leading-8">
               Nap brings your agent CLIs into one fast workspace for sessions, context, commands, and handoffs.
             </p>
             <div className="mt-9 flex items-center justify-center gap-5">
