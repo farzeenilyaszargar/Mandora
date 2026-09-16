@@ -24,7 +24,7 @@ export default function WaitlistPage() {
   return (
     <main className="min-h-screen bg-[#050505] px-0 text-white sm:px-4">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
-        <nav className="gutter-border-b border-b border-white/10">
+        <nav className="border-b border-white/10">
           <div className="flex items-center justify-between px-5 py-5 sm:px-8 sm:py-3">
             <a href="/" aria-label="Nap home">
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
@@ -46,7 +46,7 @@ export default function WaitlistPage() {
           <WaitlistForm />
         </section>
 
-        <footer className="gutter-border-t mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-5 py-7 text-xs text-white/35 sm:px-8">
+        <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-5 py-7 text-xs text-white/35 sm:px-8">
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
             <a href="/" className="transition hover:text-white">Home</a>

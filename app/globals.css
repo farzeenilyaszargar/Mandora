@@ -34,31 +34,3 @@ html {
 .animate-counter-digit-slide {
   animation: counter-digit-slide 220ms ease-out both;
 }
-
-@media (min-width: 640px) {
-  .gutter-border-b,
-  .gutter-border-t,
-  .gutter-border-y {
-    position: relative;
-  }
-
-  .gutter-border-b::after,
-  .gutter-border-y::after {
-    position: absolute;
-    right: -1rem;
-    bottom: -1px;
-    left: -1rem;
-    content: "";
-    border-bottom: 1px solid rgb(255 255 255 / 0.1);
-  }
-
-  .gutter-border-t::before,
-  .gutter-border-y::before {
-    position: absolute;
-    top: -1px;
-    right: -1rem;
-    left: -1rem;
-    content: "";
-    border-top: 1px solid rgb(255 255 255 / 0.1);
-  }
-}
