@@ -80,7 +80,7 @@ export default function ApplyForm() {
 
   if (isSubmitted) {
     return (
-      <div className="mt-8 rounded-xl border border-white/10 bg-white/[0.025] p-5 text-center sm:mt-10 sm:p-7">
+      <div className="mt-8 text-center sm:mt-10">
         <h2 className="text-xl font-bold sm:text-2xl">Application received.</h2>
         <p className="mt-3 text-sm leading-6 text-white/48">
           Thanks for applying. We saved your details and resume for review.
@@ -97,7 +97,7 @@ export default function ApplyForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 rounded-xl border border-white/10 bg-white/[0.02] p-4 text-left sm:mt-10 sm:p-6">
+    <form onSubmit={handleSubmit} className="mt-8 text-left sm:mt-10">
       <div className="grid gap-4 lg:grid-cols-2 lg:gap-5">
         <TextField label="Full name" value={form.fullName} onChange={(value) => updateField("fullName", value)} required />
         <TextField label="Email" type="email" value={form.email} onChange={(value) => updateField("email", value)} required />
@@ -151,17 +151,13 @@ function ResumeField({
   return (
     <label className="block text-[11px] font-bold uppercase tracking-[0.14em] text-white/32 sm:text-xs sm:tracking-[0.16em]">
       Resume
-      <span className="mt-2 flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border border-white/10 bg-black px-4 text-sm font-semibold text-white transition hover:border-white/25">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white text-black">
-          <FileIcon />
+      <span className="mt-2 flex min-h-12 items-center gap-3">
+        <span className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-bold normal-case tracking-normal text-black transition hover:bg-[#d8d8d8]">
+          <UploadIcon />
+          Upload Resume
         </span>
-        <span className="min-w-0 flex-1">
-          <span className="block truncate text-white/75">
-            {resume ? resume.name : "Upload resume"}
-          </span>
-          <span className="mt-0.5 block text-[11px] font-semibold normal-case tracking-normal text-white/32">
-            PDF, DOC, or DOCX under 5 MB
-          </span>
+        <span className="min-w-0 flex-1 truncate text-sm font-semibold normal-case tracking-normal text-white/42">
+          {resume ? resume.name : "PDF, DOC, or DOCX"}
         </span>
       </span>
       <input
@@ -264,13 +260,12 @@ function validateForm(form: FormState, resume: File | null) {
   return "";
 }
 
-function FileIcon() {
+function UploadIcon() {
   return (
     <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <path d="M14 2v6h6" />
-      <path d="M9 15h6" />
-      <path d="M9 18h4" />
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <path d="M17 8l-5-5-5 5" />
+      <path d="M12 3v12" />
     </svg>
   );
 }
