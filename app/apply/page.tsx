@@ -38,7 +38,7 @@ export default function ApplyPage() {
 
         <section className="mx-auto w-full max-w-[820px] px-8 py-20">
           <div className="text-center">
-            <h1 className="text-5xl font-bold leading-[1.02] md:text-6xl">
+            <h1 className="text-3xl font-bold leading-[1.08] md:text-4xl">
               Student internship application
             </h1>
             <p className="mx-auto mt-6 max-w-[620px] text-lg leading-8 text-white/48">
