@@ -434,7 +434,7 @@ export default function DocsClient() {
     <main className="min-h-screen bg-[#050505] px-4 text-white">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
         <nav className="border-b border-white/10">
-          <div className="flex items-center justify-between px-8 py-3">
+          <div className="flex items-center justify-between px-8 py-5 sm:py-3">
             <a href="/" aria-label="Nap home">
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
             </a>
