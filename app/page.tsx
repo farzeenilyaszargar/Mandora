@@ -139,15 +139,15 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-14 flex flex-col items-center sm:mt-16">
-            <p className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-white/28 sm:text-[11px] sm:tracking-[0.24em]">
+          <div className="mt-10 flex flex-col items-center sm:mt-16">
+            <p className="font-mono text-[8px] font-bold uppercase tracking-[0.16em] text-white/28 sm:text-[11px] sm:tracking-[0.24em]">
               Bring your own subscriptions
             </p>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-6 sm:gap-5">
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:mt-6 sm:gap-5">
               {subscriptionAgents.map((agent) => (
-                <div key={agent.name} className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 sm:gap-2.5 sm:px-3 sm:py-2">
-                  <Image className="h-5 w-5 rounded-md object-cover sm:h-6 sm:w-6" src={agent.src} alt="" width={64} height={64} />
-                  <span className="text-[11px] font-semibold text-white/70 sm:text-xs">{agent.name}</span>
+                <div key={agent.name} className="flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 sm:gap-2.5 sm:rounded-lg sm:px-3 sm:py-2">
+                  <Image className="h-4 w-4 rounded object-cover sm:h-6 sm:w-6 sm:rounded-md" src={agent.src} alt="" width={64} height={64} />
+                  <span className="text-[10px] font-semibold text-white/70 sm:text-xs">{agent.name}</span>
                 </div>
               ))}
             </div>
