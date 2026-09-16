@@ -157,7 +157,7 @@ export default function Home() {
         <section className="border-y border-white/10 bg-[url('/cloud-bg.png')] bg-cover bg-center px-8 py-16">
           <div className="mx-auto max-w-[930px]">
             <Image
-              className="w-full shadow-[0_28px_80px_rgba(0,0,0,0.55)]"
+              className="w-full shadow-[0_28px_80px_rgba(0,0,0,0.55)] sm:rounded-2xl"
               src="/nap-app-hero.png"
               alt="Nap app preview"
               width={1200}
