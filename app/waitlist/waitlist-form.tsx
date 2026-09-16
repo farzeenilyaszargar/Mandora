@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -9,7 +9,15 @@ export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showTickAnimation, setShowTickAnimation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (!showTickAnimation) return;
+
+    const timeout = window.setTimeout(() => setShowTickAnimation(false), 1400);
+    return () => window.clearTimeout(timeout);
+  }, [showTickAnimation]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -55,6 +63,7 @@ export default function WaitlistForm() {
 
       setError("");
       setIsSubmitted(true);
+      setShowTickAnimation(true);
       setName("");
       setEmail("");
     } catch {
@@ -67,6 +76,12 @@ export default function WaitlistForm() {
   if (isSubmitted) {
     return (
       <div className="mt-8 text-center sm:mt-10">
+        <img
+          src={showTickAnimation ? "/application-tick.gif" : "/application-tick-static.png"}
+          alt=""
+          aria-hidden="true"
+          className="mx-auto mb-5 h-16 w-16 object-contain sm:mb-6 sm:h-20 sm:w-20"
+        />
         <h2 className="text-lg font-bold sm:text-2xl">You&apos;re on the list.</h2>
         <p className="mt-3 text-xs leading-5 text-white/48 sm:text-sm sm:leading-6">
           We saved your spot and will reach out when the next Nap build is ready.
