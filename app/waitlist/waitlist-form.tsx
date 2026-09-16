@@ -75,24 +75,26 @@ export default function WaitlistForm() {
 
   if (isSubmitted) {
     return (
-      <div className="mt-8 text-center sm:mt-10">
-        <img
-          src={showTickAnimation ? "/application-tick.gif" : "/application-tick-static.png"}
-          alt=""
-          aria-hidden="true"
-          className="mx-auto mb-5 h-16 w-16 object-contain sm:mb-6 sm:h-20 sm:w-20"
-        />
-        <h2 className="text-lg font-bold sm:text-2xl">You&apos;re on the list.</h2>
-        <p className="mt-3 text-xs leading-5 text-white/48 sm:text-sm sm:leading-6">
-          We saved your spot and will reach out when the next Nap build is ready.
-        </p>
-        <button
-          type="button"
-          onClick={() => setIsSubmitted(false)}
-          className="mt-6 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 text-xs font-bold text-white/60 transition hover:border-white/20 hover:text-white sm:w-auto sm:px-5 sm:py-3 sm:text-sm"
-        >
-          Add another person
-        </button>
+      <div className="mt-8 flex justify-center sm:mt-10" role="status" aria-live="polite">
+        <div className="relative w-full max-w-[520px] overflow-hidden border border-white/10 bg-white/[0.035] px-6 py-10 text-center shadow-[0_24px_80px_rgba(0,0,0,0.35)] sm:px-10 sm:py-14">
+          <img
+            src={showTickAnimation ? "/application-tick.gif" : "/application-tick-static.png"}
+            alt=""
+            aria-hidden="true"
+            className="mx-auto mb-5 h-16 w-16 object-contain sm:mb-6 sm:h-20 sm:w-20"
+          />
+          <h2 className="text-lg font-bold sm:text-2xl">You&apos;re on the list.</h2>
+          <p className="mx-auto mt-3 max-w-[360px] text-xs leading-5 text-white/48 sm:text-sm sm:leading-6">
+            We saved your spot and will reach out when the next Nap build is ready.
+          </p>
+          <button
+            type="button"
+            onClick={() => setIsSubmitted(false)}
+            className="mt-7 w-full bg-white px-4 py-2.5 text-xs font-bold text-black transition hover:bg-[#d8d8d8] sm:w-auto sm:px-5 sm:py-3 sm:text-sm"
+          >
+            Add another person
+          </button>
+        </div>
       </div>
     );
   }
