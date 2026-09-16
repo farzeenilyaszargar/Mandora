@@ -211,7 +211,7 @@ export default function Home() {
         <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-8 py-8 text-xs text-white/35">
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
-            <a href="/docs" className="transition hover:text-white">Docs</a>
+            <a href="/docs" className="hidden transition hover:text-white sm:inline">Docs</a>
           </div>
         </footer>
       </div>

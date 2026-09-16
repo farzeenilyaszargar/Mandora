@@ -53,7 +53,7 @@ export default function ApplyPage() {
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
             <a href="/" className="transition hover:text-white">Home</a>
-            <a href="/docs" className="transition hover:text-white">Docs</a>
+            <a href="/docs" className="hidden transition hover:text-white sm:inline">Docs</a>
           </div>
         </footer>
       </div>
