@@ -439,7 +439,7 @@ export default function DocsClient() {
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
             </a>
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
-              <a href="/docs" className="text-white">
+              <a href="/docs" className="hidden text-white sm:inline">
                 Docs
               </a>
               <DownloadModalButton />
