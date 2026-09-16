@@ -106,7 +106,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#050505] px-4 text-white">
+    <main className="min-h-screen bg-[#050505] px-0 text-white sm:px-4">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
         <nav className="border-b border-white/10">
           <div className="flex items-center justify-between px-8 py-5 sm:py-3">
