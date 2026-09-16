@@ -25,7 +25,7 @@ export default function ApplyPage() {
     <main className="min-h-screen bg-[#050505] px-4 text-white">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
         <nav className="border-b border-white/10">
-          <div className="flex items-center justify-between px-8 py-3">
+          <div className="flex items-center justify-between px-5 py-3 sm:px-8">
             <a href="/" aria-label="Nap home">
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
             </a>
@@ -36,12 +36,12 @@ export default function ApplyPage() {
           </div>
         </nav>
 
-        <section className="mx-auto w-full max-w-[820px] px-8 py-20">
+        <section className="mx-auto w-full max-w-[720px] px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
           <div className="text-center">
-            <h1 className="text-3xl font-bold leading-[1.08] md:text-4xl">
+            <h1 className="text-2xl font-bold leading-[1.12] sm:text-3xl md:text-4xl">
               Student internship application
             </h1>
-            <p className="mx-auto mt-6 max-w-[620px] text-lg leading-8 text-white/48">
+            <p className="mx-auto mt-4 max-w-[560px] text-sm leading-7 text-white/48 sm:mt-5 sm:text-base">
               Use this form if you&apos;re applying through the internship email. Share the details we need to review your fit and follow up.
             </p>
           </div>
@@ -49,7 +49,7 @@ export default function ApplyPage() {
           <ApplyForm />
         </section>
 
-        <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-8 py-8 text-xs text-white/35">
+        <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-5 py-7 text-xs text-white/35 sm:px-8">
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
             <a href="/" className="transition hover:text-white">Home</a>
