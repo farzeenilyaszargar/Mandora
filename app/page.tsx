@@ -108,7 +108,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#050505] px-0 text-white sm:px-4">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
-        <nav className="border-b border-white/10">
+        <nav className="gutter-border-b border-b border-white/10">
           <div className="flex items-center justify-between px-5 py-5 sm:px-8 sm:py-3">
             <a href="/" aria-label="Nap home">
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
@@ -153,7 +153,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-y border-white/10 bg-[url('/cloud-bg.png')] bg-cover bg-center px-8 py-16">
+        <section className="gutter-border-y border-y border-white/10 bg-[url('/cloud-bg.png')] bg-cover bg-center px-8 py-16">
           <div className="mx-auto max-w-[930px]">
             <Image
               className="w-full shadow-[0_28px_80px_rgba(0,0,0,0.55)] sm:rounded-2xl"
@@ -184,7 +184,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-y border-white/10">
+        <section className="gutter-border-y border-y border-white/10">
           <div className="grid md:grid-cols-3">
             {features.map((feature, index) => (
               <article
@@ -203,14 +203,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-b border-white/10 px-8 py-25 text-center">
+        <section className="gutter-border-b border-b border-white/10 px-8 py-25 text-center">
           <h2 className="text-4xl font-bold">Let Nap Take It From Here</h2>
           <div className="mt-7 flex items-center justify-center gap-5">
             <DownloadButton platform={downloadPlatform} />
           </div>
         </section>
 
-        <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-8 py-8 text-xs text-white/35">
+        <footer className="gutter-border-t mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-8 py-8 text-xs text-white/35">
           <span>© 2026 Nap</span>
         </footer>
       </div>
