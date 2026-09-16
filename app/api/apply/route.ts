@@ -2,25 +2,28 @@ import { NextResponse } from "next/server";
 
 const SUPABASE_URL = process.env.SUPABASE_URL ?? "https://ywfkomtyadqkyugiibhi.supabase.co";
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const RESUME_BUCKET = "internship-resumes";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const URL_PATTERN = /^https?:\/\/[^\s]+$/i;
+const MAX_RESUME_BYTES = 5 * 1024 * 1024;
+const ALLOWED_RESUME_TYPES = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
 
 type ApplicationPayload = {
   fullName: string;
   email: string;
-  phone?: string;
-  university: string;
-  degree?: string;
+  phone: string;
+  degree: string;
   graduationYear: string;
-  location?: string;
-  roleTrack: string;
-  portfolioUrl?: string;
-  githubUrl?: string;
-  linkedinUrl?: string;
-  availabilityStart?: string;
-  weeklyHours?: string;
-  whyNap: string;
-  experience: string;
+  roleWanted: string;
+  portfolioUrl: string;
+  githubUrl: string;
+  linkedinUrl: string;
+  aboutSelf: string;
+  resume: File | null;
 };
 
 export async function POST(request: Request) {
@@ -31,26 +34,27 @@ export async function POST(request: Request) {
     );
   }
 
-  let payload: unknown;
+  let formData: FormData;
 
   try {
-    payload = await request.json();
+    formData = await request.formData();
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  if (!isApplicationPayload(payload)) {
-    return NextResponse.json(
-      { error: "Please complete the required application fields." },
-      { status: 400 },
-    );
-  }
-
-  const application = normalizeApplication(payload);
+  const application = normalizeApplication(formData);
   const validationError = validateApplication(application);
 
   if (validationError) {
     return NextResponse.json({ error: validationError }, { status: 400 });
+  }
+
+  const resumeUpload = application.resume
+    ? await uploadResume(application.email, application.resume)
+    : { path: "", filename: "", mimeType: "" };
+
+  if ("error" in resumeUpload) {
+    return NextResponse.json({ error: resumeUpload.error }, { status: 500 });
   }
 
   const response = await fetch(`${SUPABASE_URL}/rest/v1/internship_applications`, {
@@ -65,18 +69,16 @@ export async function POST(request: Request) {
       full_name: application.fullName,
       email: application.email,
       phone: application.phone || null,
-      university: application.university,
       degree: application.degree || null,
       graduation_year: application.graduationYear,
-      location: application.location || null,
-      role_track: application.roleTrack,
+      role_wanted: application.roleWanted,
       portfolio_url: application.portfolioUrl || null,
       github_url: application.githubUrl || null,
       linkedin_url: application.linkedinUrl || null,
-      availability_start: application.availabilityStart || null,
-      weekly_hours: application.weeklyHours || null,
-      why_nap: application.whyNap,
-      experience: application.experience,
+      about_self: application.aboutSelf,
+      resume_path: resumeUpload.path || null,
+      resume_filename: resumeUpload.filename || null,
+      resume_mime_type: resumeUpload.mimeType || null,
       source: "internship_application",
       user_agent: request.headers.get("user-agent"),
     }),
@@ -108,45 +110,27 @@ export async function POST(request: Request) {
   return NextResponse.json({ message: "Application submitted." });
 }
 
-function isApplicationPayload(payload: unknown): payload is ApplicationPayload {
-  return (
-    typeof payload === "object" &&
-    payload !== null &&
-    "fullName" in payload &&
-    "email" in payload &&
-    "university" in payload &&
-    "graduationYear" in payload &&
-    "roleTrack" in payload &&
-    "whyNap" in payload &&
-    "experience" in payload &&
-    typeof payload.fullName === "string" &&
-    typeof payload.email === "string" &&
-    typeof payload.university === "string" &&
-    typeof payload.graduationYear === "string" &&
-    typeof payload.roleTrack === "string" &&
-    typeof payload.whyNap === "string" &&
-    typeof payload.experience === "string"
-  );
+function normalizeApplication(formData: FormData): ApplicationPayload {
+  const resume = formData.get("resume");
+
+  return {
+    fullName: normalizeText(getString(formData, "fullName")),
+    email: getString(formData, "email").trim().toLowerCase(),
+    phone: normalizeText(getString(formData, "phone")),
+    degree: normalizeText(getString(formData, "degree")),
+    graduationYear: normalizeText(getString(formData, "graduationYear")),
+    roleWanted: normalizeText(getString(formData, "roleWanted")),
+    portfolioUrl: getString(formData, "portfolioUrl").trim(),
+    githubUrl: getString(formData, "githubUrl").trim(),
+    linkedinUrl: getString(formData, "linkedinUrl").trim(),
+    aboutSelf: normalizeText(getString(formData, "aboutSelf")),
+    resume: resume instanceof File && resume.size > 0 ? resume : null,
+  };
 }
 
-function normalizeApplication(payload: ApplicationPayload): ApplicationPayload {
-  return {
-    fullName: normalizeText(payload.fullName),
-    email: payload.email.trim().toLowerCase(),
-    phone: normalizeText(payload.phone ?? ""),
-    university: normalizeText(payload.university),
-    degree: normalizeText(payload.degree ?? ""),
-    graduationYear: normalizeText(payload.graduationYear),
-    location: normalizeText(payload.location ?? ""),
-    roleTrack: normalizeText(payload.roleTrack),
-    portfolioUrl: payload.portfolioUrl?.trim() ?? "",
-    githubUrl: payload.githubUrl?.trim() ?? "",
-    linkedinUrl: payload.linkedinUrl?.trim() ?? "",
-    availabilityStart: normalizeText(payload.availabilityStart ?? ""),
-    weeklyHours: normalizeText(payload.weeklyHours ?? ""),
-    whyNap: normalizeText(payload.whyNap),
-    experience: normalizeText(payload.experience),
-  };
+function getString(formData: FormData, key: string) {
+  const value = formData.get(key);
+  return typeof value === "string" ? value : "";
 }
 
 function normalizeText(value: string) {
@@ -162,24 +146,26 @@ function validateApplication(application: ApplicationPayload) {
     return "Please enter a valid email address.";
   }
 
-  if (application.university.length < 2 || application.university.length > 140) {
-    return "University should be between 2 and 140 characters.";
-  }
-
   if (!/^\d{4}$/.test(application.graduationYear)) {
     return "Graduation year should be a 4 digit year.";
   }
 
-  if (application.roleTrack.length < 2 || application.roleTrack.length > 80) {
-    return "Please select an internship track.";
+  if (!["Software dev", "Video editing"].includes(application.roleWanted)) {
+    return "Please select a valid role.";
   }
 
-  if (application.whyNap.length < 40 || application.whyNap.length > 1200) {
-    return "Tell us why you want to join in 40 to 1200 characters.";
+  if (application.aboutSelf.length < 40 || application.aboutSelf.length > 1500) {
+    return "Tell us about yourself in 40 to 1500 characters.";
   }
 
-  if (application.experience.length < 40 || application.experience.length > 1200) {
-    return "Tell us about your experience in 40 to 1200 characters.";
+  if (application.resume) {
+    if (application.resume.size > MAX_RESUME_BYTES) {
+      return "Resume should be under 5 MB.";
+    }
+
+    if (!ALLOWED_RESUME_TYPES.has(application.resume.type)) {
+      return "Resume should be a PDF, DOC, or DOCX file.";
+    }
   }
 
   for (const [label, value] of [
@@ -193,4 +179,30 @@ function validateApplication(application: ApplicationPayload) {
   }
 
   return "";
+}
+
+async function uploadResume(email: string, resume: File) {
+  const safeEmail = email.replace(/[^a-z0-9.-]/gi, "_");
+  const extension = resume.name.split(".").pop()?.toLowerCase() || "file";
+  const path = `${safeEmail}/${Date.now()}.${extension}`;
+
+  const response = await fetch(`${SUPABASE_URL}/storage/v1/object/${RESUME_BUCKET}/${path}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+      "Content-Type": resume.type || "application/octet-stream",
+      "x-upsert": "false",
+    },
+    body: resume,
+  });
+
+  if (!response.ok) {
+    return { error: "Could not upload your resume. Please try again." };
+  }
+
+  return {
+    path,
+    filename: resume.name,
+    mimeType: resume.type,
+  };
 }
