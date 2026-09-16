@@ -120,7 +120,7 @@ export default function Home() {
           </div>
         </nav>
 
-        <section className="px-8 pb-16 pt-24 text-center">
+        <section className="px-5 pb-10 pt-14 text-center sm:px-8 sm:pb-16 sm:pt-24">
           <div className="mx-auto flex  flex-col items-center">
             <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-semibold text-white/55">
               <span className="mr-1 inline-flex min-w-[5ch] justify-end overflow-hidden align-bottom font-bold text-white/75">
@@ -128,18 +128,18 @@ export default function Home() {
               </span>
               People Using Worldwide
             </div>
-            <h1 className="mx-auto mt-8 w-full text-4xl font-bold leading-[1.04] text-white sm:text-5xl md:whitespace-nowrap md:text-6xl">
+            <h1 className="mx-auto mt-5 w-full text-4xl font-bold leading-[1.04] text-white sm:mt-8 sm:text-5xl md:whitespace-nowrap md:text-6xl">
               The Interface That Loves You
             </h1>
-            <p className="mx-auto mt-6 max-w-[560px] text-sm leading-6 text-white/48 sm:text-lg sm:leading-8">
+            <p className="mx-auto mt-4 max-w-[560px] text-sm leading-6 text-white/48 sm:mt-6 sm:text-lg sm:leading-8">
               Nap brings your agent CLIs into one fast workspace for sessions, context, commands, and handoffs.
             </p>
-            <div className="mt-9 flex items-center justify-center gap-5">
+            <div className="mt-6 flex items-center justify-center gap-5 sm:mt-9">
               <DownloadButton platform={downloadPlatform} />
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col items-center sm:mt-16">
+          <div className="mt-8 flex flex-col items-center sm:mt-16">
             <p className="font-mono text-[8px] font-bold uppercase tracking-[0.16em] text-white/28 sm:text-[11px] sm:tracking-[0.24em]">
               Bring your own subscriptions
             </p>
