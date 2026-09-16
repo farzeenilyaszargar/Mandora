@@ -158,9 +158,11 @@ function ResumeField({
           <UploadIcon />
           Upload Resume
         </span>
-        <span className="min-w-0 flex-1 truncate text-xs font-semibold normal-case tracking-normal text-white/42 sm:text-sm">
-          {resume ? resume.name : "PDF, DOC, or DOCX"}
-        </span>
+        {resume ? (
+          <span className="min-w-0 flex-1 truncate text-xs font-semibold normal-case tracking-normal text-white/42 sm:text-sm">
+            {resume.name}
+          </span>
+        ) : null}
       </span>
       <input
         type="file"
