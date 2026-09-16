@@ -127,7 +127,7 @@ export default function ApplyForm() {
         label="Tell something about self"
         value={form.aboutSelf}
         onChange={(value) => updateField("aboutSelf", value)}
-        placeholder="Tell us about yourself, what you like building or creating, and anything we should know."
+        placeholder="What are you building, working on or anything else we should know..."
       />
 
       {error ? <p className="mt-5 text-xs font-semibold text-red-300 sm:text-sm">{error}</p> : null}
@@ -221,7 +221,7 @@ function TextArea({
       <textarea
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 min-h-28 w-full resize-y rounded-lg border border-white/10 bg-black px-3 py-2.5 text-xs font-semibold leading-5 text-white outline-none transition placeholder:text-xs placeholder:text-white/20 focus:border-white/35 sm:min-h-36 sm:px-4 sm:py-3 sm:text-sm sm:leading-6 sm:placeholder:text-sm"
+        className="mt-2 min-h-28 w-full resize-y rounded-lg border border-white/10 bg-black px-3 py-2.5 text-xs font-semibold leading-5 text-white outline-none transition placeholder:text-xs placeholder:tracking-[-0.03em] placeholder:text-white/20 focus:border-white/35 sm:min-h-36 sm:px-4 sm:py-3 sm:text-sm sm:leading-6 sm:placeholder:text-sm"
         placeholder={placeholder}
       />
     </label>
