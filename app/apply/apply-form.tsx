@@ -80,7 +80,7 @@ export default function ApplyForm() {
 
   if (isSubmitted) {
     return (
-      <div className="mt-8 rounded-xl border border-white/10 bg-white/[0.025] p-5 text-left sm:mt-10 sm:p-7">
+      <div className="mt-8 rounded-xl border border-white/10 bg-white/[0.025] p-5 text-center sm:mt-10 sm:p-7">
         <h2 className="text-xl font-bold sm:text-2xl">Application received.</h2>
         <p className="mt-3 text-sm leading-6 text-white/48">
           Thanks for applying. We saved your details and resume for review.
