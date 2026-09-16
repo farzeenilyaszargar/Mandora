@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import DownloadModalButton from "./components/download-modal";
 
 const trustedLogos = [
-  { name: "Nestle", src: "/nestle-logo.png", width: 1280, height: 352, className: "h-5 w-auto brightness-0 invert" },
-  { name: "SAEL", src: "/sael-logo.png", width: 1869, height: 474, className: "h-5 w-auto brightness-0 invert" },
-  { name: "Domino's", src: "/dominos-logo.png", width: 555, height: 209, className: "h-12 w-auto brightness-0 invert" },
-  { name: "CP PLUS", src: "/cp-plus-logo.png", width: 1895, height: 300, className: "h-5 w-auto brightness-0 invert" },
-  { name: "Healthkart", src: "/healthkart-logo.png", width: 646, height: 220, className: "h-11 w-auto brightness-0 invert" },
+  { name: "Nestle", src: "/nestle-logo.png", width: 1280, height: 352, className: "h-4 w-auto brightness-0 invert sm:h-5" },
+  { name: "SAEL", src: "/sael-logo.png", width: 1869, height: 474, className: "h-4 w-auto brightness-0 invert sm:h-5" },
+  { name: "Domino's", src: "/dominos-logo.png", width: 555, height: 209, className: "h-8 w-auto brightness-0 invert sm:h-12" },
+  { name: "CP PLUS", src: "/cp-plus-logo.png", width: 1895, height: 300, className: "h-4 w-auto brightness-0 invert sm:h-5" },
+  { name: "Healthkart", src: "/healthkart-logo.png", width: 646, height: 220, className: "h-8 w-auto brightness-0 invert sm:h-11" },
 ];
 
 const subscriptionAgents = [
@@ -167,11 +167,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-8 py-20 text-center">
+        <section className="px-8 py-16 text-center sm:py-20">
           <p className="font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-white/28">
             Trusted by builders across the industry
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-11 gap-y-7">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-5 sm:gap-x-11 sm:gap-y-7">
             {trustedLogos.map((logo) => (
               <Image
                 key={logo.name}
@@ -185,7 +185,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-y border-white/10">
+        <section className="hidden border-y border-white/10 md:block">
           <div className="grid md:grid-cols-3">
             {features.map((feature) => (
               <article key={feature.title} className="flex min-h-48 flex-col justify-center border-b border-white/10 px-8 py-8 text-left md:border-r md:[&:nth-child(3n)]:border-r-0">
@@ -221,14 +221,22 @@ export default function Home() {
 
 function DownloadButton({ platform }: { platform: DownloadPlatform }) {
   return (
-    <a
-      href={platform.href}
-      download={platform.download || undefined}
-      className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-[#d8d8d8]"
-    >
-      Download for {platform.label}
-      <PlatformIcon name={platform.icon} />
-    </a>
+    <>
+      <a
+        href="/waitlist"
+        className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-[#d8d8d8] sm:hidden"
+      >
+        Join Waitlist
+      </a>
+      <a
+        href={platform.href}
+        download={platform.download || undefined}
+        className="hidden items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-[#d8d8d8] sm:inline-flex"
+      >
+        Download for {platform.label}
+        <PlatformIcon name={platform.icon} />
+      </a>
+    </>
   );
 }
 
