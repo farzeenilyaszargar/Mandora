@@ -82,7 +82,14 @@ export async function POST(request: Request) {
       source: "internship_application",
       user_agent: request.headers.get("user-agent"),
     }),
-  });
+  }).catch(() => null);
+
+  if (!response) {
+    return NextResponse.json(
+      { error: "Could not reach Supabase. Please make sure the project is unpaused." },
+      { status: 503 },
+    );
+  }
 
   if (response.status === 409) {
     return NextResponse.json(
@@ -194,9 +201,9 @@ async function uploadResume(email: string, resume: File) {
       "x-upsert": "false",
     },
     body: resume,
-  });
+  }).catch(() => null);
 
-  if (!response.ok) {
+  if (!response || !response.ok) {
     return { error: "Could not upload your resume. Please try again." };
   }
 
