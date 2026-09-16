@@ -109,9 +109,9 @@ export default function Home() {
     <main className="min-h-screen bg-[#050505] px-0 text-white sm:px-4">
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col border-x border-white/10">
         <nav className="border-b border-white/10">
-          <div className="flex items-center justify-between px-8 py-5 sm:py-3">
-            <a href="/" className="flex items-center gap-3 text-sm font-bold">
-              <Image className="brightness-0 invert" src="/logo.png" alt="Nap" width={28} height={28} priority />
+          <div className="flex items-center justify-between px-5 py-5 sm:px-8 sm:py-3">
+            <a href="/" aria-label="Nap home">
+              <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
             </a>
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
               <a href="/docs" className="hidden transition hover:text-white sm:inline">Docs</a>
