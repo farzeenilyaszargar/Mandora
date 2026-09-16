@@ -185,10 +185,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="hidden border-y border-white/10 md:block">
+        <section className="border-y border-white/10">
           <div className="grid md:grid-cols-3">
-            {features.map((feature) => (
-              <article key={feature.title} className="flex min-h-48 flex-col justify-center border-b border-white/10 px-8 py-8 text-left md:border-r md:[&:nth-child(3n)]:border-r-0">
+            {features.map((feature, index) => (
+              <article
+                key={feature.title}
+                className={`${index >= 3 ? "hidden md:flex" : "flex"} min-h-48 flex-col justify-center border-b border-white/10 px-8 py-8 text-left md:border-r md:[&:nth-child(3n)]:border-r-0`}
+              >
                 <div className="flex items-center gap-2">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center text-white">
                     <FeatureIcon name={feature.icon} />
