@@ -158,7 +158,7 @@ export default function Home() {
           <div className="mx-auto max-w-[930px]">
             <Image
               className="w-full shadow-[0_28px_80px_rgba(0,0,0,0.55)]"
-              src="/hero-preview.png"
+              src="/nap-app-hero.png"
               alt="Nap app preview"
               width={1200}
               height={1000}
