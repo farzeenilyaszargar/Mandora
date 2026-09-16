@@ -114,7 +114,6 @@ export default function Home() {
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
             </a>
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
-              <a href="/docs" className="hidden transition hover:text-white sm:inline">Docs</a>
               <DownloadModalButton />
             </div>
           </div>
@@ -213,9 +212,6 @@ export default function Home() {
 
         <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-8 py-8 text-xs text-white/35">
           <span>© 2026 Nap</span>
-          <div className="flex flex-wrap gap-5">
-            <a href="/docs" className="hidden transition hover:text-white sm:inline">Docs</a>
-          </div>
         </footer>
       </div>
     </main>

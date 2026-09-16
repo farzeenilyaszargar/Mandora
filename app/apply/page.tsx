@@ -30,7 +30,6 @@ export default function ApplyPage() {
               <Image className="brightness-0 invert" src="/logo.png" alt="" width={28} height={28} priority />
             </a>
             <div className="flex items-center gap-6 text-sm font-medium text-white/65">
-              <a href="/docs" className="hidden transition hover:text-white sm:inline">Docs</a>
               <DownloadModalButton />
             </div>
           </div>
@@ -53,7 +52,6 @@ export default function ApplyPage() {
           <span>© 2026 Nap</span>
           <div className="flex flex-wrap gap-5">
             <a href="/" className="transition hover:text-white">Home</a>
-            <a href="/docs" className="hidden transition hover:text-white sm:inline">Docs</a>
           </div>
         </footer>
       </div>
