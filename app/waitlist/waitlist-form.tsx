@@ -89,7 +89,7 @@ export default function WaitlistForm() {
         <input
           value={name}
           onChange={(event) => setName(event.target.value)}
-          className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-sm font-semibold text-white outline-none transition placeholder:text-white/20 focus:border-white/35 sm:h-12 sm:px-4"
+          className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-xs font-semibold text-white outline-none transition placeholder:text-xs placeholder:text-white/20 focus:border-white/35 sm:h-12 sm:px-4 sm:text-sm sm:placeholder:text-sm"
           placeholder="Your name"
         />
       </label>
@@ -100,7 +100,7 @@ export default function WaitlistForm() {
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-sm font-semibold text-white outline-none transition placeholder:text-white/20 focus:border-white/35 sm:h-12 sm:px-4"
+          className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-xs font-semibold text-white outline-none transition placeholder:text-xs placeholder:text-white/20 focus:border-white/35 sm:h-12 sm:px-4 sm:text-sm sm:placeholder:text-sm"
           placeholder="you@example.com"
         />
       </label>

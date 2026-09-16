@@ -109,7 +109,7 @@ export default function ApplyForm() {
           <select
             value={form.roleWanted}
             onChange={(event) => updateField("roleWanted", event.target.value)}
-            className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-sm font-semibold text-white outline-none transition focus:border-white/35 sm:h-12 sm:px-4"
+            className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-xs font-semibold text-white outline-none transition focus:border-white/35 sm:h-12 sm:px-4 sm:text-sm"
           >
             <option>Software Developer</option>
             <option>Video Editing</option>
@@ -193,7 +193,7 @@ function TextField({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         required={required}
-        className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-sm font-semibold text-white outline-none transition placeholder:text-white/20 focus:border-white/35 sm:h-12 sm:px-4"
+        className="mt-2 h-10 w-full rounded-lg border border-white/10 bg-black px-3 text-xs font-semibold text-white outline-none transition placeholder:text-xs placeholder:text-white/20 focus:border-white/35 sm:h-12 sm:px-4 sm:text-sm sm:placeholder:text-sm"
         placeholder={placeholder}
       />
     </label>
@@ -217,7 +217,7 @@ function TextArea({
       <textarea
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 min-h-28 w-full resize-y rounded-lg border border-white/10 bg-black px-3 py-2.5 text-sm font-semibold leading-6 text-white outline-none transition placeholder:text-white/20 focus:border-white/35 sm:min-h-36 sm:px-4 sm:py-3"
+        className="mt-2 min-h-28 w-full resize-y rounded-lg border border-white/10 bg-black px-3 py-2.5 text-xs font-semibold leading-5 text-white outline-none transition placeholder:text-xs placeholder:text-white/20 focus:border-white/35 sm:min-h-36 sm:px-4 sm:py-3 sm:text-sm sm:leading-6 sm:placeholder:text-sm"
         placeholder={placeholder}
       />
     </label>
