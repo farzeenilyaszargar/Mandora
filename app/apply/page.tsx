@@ -1,22 +1,21 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import DownloadModalButton from "../components/download-modal";
-import ApplyForm from "./apply-form";
 
 export const metadata: Metadata = {
   title: "Apply",
-  description: "Apply for a Nap student internship.",
+  description: "Applications for the Nap student internship are currently closed.",
   alternates: {
     canonical: "/apply",
   },
   openGraph: {
-    title: "Apply for a Nap Internship",
-    description: "Submit your student internship application for Nap.",
+    title: "Applications Closed | Nap",
+    description: "Applications for the Nap student internship are currently closed.",
     url: "/apply",
   },
   twitter: {
-    title: "Apply for a Nap Internship",
-    description: "Submit your student internship application for Nap.",
+    title: "Applications Closed | Nap",
+    description: "Applications for the Nap student internship are currently closed.",
   },
 };
 
@@ -36,16 +35,14 @@ export default function ApplyPage() {
         </nav>
 
         <section className="mx-auto w-full max-w-[720px] px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-4xl">
-              Student internship application
+          <div className="py-12 text-center sm:py-20">
+            <h1 className="text-3xl font-bold leading-[1.1] sm:text-4xl">
+              Application Closed
             </h1>
-            <p className="mx-auto mt-4 max-w-[560px] text-sm leading-7 text-white/48 sm:mt-5 sm:text-base">
-              Use this form if you&apos;re applying through the internship email. Share the details we need to review your fit and follow up.
+            <p className="mx-auto mt-4 max-w-[480px] text-sm leading-7 text-white/48 sm:text-base">
+              The deadline for this application has passed. Thank you for your interest in Nap. Please apply next time.
             </p>
           </div>
-
-          <ApplyForm />
         </section>
 
         <footer className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-5 py-7 text-xs text-white/35 sm:px-8">
