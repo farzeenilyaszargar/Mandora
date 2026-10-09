@@ -19,7 +19,6 @@ export default function Home() {
         Bring the agents and subscriptions you already use.
       </p>
       <h2><a href={macDownloadUrl}>[ Download for macOS ]</a></h2>
-      <hr />
       <p><em>We spent all our time on the app.</em></p>
     </main>
   );
