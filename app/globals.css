@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Restore browser defaults on the deliberately unstyled homepage. */
+/* Keep the homepage independent of the styled application pages. */
 html:has(.barebones),
 body:has(.barebones),
 .barebones,
@@ -10,9 +10,33 @@ body:has(.barebones),
 
 html:has(.barebones),
 body:has(.barebones) {
-  background: white;
-  color: black;
-  font-family: "Times New Roman", serif;
+  background: #111213;
+  color: #d6d6d6;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, Menlo, Consolas,
+    "Liberation Mono", monospace;
+  line-height: 1.4;
+}
+
+body:has(.barebones) {
+  font-size: 0.9rem;
+  max-width: 650px;
+  margin: 70px auto;
+  padding: 0 20px;
+}
+
+.barebones h1 {
+  font-size: 1.5em;
+  margin-bottom: 2px;
+}
+
+.barebones a {
+  color: #39ff14;
+  text-decoration: none;
+}
+
+.barebones a:hover,
+.barebones a:focus-visible {
+  text-decoration: underline;
 }
 
 :root {
