@@ -23,26 +23,6 @@ export default function Home() {
       <p><small>Version 0.0.4-notnap.3. Yes, the app has a UI.</small></p>
 
       <hr />
-      <p>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/nap-app-hero.png"
-          alt="Nap running on macOS, with coding sessions in a sidebar and an agent conversation in the main workspace."
-          width={900}
-          height={569}
-        />
-      </p>
-      <hr />
-
-      <h2>Installation</h2>
-      <ol>
-        <li>Download the disk image.</li>
-        <li>Open it and drag Nap into Applications.</li>
-        <li>Open Nap and connect your coding agents.</li>
-      </ol>
-      <p>The website is done loading. You can get back to building.</p>
-
-      <hr />
       <footer>
         <p>
           <a href="https://github.com/farzeenilyaszargar/NotNap">GitHub</a>
