@@ -18,7 +18,7 @@ export default function Home() {
         A macOS app for Claude Code, Codex CLI, OpenCode, Cursor, and Grok CLI.
         Bring the agents and subscriptions you already use.
       </p>
-      <h2><a href={macDownloadUrl}>[ Download for macOS ]</a></h2>
+      <h2><a href={macDownloadUrl}>Download for macOS</a></h2>
       <p><em>We spent all our time on the app.</em></p>
     </main>
   );
