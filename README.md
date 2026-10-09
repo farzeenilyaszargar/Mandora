@@ -12,7 +12,7 @@ Landing website for Nap, a native interface for running coding agents from one f
 
 ## Pages
 
-- `/` - Deliberately plain HTML-style landing page: browser serif text, direct macOS download, version information, and project links.
+- `/` - Deliberately plain HTML-style landing page: browser serif text, a short app description, and a direct macOS download.
 - `/docs` - Documentation-style page with a left topic nav and scroll-aware active section.
 - `/waitlist` - Waitlist form for Windows/Linux interest.
 

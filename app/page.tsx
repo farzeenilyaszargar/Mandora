@@ -20,19 +20,7 @@ export default function Home() {
         Bring the agents and subscriptions you already use.
       </p>
       <h2><a href={macDownloadUrl}>[ Download for macOS ]</a></h2>
-      <p><small>Version 0.0.4-notnap.3. Yes, the app has a UI.</small></p>
-
       <hr />
-      <footer>
-        <p>
-          <a href="https://github.com/farzeenilyaszargar/NotNap">GitHub</a>
-          {" | "}
-          <a href="https://x.com/farzeenilya">X</a>
-          {" | "}
-          <a href="https://github.com/farzeenilyaszargar/NotNap/releases/latest">Release notes</a>
-        </p>
-        <p><small>Nap. Better software than website.</small></p>
-      </footer>
     </main>
   );
 }
