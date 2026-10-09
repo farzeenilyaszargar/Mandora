@@ -13,7 +13,6 @@ export default function Home() {
   return (
     <main className="barebones">
       <h1>nap.</h1>
-      <p><em>We spent all our time on the app.</em></p>
       <p>All your coding agents. One interface.</p>
       <p>
         A macOS app for Claude Code, Codex CLI, OpenCode, Cursor, and Grok CLI.
@@ -21,6 +20,7 @@ export default function Home() {
       </p>
       <h2><a href={macDownloadUrl}>[ Download for macOS ]</a></h2>
       <hr />
+      <p><em>We spent all our time on the app.</em></p>
     </main>
   );
 }
