@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+/* Restore browser defaults on the deliberately unstyled homepage. */
+html:has(.barebones),
+body:has(.barebones),
+.barebones,
+.barebones * {
+  all: revert;
+}
+
+html:has(.barebones),
+body:has(.barebones) {
+  background: white;
+  color: black;
+  font-family: "Times New Roman", serif;
+}
+
+.barebones img {
+  max-width: 100%;
+  height: auto;
+}
+
 :root {
   background: #000;
   color: #fff;

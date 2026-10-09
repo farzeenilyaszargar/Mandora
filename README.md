@@ -12,11 +12,11 @@ Landing website for Nap, a native interface for running coding agents from one f
 
 ## Pages
 
-- `/` - Main landing page with hero, agent support, preview image, trusted logos, feature grid, and download modal.
+- `/` - Deliberately plain HTML-style landing page: browser serif text, direct macOS download, actual app screenshot, installation steps, and project links.
 - `/docs` - Documentation-style page with a left topic nav and scroll-aware active section.
 - `/waitlist` - Waitlist form for Windows/Linux interest.
 
-The old `/download` page has been removed. Download actions now open a floating modal from the navbar. The macOS download currently points to `public/download.txt` as a placeholder, and Windows/Linux route to the waitlist.
+The old `/download` page has been removed. The homepage links directly to the latest macOS DMG on GitHub. Other pages retain the shared download modal, with Windows/Linux interest collected through the waitlist.
 
 ## Getting Started
 
