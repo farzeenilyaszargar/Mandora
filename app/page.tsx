@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: { absolute: "Nap Download" },
+  openGraph: { title: "Nap Download" },
+  twitter: { title: "Nap Download" },
+};
+
 const macDownloadUrl =
   "https://github.com/farzeenilyaszargar/NotNap/releases/latest/download/NotNap-macos.dmg";
 
