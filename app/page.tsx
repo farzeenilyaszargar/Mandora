@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: { absolute: "Nap Download" },
@@ -12,10 +13,14 @@ const macDownloadUrl =
 export default function Home() {
   return (
     <main className="barebones">
+      <Image className="nap-mark" src="/logo.png" alt="" width={44} height={44} priority />
       <h1>nap.</h1>
-      <p><strong>All your coding agents. One interface.</strong></p>
-      <p><a href={macDownloadUrl}>Download for macOS</a></p>
-      <p><em>We spent all our time on the app.</em></p>
+      <p className="nap-description">All your coding agents. One interface.</p>
+      <a className="nap-download" href={macDownloadUrl}>
+        <Image src="/apple-platform-logo.png" alt="" width={18} height={22} />
+        Download for macOS
+      </a>
+      <p className="nap-note">We spent all our time on the app.</p>
     </main>
   );
 }
