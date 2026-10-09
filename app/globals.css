@@ -10,15 +10,14 @@ body:has(.barebones),
 
 html:has(.barebones),
 body:has(.barebones) {
-  background: #111213;
-  color: #d6d6d6;
-  font-family: "SF Mono", "SFMono-Regular", ui-monospace, Menlo, Consolas,
-    "Liberation Mono", monospace;
+  background: white;
+  color: black;
+  font-family: "Times New Roman", serif;
   line-height: 1.4;
 }
 
 body:has(.barebones) {
-  font-size: 0.9rem;
+  font-size: 1rem;
   max-width: 650px;
   margin: 70px auto;
   padding: 0 20px;
@@ -30,13 +29,21 @@ body:has(.barebones) {
 }
 
 .barebones a {
-  color: #39ff14;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 10px 16px;
+  color: black;
   text-decoration: none;
 }
 
 .barebones a:hover,
 .barebones a:focus-visible {
-  text-decoration: underline;
+  background: #f2f2f2;
+}
+
+.barebones a:focus-visible {
+  outline: 2px solid black;
+  outline-offset: 3px;
 }
 
 :root {

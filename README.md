@@ -12,7 +12,7 @@ Landing website for Nap, a native interface for running coding agents from one f
 
 ## Pages
 
-- `/` - Minimal landing page inspired by SSI: a narrow monospace column, dark background, short copy, and a green macOS download link.
+- `/` - Basic landing page: a narrow serif-text column, white background, short copy, and a bordered macOS download link.
 - `/docs` - Documentation-style page with a left topic nav and scroll-aware active section.
 - `/waitlist` - Waitlist form for Windows/Linux interest.
 
