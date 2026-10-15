@@ -20,7 +20,8 @@ export default function Home() {
       <section className="nap-hero" aria-labelledby="nap-title">
         <div className="nap-copy">
           <p className="nap-eyebrow">A LITTLE LESS FRICTION.</p>
-          <h1 id="nap-title">Your agents.<br />All together.</h1>
+          <h1 id="nap-title"><span>YOUR AGENTS.</span><span>ALL TOGETHER.</span></h1>
+          <div className="nap-hero-bottom">
           <p className="nap-description">One native workspace for the coding agents you already use. Get into your flow.</p>
           <div className="nap-action">
             <a className="nap-download" href={download}>
@@ -29,8 +30,8 @@ export default function Home() {
             </a>
             <p className="nap-download-note">Your next good idea starts here.</p>
           </div>
+          </div>
         </div>
-
       </section>
 
       <footer className="nap-footer">

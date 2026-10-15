@@ -18,7 +18,7 @@ export default function LiquidField() {
     let last: { x: number; y: number; time: number } | null = null;
     let width = 0;
     let height = 0;
-    let radius = 50;
+    let radius = 95;
     let previous = 0;
 
     function resize() {
@@ -29,7 +29,7 @@ export default function LiquidField() {
       canvas!.width = Math.round(width * ratio);
       canvas!.height = Math.round(height * ratio);
       context!.setTransform(ratio, 0, 0, ratio, 0, 0);
-      radius = Math.max(32, Math.min(width * .04, 68));
+      radius = Math.max(62, Math.min(width * .075, 135));
       drops.length = 0;
       last = null;
     }
