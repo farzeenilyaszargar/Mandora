@@ -18,15 +18,10 @@
 .nap-download svg { width: 20px; height: 23px; }
 .nap-download:hover { background: #2a2a2a; transform: translateY(-2px); }
 .nap-download-note { font-size: 10px; margin-top: 13px; color: #777770; text-align: center; }
-.nap-footer { position: absolute; left: 4%; right: 4%; bottom: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 10px; color: #85857e; }
-.nap-footer b { margin: 0 9px; font-weight: 400; color: #bdbdb4; }
-.nap-footer a { position: relative; z-index: 1; }
-.nap-footer a span { margin-left: 12px; }
-.nap-footer a:hover { color: #111; }
 .contrast-page a:focus-visible { outline: 2px solid #777; outline-offset: 5px; }
 .liquid-field { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20; mix-blend-mode: difference; filter: url("#nap-liquid-merge"); }
 .liquid-filter { position: absolute; width: 0; height: 0; pointer-events: none; }
 @media (min-width: 1800px) { .nap-hero-bottom { margin-top: 55px; } .nap-description { font-size: 19px; max-width: 390px; } .nap-download { width: 370px; padding: 28px 30px; font-size: 19px; } }
-@media (max-width: 700px) { .nap-header { top: 22px; left: 5%; right: 5%; } .nap-wordmark { font-size: 34px; } .nap-docs { font-size: 11px; gap: 12px; } .nap-hero { padding: 85px 5% 70px; } .nap-eyebrow { margin: 0 0 30px; font-size: 8px; } .nap-copy h1 { font-size: 11.7vw; line-height: .95; } .nap-copy h1 > span:last-child { margin-top: 10px; } .nap-hero-bottom { flex-direction: column; align-items: flex-start; gap: 30px; margin: 30px 0 0; } .nap-description { max-width: 270px; font-size: 14px; line-height: 1.6; } .nap-action { align-self: flex-end; } .nap-download { width: 290px; padding: 22px 25px; font-size: 15px; } .nap-download-note { font-size: 9px; margin-top: 12px; } .nap-footer { left: 5%; right: 5%; bottom: 20px; justify-content: flex-end; font-size: 9px; } .nap-footer > span { display: none; } }
+@media (max-width: 700px) { .nap-header { top: 22px; left: 5%; right: 5%; } .nap-wordmark { font-size: 34px; } .nap-docs { font-size: 11px; gap: 12px; } .nap-hero { padding: 85px 5% 70px; } .nap-eyebrow { margin: 0 0 30px; font-size: 8px; } .nap-copy h1 { font-size: 11.7vw; line-height: .95; } .nap-copy h1 > span:last-child { margin-top: 10px; } .nap-hero-bottom { flex-direction: column; align-items: flex-start; gap: 30px; margin: 30px 0 0; } .nap-description { max-width: 270px; font-size: 14px; line-height: 1.6; } .nap-action { align-self: flex-end; } .nap-download { width: 290px; padding: 22px 25px; font-size: 15px; } .nap-download-note { font-size: 9px; margin-top: 12px; } }
 @media (max-height: 580px) { .nap-hero { padding-top: 85px; padding-bottom: 60px; } .nap-eyebrow { margin-bottom: 18px; } .nap-copy h1 { font-size: min(11.7vw, 19svh); } .nap-hero-bottom { margin-top: 22px; gap: 16px; } .nap-download { padding: 17px 23px; } .nap-description { font-size: 12px; } }
 @media (prefers-reduced-motion: reduce) { .nap-download { transition: none; } }

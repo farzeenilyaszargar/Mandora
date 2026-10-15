@@ -34,10 +34,6 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="nap-footer">
-        <span>Claude Code <b>·</b> Codex <b>·</b> Cursor <b>·</b> OpenCode <b>·</b> Grok CLI</span>
-        <a href="/waitlist">Windows & Linux waitlist <span>↗</span></a>
-      </footer>
       <LiquidField />
     </main>
   );
