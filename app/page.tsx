@@ -34,6 +34,7 @@ export default function Home() {
         </div>
       </section>
 
+      <footer className="nap-footer-statement">LESS NOISE. MORE MAKING.</footer>
       <LiquidField />
     </main>
   );
