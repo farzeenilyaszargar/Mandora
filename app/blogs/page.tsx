@@ -20,10 +20,12 @@ export default function BlogsPage() {
             <p>Notes on what we’re building.<br />And why it matters to us.</p>
           </div>
           <a className="nap-blog-row" href="/blogs/hello-nap">
+            <span className="nap-blog-number">01</span>
             <h2>Why We Started</h2>
             <p>One workspace, fewer interruptions. The idea that became Nap.</p>
           </a>
           <a className="nap-blog-row" href="/blogs/why">
+            <span className="nap-blog-number">02</span>
             <h2>Why This?</h2>
             <p>A small question behind the way we think about tools.</p>
           </a>

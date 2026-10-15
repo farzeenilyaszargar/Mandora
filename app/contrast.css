@@ -44,9 +44,12 @@
 .nap-blog-intro { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 70px; }
 .nap-blog-intro h1 { font-size: clamp(36px, 4vw, 60px); line-height: 1; font-weight: 800; letter-spacing: -.065em; }
 .nap-blog-intro p { font-size: 13px; color: #71716a; line-height: 1.6; }
-.nap-blog-row { display: grid; grid-template-columns: 1.3fr .8fr; align-items: center; gap: 28px; border-top: 1px solid #d1d1ca; padding: 42px 0; }
+.nap-blog-row { display: grid; grid-template-columns: 56px 1.3fr .8fr; align-items: center; gap: 28px; border-top: 1px solid #d1d1ca; padding: 42px 0; }
 .nap-blog-row:last-child { border-bottom: 1px solid #d1d1ca; }
 .nap-blog-row h2 { font-size: clamp(30px, 4vw, 64px); font-weight: 500; letter-spacing: -.06em; line-height: 1.1; text-decoration-thickness: 1px; text-underline-offset: .16em; }
 .nap-blog-row p { color: #71716a; font-size: 13px; line-height: 1.65; max-width: 260px; }
 .nap-blog-row:hover h2, .nap-blog-row:focus-visible h2 { text-decoration: underline; }
-@media (max-width: 700px) { .nap-blog-intro { margin-bottom: 46px; } .nap-blog-intro p { font-size: 11px; } .nap-blog-row { grid-template-columns: 1fr; column-gap: 16px; row-gap: 15px; padding: 28px 0; } .nap-blog-row h2 { font-size: clamp(27px, 7vw, 42px); } .nap-blog-row p { font-size: 12px; } }
+@media (max-width: 700px) { .nap-blog-intro { margin-bottom: 46px; } .nap-blog-intro p { font-size: 11px; } .nap-blog-row { grid-template-columns: 24px 1fr; column-gap: 16px; row-gap: 15px; padding: 28px 0; } .nap-blog-row h2 { font-size: clamp(27px, 7vw, 42px); } .nap-blog-row p { grid-column: 2; font-size: 12px; } }
+
+.nap-blog-number { align-self: start; margin-top: 10px; font-family: monospace; font-size: 11px; color: #85857e; }
+@media (max-width: 700px) { .nap-blog-number { margin-top: 6px; } }
