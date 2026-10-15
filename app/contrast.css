@@ -57,3 +57,12 @@
 .nap-article-image img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 16px 42px -16px #00000035; }
 .nap-article-image figcaption { margin-top: 16px; color: #85857e; text-align: center; font-size: 11px; line-height: 1.6; padding: 0 12px; }
 @media (max-width: 700px) { .nap-article-image { width: 90vw; margin-top: 30px; margin-bottom: 30px; } }
+
+.nap-scroll-page { position: relative; height: 200svh; background: #fafaf8; }
+.nap-scroll-stage { position: sticky; top: 0; height: 100svh; }
+.nap-scroll-stage #nap-title { transform-origin: top left; will-change: transform; }
+.nap-scroll-stage .nap-action { will-change: transform; }
+.nap-scroll-product { position: absolute; top: 100%; left: 50%; width: min(88vw, 1040px); margin: 0; opacity: 0; visibility: hidden; transform: translateX(-50%); will-change: transform, opacity; }
+.nap-scroll-product img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 18px 50px -20px #00000040; }
+.nap-scroll-hint { position: absolute; bottom: 23px; left: 50%; transform: translateX(-50%); font-family: monospace; font-size: 9px; letter-spacing: 1px; color: #85857e; }
+@media (prefers-reduced-motion: reduce) { .nap-scroll-stage #nap-title, .nap-scroll-stage .nap-action, .nap-scroll-product { will-change: auto; } }
