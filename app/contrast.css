@@ -60,7 +60,7 @@
 
 .nap-home-page { height: auto; min-height: 100svh; }
 .nap-home-page > .nap-hero { height: 100svh; }
-.nap-full-width-product { width: 92%; margin: 0 auto; }
+.nap-full-width-product { position: relative; z-index: 21; width: 92%; margin: 0 auto; }
 .nap-full-width-product img { display: block; width: 100%; height: auto; }
 
 @media (max-width: 700px) { .nap-full-width-product { width: 90%; } }
