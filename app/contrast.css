@@ -1,4 +1,4 @@
-.contrast-page { position: relative; isolation: isolate; height: 100svh; overflow: hidden; background: #fafaf8; color: #111; font-family: Arial, Helvetica, sans-serif; }
+.contrast-page { -webkit-user-select: none; user-select: none; position: relative; isolation: isolate; height: 100svh; overflow: hidden; background: #fafaf8; color: #111; font-family: Arial, Helvetica, sans-serif; }
 .contrast-page a { color: inherit; text-decoration: none; }
 .nap-header { position: absolute; top: 28px; left: 4%; right: 4%; display: flex; align-items: center; justify-content: space-between; z-index: 1; }
 .nap-wordmark { font-size: 42px; font-weight: 800; letter-spacing: -3px; line-height: 1; }
