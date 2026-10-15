@@ -13,6 +13,19 @@ body:has(.nap-reveal) {
   font-family: "Times New Roman", serif;
 }
 
+.nap-reveal {
+  display: grid;
+  min-height: calc(100svh - 16px);
+  place-items: center;
+}
+
+.plain-page {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  padding: 40px 16px;
+}
+
 .plain-page a { color: #0000ee; }
 
 .fracture-shell {
