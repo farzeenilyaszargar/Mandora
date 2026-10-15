@@ -188,7 +188,7 @@ export default function FractureOverlay({ download }: { download: string }) {
       hit.cracked = now;
       hit.fall = now + 220;
       removedArea += hit.area;
-      if (removedArea >= width * height * .7) {
+      if (removedArea >= width * height * .5) {
         cascade = now;
         fragments.forEach((fragment, index) => {
           if (fragment.cracked !== null) return;
