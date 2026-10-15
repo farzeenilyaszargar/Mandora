@@ -12,7 +12,7 @@ Landing website for Nap, a native interface for running coding agents from one f
 
 ## Pages
 
-- `/` - Minimal dark landing page: centered white Nap branding, short copy, and a glossy charcoal macOS download button.
+- `/` - A deliberately overbuilt dark SaaS page dismantles itself over two seconds, revealing three lines of plain HTML. A real macOS download stays available throughout. Reduced-motion visitors see the plain page immediately.
 - `/docs` - Documentation-style page with a left topic nav and scroll-aware active section.
 - `/waitlist` - Waitlist form for Windows/Linux interest.
 
