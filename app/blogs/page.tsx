@@ -27,7 +27,7 @@ export default function BlogsPage() {
           <a className="nap-blog-row" href="/blogs/why">
             <span className="nap-blog-number">02</span>
             <h2>Why This?</h2>
-            <p>A small question behind the way we think about tools.</p>
+            <p>Your choice of agent can change. Your workspace should still feel like yours.</p>
           </a>
         </div>
       </section>

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import NapHeader from "../../components/nap-header";
 import LiquidField from "../../components/liquid-field";
 import "../../contrast.css";
 
 export const metadata: Metadata = {
   title: "Why This?",
-  description: "A small question behind the way we think about tools at Nap.",
-  robots: { index: false, follow: true },
+  description: "Your choice of coding agent can change. Your workspace should still feel like yours. The thinking behind Nap.",
   alternates: { canonical: "/blogs/why" },
 };
 
@@ -16,20 +16,31 @@ export default function WhyPost() {
       <NapHeader />
       <section className="nap-hero">
         <article className="nap-blog-article">
-          <span className="nap-blog-label">PLACEHOLDER POST · 2 MIN READ</span>
+          <span className="nap-blog-label">PRODUCT NOTES · 2 MIN READ</span>
           <h1>Why This?</h1>
-          <p>It is a useful question to keep close. Why does this need another window? Why is the next step difficult to find? Why does getting back to a project sometimes take longer than the change itself?</p>
-          <p>None of these questions has a single answer. But asking them changes what you pay attention to. Instead of starting with what else a tool could do, you start with what someone is trying to get done.</p>
-          <h2>More is not always the answer</h2>
-          <p>Adding a feature is an obvious way to make a product feel more capable. Making an existing action easier to understand is less visible. So is removing a decision that did not need to be there in the first place.</p>
-          <p>We think those smaller improvements deserve attention. A clear label, a familiar place to return to, or one less interruption can matter more than another panel of options. The work is in deciding what earns a place on the screen.</p>
-          <h2>Keep the choice. Reduce the friction.</h2>
-          <p>Different coding agents suit different tasks and different people. A shared workspace should respect that choice. The aim is not to make everyone work in exactly the same way, but to make the surrounding experience easier to navigate.</p>
-          <p>That is the question we bring to Nap: can the tools stay flexible while the workspace feels simpler? We want your attention to follow the problem you are solving, rather than the arrangement of the tools around it.</p>
-          <h2>A question worth repeating</h2>
-          <p>There will always be another idea to try and another detail to adjust. Asking why gives those decisions a starting point. What does this help with? Who needs it? Could it be clearer?</p>
-          <p>We do not expect the answers to stay fixed. We do want to keep asking. A little less friction begins with noticing where it comes from.</p>
-          <p className="nap-placeholder-note">This is a placeholder draft. Final editorial content will replace it.</p>
+          <p>You open a project with a clear idea of what you want to build. A few minutes later, you are looking for the right session, reopening a conversation, and remembering which window belongs to which task. The idea is still there. You just have to find your way back to it.</p>
+          <p>That small distance between wanting to work and actually working is what interests us. It is the reason for Nap.</p>
+
+          <figure className="nap-article-image">
+            <Image src="/nap-app-hero.png" alt="Nap’s native desktop workspace, showing project sessions in a sidebar and an agent conversation beside them." width={1380} height={872} priority sizes="(max-width: 1000px) 92vw, 920px" />
+            <figcaption>A place for your projects, your conversations, and the next thing you want to make.</figcaption>
+          </figure>
+
+          <h2>The conversation is part of the work.</h2>
+          <p>When you build with a coding agent, the conversation holds more than instructions. It holds the approach you decided against, the explanation that made something click, and the detail you will need when you return tomorrow. Keeping that thread close to the project matters.</p>
+          <p>Nap brings sessions and conversations into one native workspace. The aim is to make finding your place feel ordinary: open the project, pick up the thread, keep going.</p>
+
+          <h2>Choose the agent. Keep your space.</h2>
+          <p>You may prefer Claude Code for one task and Codex for another. You might already work with Cursor, OpenCode, or Grok CLI. Those choices are personal, and they can change as the work changes.</p>
+          <p>We want the surrounding workspace to feel familiar through those changes. A consistent place to work means fewer small decisions about where things live and more attention for what the agent is helping you do.</p>
+
+          <h2>The details add up.</h2>
+          <p>A readable conversation. A session you can find again. A composer with room for the next question. These are small pieces of an interface, but they are also the pieces you spend your day with.</p>
+          <p>We care about how those moments fit together. Does the layout help you understand where you are? Is the next action clear? Can you step away and return without reconstructing the whole afternoon? Those questions guide the experience we want to build.</p>
+
+          <h2>More room for your own thinking.</h2>
+          <p>The work still needs your judgment: deciding what is worth building, noticing when something feels wrong, and knowing when a result is good enough to ship. Your tools should leave room for that.</p>
+          <p>That is why this workspace exists. Your agents, all together. Your attention, back on the thing you came to make.</p>
         </article>
       </section>
       <LiquidField />

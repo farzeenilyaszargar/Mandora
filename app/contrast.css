@@ -53,3 +53,8 @@
 
 .nap-blog-number { align-self: start; margin-top: 10px; font-family: monospace; font-size: 11px; color: #85857e; }
 @media (max-width: 700px) { .nap-blog-number { margin-top: 6px; } }
+
+.nap-article-image { width: min(920px, 92vw); margin: 42px 0 42px 50%; transform: translateX(-50%); }
+.nap-article-image img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 16px 42px -16px #00000035; }
+.nap-article-image figcaption { margin-top: 16px; color: #85857e; text-align: center; font-size: 11px; line-height: 1.6; padding: 0 12px; }
+@media (max-width: 700px) { .nap-article-image { width: 90vw; margin-top: 30px; margin-bottom: 30px; } }
