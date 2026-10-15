@@ -14,7 +14,7 @@ export default function Home() {
     <main className="contrast-page">
       <header className="nap-header">
         <a href="/" className="nap-wordmark" aria-label="Nap home">nap<span>®</span></a>
-        <a className="nap-docs" href="https://github.com/farzeenilyaszargar/NotNap/releases">Changelog</a>
+        <a className="nap-docs" href="https://github.com/farzeenilyaszargar/NotNap/releases">CHANGELOG</a>
       </header>
 
       <section className="nap-hero" aria-labelledby="nap-title">
