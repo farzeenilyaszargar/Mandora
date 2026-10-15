@@ -1,4 +1,3 @@
-import ScrollHero from "./components/scroll-hero";
 import NapHeader from "./components/nap-header";
 import type { Metadata } from "next";
 import LiquidField from "./components/liquid-field";
@@ -13,7 +12,7 @@ const download = "https://github.com/farzeenilyaszargar/NotNap/releases/latest/d
 
 export default function Home() {
   return (
-    <ScrollHero>
+    <main className="contrast-page">
       <NapHeader />
 
       <section className="nap-hero" aria-labelledby="nap-title">
@@ -34,6 +33,6 @@ export default function Home() {
       </section>
 
       <LiquidField />
-    </ScrollHero>
+    </main>
   );
 }
