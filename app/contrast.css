@@ -27,8 +27,8 @@
 @media (prefers-reduced-motion: reduce) { .nap-download { transition: none; } }
 
 .nap-nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 42px); }
-.nap-blog-content { padding: 0 4%; }
-.nap-blog-content h1 { font-size: clamp(64px, 13vw, 220px); font-weight: 900; letter-spacing: -.08em; line-height: 1; }
+.nap-blog-content { padding: 0; }
+.nap-blog-content h1 { font-size: clamp(40px, 5vw, 80px); font-weight: 900; letter-spacing: -.08em; line-height: 1; }
 .nap-blog-content p { margin-top: 24px; color: #71716a; font-size: 16px; }
 
 .nap-blog-content { width: 100%; }
