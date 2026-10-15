@@ -24,7 +24,7 @@ export default function BlogsPage() {
             <p>One workspace, fewer interruptions. The idea that became Nap.</p>
           </a>
           <a className="nap-blog-row" href="/blogs/why">
-            <h2>Why?</h2>
+            <h2>Why This?</h2>
             <p>A small question behind the way we think about tools.</p>
           </a>
         </div>

@@ -4,7 +4,7 @@ import LiquidField from "../../components/liquid-field";
 import "../../contrast.css";
 
 export const metadata: Metadata = {
-  title: "Why?",
+  title: "Why This?",
   description: "A small question behind the way we think about tools at Nap.",
   robots: { index: false, follow: true },
   alternates: { canonical: "/blogs/why" },
@@ -17,7 +17,7 @@ export default function WhyPost() {
       <section className="nap-hero">
         <article className="nap-blog-article">
           <span className="nap-blog-label">PLACEHOLDER POST · 2 MIN READ</span>
-          <h1>Why?</h1>
+          <h1>Why This?</h1>
           <p>It is a useful question to keep close. Why does this need another window? Why is the next step difficult to find? Why does getting back to a project sometimes take longer than the change itself?</p>
           <p>None of these questions has a single answer. But asking them changes what you pay attention to. Instead of starting with what else a tool could do, you start with what someone is trying to get done.</p>
           <h2>More is not always the answer</h2>
