@@ -42,7 +42,7 @@
 
 .nap-blog-index { width: 100%; }
 .nap-blog-intro { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 70px; }
-.nap-blog-intro h1 { font-size: clamp(36px, 4vw, 60px); line-height: 1; font-weight: 800; letter-spacing: -.065em; }
+.nap-blog-intro h1 { font-size: clamp(52px, 6vw, 96px); line-height: 1; font-weight: 800; letter-spacing: -.065em; }
 .nap-blog-intro p { font-size: 13px; color: #71716a; line-height: 1.6; }
 .nap-blog-row { display: grid; grid-template-columns: 56px 1.3fr .8fr; align-items: center; gap: 28px; border-top: 1px solid #d1d1ca; padding: 42px 0; }
 .nap-blog-row:last-child { border-bottom: 1px solid #d1d1ca; }
