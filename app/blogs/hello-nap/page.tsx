@@ -5,22 +5,37 @@ import "../../contrast.css";
 
 export const metadata: Metadata = {
   title: "A little less friction.",
-  description: "A placeholder post for the Nap blog.",
+  description: "Why Nap brings your coding agents into one native workspace, with less switching and more room to think.",
   robots: { index: false, follow: true },
   alternates: { canonical: "/blogs/hello-nap" },
 };
 
 export default function PlaceholderPost() {
   return (
-    <main className="contrast-page">
+    <main className="contrast-page nap-article-page">
       <NapHeader />
       <section className="nap-hero">
         <article className="nap-blog-article">
-          <span className="nap-blog-label">PLACEHOLDER POST · 1 MIN READ</span>
+          <span className="nap-blog-label">PLACEHOLDER POST · 2 MIN READ</span>
           <h1>A little less friction.</h1>
-          <p>Good tools give you room to think. Nap brings the coding agents you already use into one native workspace, so you can spend more time making things.</p>
-          <p>This blog will be a place for product updates, ideas, and notes from behind the scenes.</p>
-          <p className="nap-placeholder-note">This is a placeholder post. The first story is still to come.</p>
+          <p>Good tools give you room to think. They help you stay with an idea long enough to turn it into something real. That is the idea behind Nap: one native workspace for the coding agents you already use, with a little less getting in the way.</p>
+
+          <h2>The work between the work</h2>
+          <p>A coding session is rarely just writing code. There is a question to explore, a change to review, an approach to rethink, and a thread to pick up after a break. When all of that is scattered across windows, finding your place becomes a task of its own.</p>
+          <p>Each switch can be small. Together, those switches make it harder to keep the shape of a problem in your head. We think the space around your agents deserves as much attention as the agents themselves.</p>
+
+          <h2>Your agents. One familiar place.</h2>
+          <p>You might reach for Claude Code on one project, Codex on another, or keep Cursor and OpenCode in your workflow. Your choice of agent should follow the work. Nap brings those tools into a shared native interface, giving the surrounding experience a familiar home.</p>
+          <p>The goal is simple: open your workspace, find the conversation you need, and get back to making. Less time arranging the tools. More attention for what you are trying to build.</p>
+
+          <h2>Room to find your flow</h2>
+          <p>Flow looks different for everyone. Sometimes it means moving quickly through a small fix. Sometimes it means slowing down, asking better questions, and trying a few directions before one feels right.</p>
+          <p>We want Nap to make room for both. A focused workspace should feel useful when you need it and quiet when you do not. The measure is how easily you can return to your own train of thought.</p>
+
+          <h2>More to come</h2>
+          <p>This blog will be a place for product updates, design decisions, and notes about working with coding agents. We will share the thinking behind the details as Nap takes shape.</p>
+          <p>For now, the idea is the same as the name on the homepage: your agents, all together. A little less friction. A little more room to make something.</p>
+          <p className="nap-placeholder-note">This is an introductory placeholder draft. Final editorial content will replace it.</p>
         </article>
       </section>
       <LiquidField />

@@ -40,3 +40,9 @@
 .nap-blog-article h1 { font-size: clamp(38px, 5vw, 72px); font-weight: 700; letter-spacing: -.065em; line-height: 1.05; margin-top: 20px; }
 .nap-blog-article p { margin-top: 24px; font-size: clamp(14px, 1.3vw, 17px); line-height: 1.7; color: #62625c; }
 .nap-blog-article .nap-placeholder-note { font-size: 12px; padding-top: 18px; border-top: 1px solid #ddd; }
+
+.nap-article-page { height: auto; min-height: 100svh; }
+.nap-article-page .nap-hero { height: auto; min-height: 100svh; display: block; padding-top: 150px; padding-bottom: 90px; }
+.nap-blog-article h2 { margin-top: 42px; font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -.04em; line-height: 1.2; }
+.nap-blog-article h2 + p { margin-top: 16px; }
+@media (max-width: 700px) { .nap-article-page .nap-hero { padding-top: 120px; padding-bottom: 55px; } }

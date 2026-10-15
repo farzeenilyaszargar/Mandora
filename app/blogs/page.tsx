@@ -17,9 +17,9 @@ export default function BlogsPage() {
         <div className="nap-blog-content">
           <h1>BLOGS.</h1>
           <a className="nap-blog-card" href="/blogs/hello-nap">
-            <span className="nap-blog-label">PLACEHOLDER POST · 1 MIN READ</span>
+            <span className="nap-blog-label">PLACEHOLDER POST · 2 MIN READ</span>
             <h2>A little less friction.</h2>
-            <p>A space for ideas, updates, and the story behind Nap.</p>
+            <p>Why we’re bringing your coding agents into one native workspace, with less switching and more room to think.</p>
           </a>
         </div>
       </section>
