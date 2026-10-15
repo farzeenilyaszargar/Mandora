@@ -1,53 +1,46 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import LiquidField from "./components/liquid-field";
 import "./contrast.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "Nap — All your agents. One space." },
+  title: { absolute: "Nap — Your agents. All together." },
   description: "One native workspace for the coding agents you already use. Download Nap for Mac.",
 };
 
 const download = "https://github.com/farzeenilyaszargar/NotNap/releases/latest/download/NotNap-macos.dmg";
 
-function FlowStudy() {
-  return (
-    <span className="flow-study" aria-hidden="true">
-      <svg viewBox="0 0 240 150" fill="none">
-        <g className="flow-rings">
-          {Array.from({ length: 28 }, (_, i) => (
-            <ellipse key={i} cx="120" cy="75" rx="69" ry="31" transform={`rotate(${i * 6.43} 120 75)`} stroke={`rgb(${90 + i * 5}, ${90 + i * 5}, ${90 + i * 5})`} strokeWidth=".8" />
-          ))}
-        </g>
-      </svg>
-    </span>
-  );
-}
-
 export default function Home() {
   return (
     <main className="contrast-page">
-      <header className="contrast-header">
-        <a href="/" className="contrast-brand" aria-label="Nap home">nap<span>®</span></a>
-        <span className="contrast-nav-label"><i /> A NATIVE SPACE FOR YOUR AGENTS</span>
-        <a className="contrast-nav-link" href="/docs"><i /> DOCUMENTATION <span>↗</span></a>
-        <a className="contrast-nav-link" href={download}><i /> DOWNLOAD NAP <span>↗</span></a>
+      <header className="nap-header">
+        <a href="/" className="nap-wordmark" aria-label="Nap home">nap<span>®</span></a>
+        <a className="nap-docs" href="/docs">Documentation <span>↗</span></a>
       </header>
 
-      <section className="contrast-hero" aria-labelledby="nap-title">
-        <p className="contrast-description">One native workspace for Claude Code, Codex, Cursor, and the coding agents you already use. Less noise. More making.</p>
-        <h1 id="nap-title">
-          <span className="headline-row">YOUR AGENTS.</span>
-          <span className="headline-row headline-indent">ONE SPACE.</span>
-          <span className="headline-row headline-indent headline-last"><span>JUST</span><FlowStudy /><span>NAP.</span></span>
-        </h1>
-        <a className="contrast-download" href={download}><span>↓</span> Download for Mac <span>↗</span></a>
+      <section className="nap-hero" aria-labelledby="nap-title">
+        <div className="nap-copy">
+          <p className="nap-eyebrow">A LITTLE LESS FRICTION.</p>
+          <h1 id="nap-title">Your agents.<br />All together.</h1>
+          <p className="nap-description">One native workspace for the coding agents you already use. Get into your flow.</p>
+          <div className="nap-action">
+            <a className="nap-download" href={download}>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c.02 3.22 2.83 4.3 2.86 4.31-.02.08-.45 1.54-1.48 3.05-.9 1.31-1.83 2.61-3.3 2.64-1.44.03-1.91-.85-3.57-.85-1.65 0-2.17.82-3.54.88-1.42.05-2.5-1.42-3.4-2.73-1.86-2.69-3.28-7.61-1.37-10.93.95-1.65 2.65-2.7 4.5-2.73 1.4-.03 2.73.94 3.58.94.86 0 2.47-1.16 4.16-.99.7.03 2.68.28 3.95 2.14-.1.06-2.36 1.37-2.39 4.27ZM14.34 4.35c.75-.91 1.26-2.17 1.12-3.43-1.08.04-2.39.72-3.16 1.62-.7.81-1.32 2.1-1.15 3.34 1.2.09 2.42-.61 3.19-1.53Z" /></svg>
+              <span>Download for Mac</span><span className="nap-download-arrow" aria-hidden="true">↓</span>
+            </a>
+            <p className="nap-download-note">Your next good idea starts here.</p>
+          </div>
+        </div>
+
+        <figure className="nap-product">
+          <Image src="/nap-app-hero.png" alt="Nap's native Mac interface with project sessions, an agent conversation, and a message composer." width={1380} height={872} priority sizes="(max-width: 700px) 90vw, 56vw" />
+          <figcaption>Your space to make things happen.</figcaption>
+        </figure>
       </section>
 
-      <div className="contrast-stripes" aria-hidden="true"><span /><span /><span /></div>
-      <footer className="contrast-footer">
-        <span>ALL YOUR AGENTS. ONE SPACE.</span>
-        <span className="contrast-interact">MOVE YOUR CURSOR. MAKE YOUR MARK.</span>
-        <a href="/waitlist">WINDOWS & LINUX <span>↗</span></a>
+      <footer className="nap-footer">
+        <span>Claude Code <b>·</b> Codex <b>·</b> Cursor <b>·</b> OpenCode <b>·</b> Grok CLI</span>
+        <a href="/waitlist">Windows & Linux waitlist <span>↗</span></a>
       </footer>
       <LiquidField />
     </main>
