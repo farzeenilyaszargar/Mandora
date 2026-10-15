@@ -26,7 +26,12 @@ body:has(.nap-reveal) {
   padding: 40px 16px;
 }
 
-.plain-page a { color: #0000ee; }
+.plain-page a {
+  color: #0000ee;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1.3;
+}
 
 .fracture-shell {
   position: fixed;
