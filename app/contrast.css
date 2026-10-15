@@ -34,7 +34,7 @@
 .nap-blog-content { width: 100%; }
 .nap-blog-card { display: block; max-width: 650px; margin-top: 32px; padding: 24px 0; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; }
 .nap-blog-label { font-family: monospace; font-size: 10px; letter-spacing: 1px; color: #71716a; }
-.nap-blog-card h2 { text-decoration: underline; text-underline-offset: .15em; text-decoration-thickness: 1px; margin-top: 16px; font-size: clamp(24px, 3vw, 42px); font-weight: 600; letter-spacing: -.05em; }
+.nap-blog-card h2 { text-decoration: none; text-underline-offset: .15em; text-decoration-thickness: 1px; margin-top: 16px; font-size: clamp(24px, 3vw, 42px); font-weight: 600; letter-spacing: -.05em; }
 .nap-blog-card p { margin-top: 10px; font-size: 14px; line-height: 1.5; }
 .nap-blog-article { max-width: 680px; margin: 0 auto; }
 .nap-blog-article h1 { font-size: clamp(38px, 5vw, 72px); font-weight: 700; letter-spacing: -.065em; line-height: 1.05; margin-top: 20px; }
@@ -46,3 +46,5 @@
 .nap-blog-article h2 { margin-top: 42px; font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -.04em; line-height: 1.2; }
 .nap-blog-article h2 + p { margin-top: 16px; }
 @media (max-width: 700px) { .nap-article-page .nap-hero { padding-top: 120px; padding-bottom: 55px; } }
+
+.nap-blog-card:hover h2, .nap-blog-card:focus-visible h2 { text-decoration: underline; }
