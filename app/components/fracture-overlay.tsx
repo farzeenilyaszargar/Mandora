@@ -101,18 +101,6 @@ export default function FractureOverlay({ download }: { download: string }) {
       ctx.drawImage(assets[1], gutter, 35, 28, 28 * assets[1].naturalHeight / assets[1].naturalWidth);
       ctx.restore();
       ctx.fillText("nap.", gutter + 38, 50);
-      ctx.font = "500 11px Fustat, Arial, sans-serif";
-      const grantLabel = "₹5 Lakh Grant";
-      const grantX = gutter + 110;
-      const grantWidth = ctx.measureText(grantLabel).width + 20;
-      ctx.fillStyle = "#ffffff08";
-      ctx.strokeStyle = "#ffffff24";
-      ctx.beginPath();
-      ctx.roundRect(grantX, 29, grantWidth, 24, 4);
-      ctx.fill();
-      ctx.stroke();
-      ctx.fillStyle = "#c0c5bf";
-      ctx.fillText(grantLabel, grantX + 10, 45);
       ctx.strokeStyle = "#ffffff10";
       ctx.beginPath(); ctx.moveTo(gutter, 81); ctx.lineTo(width - gutter, 81); ctx.stroke();
       ctx.textAlign = "center";
