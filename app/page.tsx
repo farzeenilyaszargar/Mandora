@@ -1,3 +1,4 @@
+import Image from "next/image";
 import NapHeader from "./components/nap-header";
 import type { Metadata } from "next";
 import LiquidField from "./components/liquid-field";
@@ -12,7 +13,7 @@ const download = "https://github.com/farzeenilyaszargar/NotNap/releases/latest/d
 
 export default function Home() {
   return (
-    <main className="contrast-page">
+    <main className="contrast-page nap-home-page">
       <NapHeader />
 
       <section className="nap-hero" aria-labelledby="nap-title">
@@ -32,6 +33,9 @@ export default function Home() {
         </div>
       </section>
 
+      <figure className="nap-full-width-product">
+        <Image src="/nap-app-hero.png" alt="Nap’s native workspace showing project sessions and an agent conversation." width={1380} height={872} sizes="100vw" />
+      </figure>
       <LiquidField />
     </main>
   );

@@ -57,3 +57,8 @@
 .nap-article-image img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 16px 42px -16px #00000035; }
 .nap-article-image figcaption { margin-top: 16px; color: #85857e; text-align: center; font-size: 11px; line-height: 1.6; padding: 0 12px; }
 @media (max-width: 700px) { .nap-article-image { width: 90vw; margin-top: 30px; margin-bottom: 30px; } }
+
+.nap-home-page { height: auto; min-height: 100svh; }
+.nap-home-page > .nap-hero { height: 100svh; }
+.nap-full-width-product { width: 100%; margin: 0; }
+.nap-full-width-product img { display: block; width: 100%; height: auto; }
