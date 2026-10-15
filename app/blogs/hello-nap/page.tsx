@@ -1,3 +1,4 @@
+import NapHeader from "../../components/nap-header";
 import type { Metadata } from "next";
 import LiquidField from "../../components/liquid-field";
 import "../../contrast.css";
@@ -12,10 +13,7 @@ export const metadata: Metadata = {
 export default function PlaceholderPost() {
   return (
     <main className="contrast-page">
-      <header className="nap-header">
-        <a href="/" className="nap-wordmark" aria-label="Nap home">nap<span>®</span></a>
-        <a className="nap-docs" href="/blogs">ALL BLOGS</a>
-      </header>
+      <NapHeader />
       <section className="nap-hero">
         <article className="nap-blog-article">
           <span className="nap-blog-label">PLACEHOLDER POST · 1 MIN READ</span>
