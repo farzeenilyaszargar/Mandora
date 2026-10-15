@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import FractureOverlay from "./components/fracture-overlay";
 import "./reveal.css";
 
 export const metadata: Metadata = {
@@ -28,8 +27,6 @@ export default function Home() {
         <p><a href={download}>download for mac →</a></p>
         <p><small>No demo calls. No sales deck. Just the app.</small></p>
       </div>
-      <FractureOverlay download={download} />
-      <noscript><style>{".fracture-shell, .quick-download { display: none; }"}</style></noscript>
     </main>
   );
 }

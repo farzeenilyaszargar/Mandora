@@ -12,7 +12,7 @@ Landing website for Nap, a native interface for running coding agents from one f
 
 ## Pages
 
-- `/` - A clean dark page fractures under the cursor (or touch). At 30% broken, the remaining surface shatters to reveal a centered plain HTML page with a short product introduction and download link. The macOS download stays available throughout. Reduced-motion and no-JavaScript visitors see the plain page immediately.
+- `/` - A centered white HTML page with default serif text, a short product introduction, and a prominent blue macOS download link.
 - `/docs` - Documentation-style page with a left topic nav and scroll-aware active section.
 - `/waitlist` - Waitlist form for Windows/Linux interest.
 
