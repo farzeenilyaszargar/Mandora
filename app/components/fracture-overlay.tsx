@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import NextImage from "next/image";
 
 type Point = { x: number; y: number };
 type Fragment = {
@@ -63,6 +64,7 @@ function makeFragments(width: number, height: number): Fragment[] {
 
 export default function FractureOverlay({ download }: { download: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const downloadRef = useRef<HTMLAnchorElement>(null);
   const [finished, setFinished] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -90,29 +92,60 @@ export default function FractureOverlay({ download }: { download: string }) {
       const ctx = sourceContext;
       const small = width < 600;
       const gutter = small ? 20 : Math.max(40, (width - 1120) / 2);
-      ctx.fillStyle = "#101111";
+      ctx.fillStyle = "#101112";
       ctx.fillRect(0, 0, width, height);
       ctx.textAlign = "left";
       ctx.fillStyle = "#f2f3ef";
-      ctx.font = `600 27px Fustat, Arial, sans-serif`;
-      ctx.fillText("nap.", gutter, small ? 51 : 59);
-      ctx.strokeStyle = "#ffffff14";
-      ctx.beginPath(); ctx.moveTo(gutter, 95); ctx.lineTo(width - gutter, 95); ctx.stroke();
+      ctx.font = "600 25px Fustat, Arial, sans-serif";
+      ctx.save();
+      ctx.filter = "invert(1)";
+      ctx.drawImage(assets[1], gutter, 35, 28, 28 * assets[1].naturalHeight / assets[1].naturalWidth);
+      ctx.restore();
+      ctx.fillText("nap.", gutter + 38, 50);
+      ctx.strokeStyle = "#ffffff10";
+      ctx.beginPath(); ctx.moveTo(gutter, 81); ctx.lineTo(width - gutter, 81); ctx.stroke();
       ctx.textAlign = "center";
-      const titleY = small ? 161 : Math.min(205, height * .25);
-      ctx.font = `500 ${width < 360 ? 36 : small ? 42 : 72}px Fustat, Arial, sans-serif`;
+      const titleY = small ? 147 : height < 800 ? 151 : 184;
+      ctx.font = `500 ${width < 360 ? 36 : small ? 42 : 68}px Fustat, Arial, sans-serif`;
       ctx.fillText("All your agents.", width / 2, titleY);
-      ctx.fillText("One quiet place.", width / 2, titleY + (small ? 48 : 80));
-      ctx.fillStyle = "#91958f";
-      ctx.font = `400 ${small ? 13 : 16}px Fustat, Arial, sans-serif`;
-      ctx.fillText("Claude Code. Codex. Cursor. OpenCode.", width / 2, titleY + (small ? 88 : 125));
+      ctx.fillStyle = "#b6b9b8";
+      ctx.fillText("One quiet place.", width / 2, titleY + (small ? 48 : 76));
+      ctx.fillStyle = "#949999";
+      ctx.font = `400 ${small ? 14 : 17}px Fustat, Arial, sans-serif`;
+      const description = "Nap brings Claude Code, Codex, Cursor, and OpenCode into one native Mac app. Your projects, conversations, and tools, together.";
+      const lines: string[] = [];
+      const textWidth = Math.min(width - gutter * 2, 530);
+      for (const word of description.split(" ")) {
+        const last = lines.length - 1;
+        if (last < 0 || ctx.measureText(`${lines[last]} ${word}`).width > textWidth) lines.push(word);
+        else lines[last] += ` ${word}`;
+      }
+      const descriptionY = titleY + (small ? 85 : 118);
+      const lineHeight = small ? 22 : 27;
+      lines.forEach((line, index) => ctx.fillText(line, width / 2, descriptionY + index * lineHeight));
+      const buttonY = descriptionY + (lines.length - 1) * lineHeight + 29;
+      if (downloadRef.current) downloadRef.current.style.top = `${buttonY}px`;
       const image = assets[0];
-      const imageY = titleY + (small ? 130 : 175);
+      const imageY = buttonY + 88;
       const imageWidth = Math.min(width - gutter * 2, 900, Math.max(0, height - imageY - 32) * image.naturalWidth / image.naturalHeight);
       const imageHeight = imageWidth * image.naturalHeight / image.naturalWidth;
+      ctx.save();
+      ctx.shadowColor = "#00000066";
+      ctx.shadowBlur = 30;
+      ctx.shadowOffsetY = 12;
+      ctx.fillStyle = "#191a1b";
+      ctx.beginPath();
+      ctx.roundRect((width - imageWidth) / 2, imageY, imageWidth, imageHeight, 8);
+      ctx.fill();
+      ctx.restore();
+      ctx.save();
+      ctx.beginPath();
+      ctx.roundRect((width - imageWidth) / 2, imageY, imageWidth, imageHeight, 8);
+      ctx.clip();
       ctx.drawImage(image, (width - imageWidth) / 2, imageY, imageWidth, imageHeight);
+      ctx.restore();
       ctx.strokeStyle = "#ffffff20";
-      ctx.strokeRect((width - imageWidth) / 2, imageY, imageWidth, imageHeight);
+      ctx.stroke();
     };
 
     const render = (now: number) => {
@@ -202,9 +235,9 @@ export default function FractureOverlay({ download }: { download: string }) {
     const motionChange = () => { if (motion.matches) finish(); };
 
     if (motion.matches) { queueMicrotask(finish); return () => { disposed = true; }; }
-    Promise.all([loadImage("/nap-app-hero.png"), document.fonts.ready]).then(([image]) => {
+    Promise.all([loadImage("/nap-app-hero.png"), loadImage("/logo.png"), document.fonts.ready]).then(([image, logo]) => {
       if (disposed) return;
-      assets = [image];
+      assets = [image, logo];
       resize();
       setReady(true);
       canvas.addEventListener("pointermove", crack);
@@ -231,7 +264,10 @@ export default function FractureOverlay({ download }: { download: string }) {
         {!ready && <div className="fracture-fallback">nap.</div>}
         <canvas ref={canvasRef} />
       </div>
-      <a className="quick-download" href={download}>download for mac →</a>
+      <a ref={downloadRef} className="quick-download" href={download}>
+        <NextImage src="/apple-platform-logo.png" alt="" width={16} height={20} />
+        Download for Mac
+      </a>
     </>
   );
 }
