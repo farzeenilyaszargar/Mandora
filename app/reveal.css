@@ -7,13 +7,13 @@ body:has(.nap-reveal),
 
 html:has(.nap-reveal),
 body:has(.nap-reveal) {
-  background: #0c0c0c;
-  color: #eee;
-  color-scheme: dark;
+  background: #fff;
+  color: #000;
+  color-scheme: light;
   font-family: "Times New Roman", serif;
 }
 
-.plain-page a { color: #8ab4f8; }
+.plain-page a { color: #0000ee; }
 
 .fracture-shell {
   position: fixed;
