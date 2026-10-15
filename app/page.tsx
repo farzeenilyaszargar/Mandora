@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import LiquidField from "./components/liquid-field";
 import "./contrast.css";
 
@@ -32,10 +31,6 @@ export default function Home() {
           </div>
         </div>
 
-        <figure className="nap-product">
-          <Image src="/nap-app-hero.png" alt="Nap's native Mac interface with project sessions, an agent conversation, and a message composer." width={1380} height={872} priority sizes="(max-width: 700px) 90vw, 56vw" />
-          <figcaption>Your space to make things happen.</figcaption>
-        </figure>
       </section>
 
       <footer className="nap-footer">
