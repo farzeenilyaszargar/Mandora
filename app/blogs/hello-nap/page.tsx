@@ -4,7 +4,7 @@ import LiquidField from "../../components/liquid-field";
 import "../../contrast.css";
 
 export const metadata: Metadata = {
-  title: "A little less friction.",
+  title: "Our story",
   description: "Why Nap brings your coding agents into one native workspace, with less switching and more room to think.",
   robots: { index: false, follow: true },
   alternates: { canonical: "/blogs/hello-nap" },
@@ -17,7 +17,7 @@ export default function PlaceholderPost() {
       <section className="nap-hero">
         <article className="nap-blog-article">
           <span className="nap-blog-label">PLACEHOLDER POST · 2 MIN READ</span>
-          <h1>A little less friction.</h1>
+          <h1>Our story</h1>
           <p>Good tools give you room to think. They help you stay with an idea long enough to turn it into something real. That is the idea behind Nap: one native workspace for the coding agents you already use, with a little less getting in the way.</p>
 
           <h2>The work between the work</h2>

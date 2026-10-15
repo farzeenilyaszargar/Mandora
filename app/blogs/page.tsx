@@ -1,4 +1,3 @@
-import { blogSummaries } from "./posts";
 import NapHeader from "../components/nap-header";
 import type { Metadata } from "next";
 import LiquidField from "../components/liquid-field";
@@ -17,15 +16,11 @@ export default function BlogsPage() {
       <section className="nap-hero">
         <div className="nap-blog-content">
           <h1>BLOGS.</h1>
-          <div className="nap-blog-grid">
-            {blogSummaries.map((post) => (
-              <a className="nap-blog-card" href={`/blogs/${post.slug}`} key={post.slug}>
-                <span className="nap-blog-label">PLACEHOLDER POST · 2 MIN READ</span>
-                <h2>{post.title}</h2>
-                <p>{post.summary}</p>
-              </a>
-            ))}
-          </div>
+          <a className="nap-blog-card" href="/blogs/hello-nap">
+            <span className="nap-blog-label">PLACEHOLDER POST · 2 MIN READ</span>
+            <h2>Our story</h2>
+            <p>Why we’re bringing your coding agents into one native workspace, with less switching and more room to think.</p>
+          </a>
         </div>
       </section>
       <LiquidField />
