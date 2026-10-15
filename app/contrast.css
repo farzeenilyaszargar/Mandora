@@ -32,7 +32,6 @@
 .nap-blog-article { max-width: 680px; margin: 0 auto; }
 .nap-blog-article h1 { font-size: clamp(38px, 5vw, 72px); font-weight: 700; letter-spacing: -.065em; line-height: 1.05; margin-top: 20px; }
 .nap-blog-article p { margin-top: 24px; font-size: clamp(14px, 1.3vw, 17px); line-height: 1.7; color: #62625c; }
-.nap-blog-article .nap-placeholder-note { font-size: 12px; padding-top: 18px; border-top: 1px solid #ddd; }
 
 .nap-article-page { height: auto; min-height: 100svh; }
 .nap-article-page .nap-hero { height: auto; min-height: 100svh; display: block; padding-top: 150px; padding-bottom: 90px; }

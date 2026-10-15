@@ -6,17 +6,16 @@ import "../../contrast.css";
 export const metadata: Metadata = {
   title: "Why We Started",
   description: "Why Nap brings your coding agents into one native workspace, with less switching and more room to think.",
-  robots: { index: false, follow: true },
   alternates: { canonical: "/blogs/hello-nap" },
 };
 
-export default function PlaceholderPost() {
+export default function WhyWeStartedPost() {
   return (
     <main className="contrast-page nap-article-page">
       <NapHeader />
       <section className="nap-hero">
         <article className="nap-blog-article">
-          <span className="nap-blog-label">PLACEHOLDER POST · 2 MIN READ</span>
+          <span className="nap-blog-label">2 MIN READ</span>
           <h1>Why We Started</h1>
           <p>Good tools give you room to think. They help you stay with an idea long enough to turn it into something real. That is the idea behind Nap: one native workspace for the coding agents you already use, with a little less getting in the way.</p>
 
@@ -35,7 +34,6 @@ export default function PlaceholderPost() {
           <h2>More to come</h2>
           <p>This blog will be a place for product updates, design decisions, and notes about working with coding agents. We will share the thinking behind the details as Nap takes shape.</p>
           <p>For now, the idea is the same as the name on the homepage: your agents, all together. A little less friction. A little more room to make something.</p>
-          <p className="nap-placeholder-note">This is an introductory placeholder draft. Final editorial content will replace it.</p>
         </article>
       </section>
       <LiquidField />
