@@ -48,3 +48,7 @@
 @media (max-width: 700px) { .nap-article-page .nap-hero { padding-top: 120px; padding-bottom: 55px; } }
 
 .nap-blog-card:hover h2, .nap-blog-card:focus-visible h2 { text-decoration: underline; }
+
+.nap-blog-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 6%; row-gap: 16px; margin-top: 32px; }
+.nap-blog-grid .nap-blog-card { max-width: none; margin-top: 0; }
+@media (max-width: 700px) { .nap-blog-grid { grid-template-columns: 1fr; row-gap: 24px; } }
