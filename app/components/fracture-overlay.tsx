@@ -5,13 +5,12 @@ import NextImage from "next/image";
 
 type Point = { x: number; y: number };
 type Fragment = {
-  points: Point[];
   path: Path2D;
   center: Point;
   area: number;
   cracked: number | null;
   fall: number | null;
-  impact: Point;
+  fissures: Point[][];
   spin: number;
 };
 
@@ -25,15 +24,15 @@ function loadImage(src: string) {
 }
 
 function makeFragments(width: number, height: number): Fragment[] {
-  const cols = Math.ceil(width / 190);
-  const rows = Math.ceil(height / 170);
+  const cols = Math.ceil(width / 90);
+  const rows = Math.ceil(height / 85);
   const grid: Point[][] = [];
   for (let row = 0; row <= rows; row++) {
     grid[row] = [];
     for (let col = 0; col <= cols; col++) {
       grid[row][col] = {
-        x: col * width / cols + (col === 0 || col === cols ? 0 : Math.sin(row * 23 + col * 17) * width / cols * .3),
-        y: row * height / rows + (row === 0 || row === rows ? 0 : Math.sin(row * 13 + col * 29) * height / rows * .3),
+        x: col * width / cols + (col === 0 || col === cols ? 0 : (Math.random() - .5) * width / cols * .6),
+        y: row * height / rows + (row === 0 || row === rows ? 0 : (Math.random() - .5) * height / rows * .6),
       };
     }
   }
@@ -42,7 +41,7 @@ function makeFragments(width: number, height: number): Fragment[] {
     for (let col = 0; col < cols; col++) {
       const a = grid[row][col], b = grid[row][col + 1];
       const c = grid[row + 1][col], d = grid[row + 1][col + 1];
-      const triangles = (row + col) % 2 ? [[a, b, c], [b, d, c]] : [[a, b, d], [a, d, c]];
+      const triangles = Math.random() < .5 ? [[a, b, c], [b, d, c]] : [[a, b, d], [a, d, c]];
       for (const points of triangles) {
         const path = new Path2D();
         path.moveTo(points[0].x, points[0].y);
@@ -51,10 +50,10 @@ function makeFragments(width: number, height: number): Fragment[] {
         const [p, q, r] = points;
         const center = { x: (p.x + q.x + r.x) / 3, y: (p.y + q.y + r.y) / 3 };
         fragments.push({
-          points, path, center,
+          path, center,
           area: Math.abs((q.x - p.x) * (r.y - p.y) - (q.y - p.y) * (r.x - p.x)) / 2,
-          cracked: null, fall: null, impact: center,
-          spin: Math.sin(fragments.length * 7) * 1.5,
+          cracked: null, fall: null, fissures: [],
+          spin: (Math.random() - .5) * 3,
         });
       }
     }
@@ -179,16 +178,20 @@ export default function FractureOverlay({ download }: { download: string }) {
           context.drawImage(source, 0, 0, width, height);
           context.restore();
         }
-        context.strokeStyle = "#e4e9df99";
-        context.lineWidth = .8;
-        context.stroke(fragment.path);
-        const spread = Math.min(1, age / 140);
-        context.beginPath();
-        for (const point of fragment.points) {
-          context.moveTo(fragment.impact.x, fragment.impact.y);
-          context.lineTo(fragment.impact.x + (point.x - fragment.impact.x) * spread, fragment.impact.y + (point.y - fragment.impact.y) * spread);
+        if (fallAge < 0) {
+          // Short, jagged fissures show the impact without exposing the fragment mesh.
+          context.clip(fragment.path);
+          context.strokeStyle = "#e4e9df80";
+          context.lineWidth = .65;
+          const spread = Math.min(1, age / 140);
+          context.beginPath();
+          for (const [start, bend, end] of fragment.fissures) {
+            context.moveTo(start.x, start.y);
+            context.lineTo(start.x + (bend.x - start.x) * spread, start.y + (bend.y - start.y) * spread);
+            context.lineTo(start.x + (end.x - start.x) * spread, start.y + (end.y - start.y) * spread);
+          }
+          context.stroke();
         }
-        context.stroke();
         context.restore();
       }
       if (cascade !== null && now - cascade > 1100) { finish(); return; }
@@ -217,16 +220,24 @@ export default function FractureOverlay({ download }: { download: string }) {
       const hit = fragments.find(fragment => fragment.cracked === null && context.isPointInPath(fragment.path, x * Math.min(devicePixelRatio || 1, 2), y * Math.min(devicePixelRatio || 1, 2)));
       if (!hit) return;
       const now = performance.now();
-      hit.impact = { x, y };
+      hit.fissures = Array.from({ length: 3 + Math.floor(Math.random() * 3) }, () => {
+        const angle = Math.random() * Math.PI * 2;
+        const length = 16 + Math.random() * 25;
+        return [
+          { x, y },
+          { x: x + Math.cos(angle) * length * .5 + (Math.random() - .5) * 9, y: y + Math.sin(angle) * length * .5 + (Math.random() - .5) * 9 },
+          { x: x + Math.cos(angle) * length, y: y + Math.sin(angle) * length },
+        ];
+      });
       hit.cracked = now;
-      hit.fall = now + 220;
+      hit.fall = now + 160 + Math.random() * 120;
       removedArea += hit.area;
       if (removedArea >= width * height * .3) {
         cascade = now;
-        fragments.forEach((fragment, index) => {
+        fragments.forEach((fragment) => {
           if (fragment.cracked !== null) return;
           fragment.cracked = now;
-          fragment.fall = now + (index % 7) * 25;
+          fragment.fall = now + Math.random() * 175;
         });
       }
       if (!frame) frame = requestAnimationFrame(render);
