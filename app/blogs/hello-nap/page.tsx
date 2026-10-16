@@ -20,7 +20,7 @@ export default function WhyWeStartedPost() {
 
           <h2>Start with what you want to build.</h2>
           <p>A session might begin with a bug you can reproduce, a feature you have been thinking about, or a part of the code you want to understand. Nap gives you a place to bring that question to an agent and work through the answer.</p>
-          <p>You can describe the goal in the conversation, follow the agent’s activity, and review the result. The experience stays inside the app, without a separate CLI installation.</p>
+          <p>You can describe the goal in the conversation, follow the agent’s activity, and review the result. The experience stays inside the app.</p>
 
           <h2>Your agents. One familiar app.</h2>
           <p>You might prefer Claude Code for one task and Codex for another. Nap brings your coding agents into a shared interface, so choosing an agent is part of working on a project.</p>

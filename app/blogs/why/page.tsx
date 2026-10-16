@@ -25,7 +25,7 @@ export default function WhyPost() {
           </figure>
 
           <h2>Open a project. Start a conversation.</h2>
-          <p>Bring a project into Nap, choose an agent, and describe what you want to build, fix, or understand. You work through the app’s interface. No separate CLI installation is required.</p>
+          <p>Bring a project into Nap, choose an agent, and describe what you want to build, fix, or understand. You work through the app’s interface.</p>
           <p>A clear starting point helps: what should happen, what happens today, and which details matter. The conversation gives you room to refine that request as you learn more.</p>
 
           <h2>Choose the agent that fits.</h2>

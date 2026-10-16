@@ -60,7 +60,7 @@ export default function Home() {
         <div className="nap-section-heading"><h2 id="workflow-title">Less setup.<br />More getting somewhere.</h2><p>Open a project. Choose an agent.<br />Start building, right inside Nap.</p></div>
         <div className="nap-workflow-steps">
           <article><WorkflowIcon kind="project" /><h3>Open your project.</h3><p>Bring your code into Nap and start a conversation about what you want to build or change.</p></article>
-          <article><WorkflowIcon kind="agent" /><h3>Choose your agent.</h3><p>Pick the agent you want to work with directly in Nap. No separate CLI installation required.</p></article>
+          <article><WorkflowIcon kind="agent" /><h3>Choose your agent.</h3><p>Pick the agent you want to work with directly in Nap.</p></article>
           <article><WorkflowIcon kind="work" /><h3>Review and keep going.</h3><p>See what your agent did, review the code changes, and continue the conversation in the same app.</p></article>
         </div>
       </section>
