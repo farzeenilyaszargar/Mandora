@@ -51,11 +51,6 @@ export default function Home() {
 
 
 
-      <section className="nap-journal nap-section" aria-labelledby="journal-title">
-        <div className="nap-section-heading"><h2 id="journal-title">Behind the build.</h2><a href="/blogs">ALL BLOGS ↗</a></div>
-        <a className="nap-journal-link" href="/blogs/hello-nap"><span>Why We Started</span><span aria-hidden="true">↗</span></a>
-        <a className="nap-journal-link" href="/blogs/why"><span>Why This?</span><span aria-hidden="true">↗</span></a>
-      </section>
 
       <section className="nap-closing" aria-labelledby="closing-title">
         <p className="nap-section-label">YOUR NEXT GOOD IDEA STARTS HERE.</p>

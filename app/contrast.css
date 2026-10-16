@@ -80,13 +80,7 @@
 .nap-section-heading p { font-size: 13px; line-height: 1.7; color: #71716a; }
 .nap-workflow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5%; margin-top: 65px; }
 .nap-step-symbol { display: block; border-top: 1px solid #ccc; padding-top: 25px; padding-bottom: 38px; font-size: 40px; font-weight: 300; }
-.nap-journal { padding: 30px 0 120px; }
-.nap-journal .nap-section-heading { margin-bottom: 38px; }
 .nap-section-heading > a { font-family: monospace; font-size: 11px; white-space: nowrap; }
-.nap-journal-link { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #d6d6ce; padding: 28px 0; font-size: clamp(26px, 3vw, 46px); letter-spacing: -.055em; }
-.nap-journal-link:last-child { border-bottom: 1px solid #d6d6ce; }
-.nap-journal-link:hover > span:first-child { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
-.nap-journal-link > span:last-child { font-size: 26px; }
 .nap-closing { padding: 100px 4% 95px; background: #101010; color: #fafaf8; text-align: center; }
 .nap-closing h2 { font-size: clamp(64px, 12vw, 200px); font-weight: 900; line-height: .85; letter-spacing: -.08em; margin: 40px 0; }
 .nap-closing .nap-download { margin: 0 auto; background: #fafaf8; color: #111 !important; }
@@ -103,7 +97,6 @@
   .nap-section-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
   .nap-workflow-steps { grid-template-columns: 1fr; gap: 32px; margin-top: 35px; }
   .nap-step-symbol { padding-bottom: 20px; font-size: 32px; }
-  .nap-journal { padding-bottom: 65px; }
   .nap-closing { padding: 65px 5%; }
   .nap-closing h2 { margin: 30px 0; }
   .nap-site-footer { margin: 0; padding: 0 5% 25px; }
