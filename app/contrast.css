@@ -67,7 +67,7 @@
 
 .nap-section { margin-left: 4%; margin-right: 4%; }
 .nap-section-label { font-family: monospace; font-size: 10px; line-height: 1.7; letter-spacing: 1px; color: #999990; }
-.nap-agents { padding: 65px 0 80px; }
+.nap-agents { padding: 110px 0 80px; }
 .nap-agents .nap-section-label { text-align: center; }
 .nap-agents ul { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 28px; margin-top: 35px; list-style: none; }
 .nap-agents li { display: flex; align-items: center; gap: 12px; white-space: nowrap; font-size: clamp(17px, 2.1vw, 34px); font-weight: 600; letter-spacing: -.055em; }
@@ -88,7 +88,7 @@
 .nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; margin-top: 0; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #92928a; }
 @media (max-width: 700px) {
   .nap-section { margin-left: 5%; margin-right: 5%; }
-  .nap-agents { padding: 42px 0; }
+  .nap-agents { padding: 72px 0 42px; }
   .nap-agents ul { column-gap: 20px; row-gap: 16px; }
   .nap-section-label { font-size: 9px; }
   .nap-workflow-steps p { font-size: 13px; }
