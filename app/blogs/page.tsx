@@ -1,6 +1,7 @@
+import Link from "next/link";
 import NapHeader from "../components/nap-header";
 import type { Metadata } from "next";
-import LiquidField from "../components/liquid-field";
+import DeferredLiquidField from "../components/deferred-liquid-field";
 import "../contrast.css";
 
 export const metadata: Metadata = {
@@ -19,19 +20,19 @@ export default function BlogsPage() {
             <h1>BLOGS.</h1>
             <p>Notes on what we’re building.<br />And why it matters to us.</p>
           </div>
-          <a className="nap-blog-row" href="/blogs/hello-nap">
+          <Link className="nap-blog-row" href="/blogs/hello-nap">
             <span className="nap-blog-number">01</span>
             <h2>Why We Started</h2>
             <p>One workspace, fewer interruptions. The idea that became Nap.</p>
-          </a>
-          <a className="nap-blog-row" href="/blogs/why">
+          </Link>
+          <Link className="nap-blog-row" href="/blogs/why">
             <span className="nap-blog-number">02</span>
             <h2>Why This?</h2>
             <p>Your choice of agent can change. Your workspace should still feel like yours.</p>
-          </a>
+          </Link>
         </div>
       </section>
-      <LiquidField />
+      <DeferredLiquidField />
     </main>
   );
 }

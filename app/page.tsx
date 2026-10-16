@@ -1,8 +1,9 @@
+import NapProductImage from "./components/nap-product-image";
 import NapDownload from "./components/nap-download";
 import Image from "next/image";
 import NapHeader from "./components/nap-header";
 import type { Metadata } from "next";
-import LiquidField from "./components/liquid-field";
+import DeferredLiquidField from "./components/deferred-liquid-field";
 import "./contrast.css";
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function Home() {
       </section>
 
       <figure className="nap-full-width-product">
-        <Image src="/nap-ui-240fdfdf.webp" alt="Nap’s native workspace showing project sessions and an agent conversation." width={1380} height={872} sizes="(max-width: 700px) 90vw, 92vw" />
+        <NapProductImage eager alt="Nap’s native workspace showing project sessions and an agent conversation." sizes="(max-width: 700px) 90vw, 92vw" />
       </figure>
       <section className="nap-agents nap-section" aria-labelledby="agents-title">
         <p id="agents-title" className="nap-section-label">THE AGENTS YOU ALREADY USE. A SPACE THAT FEELS LIKE YOURS.</p>
@@ -42,7 +43,7 @@ export default function Home() {
             ["OpenCode", "/opencode-logo-16e2d629.webp"],
             ["Grok Bot", "/grok-bot-logo-fa760b00.webp"],
           ].map(([name, logo]) => (
-            <li key={name} data-agent={name}><Image src={logo} alt="" width={36} height={36} className={name === "OpenCode" || name === "Grok Bot" ? "nap-agent-logo-small" : name === "Codex" || name === "Claude Code" ? "nap-agent-logo-original" : undefined} /><span>{name}</span></li>
+            <li key={name} data-agent={name}><Image src={logo} alt="" width={36} height={36} unoptimized className={name === "OpenCode" || name === "Grok Bot" ? "nap-agent-logo-small" : name === "Codex" || name === "Claude Code" ? "nap-agent-logo-original" : undefined} /><span>{name}</span></li>
           ))}
         </ul>
       </section>
@@ -68,7 +69,7 @@ export default function Home() {
       <footer className="nap-site-footer nap-section">
         <div className="nap-footer-bottom"><span>© 2026 NAP</span><span>A LITTLE LESS FRICTION. A LOT MORE FLOW.</span></div>
       </footer>
-      <LiquidField />
+      <DeferredLiquidField />
     </main>
   );
 }

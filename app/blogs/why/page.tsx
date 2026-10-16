@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import NapProductImage from "../../components/nap-product-image";
 import NapHeader from "../../components/nap-header";
-import LiquidField from "../../components/liquid-field";
+import DeferredLiquidField from "../../components/deferred-liquid-field";
 import "../../contrast.css";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function WhyPost() {
           <p>That small distance between wanting to work and actually working is what interests us. It is the reason for Nap.</p>
 
           <figure className="nap-article-image">
-            <Image src="/nap-ui-240fdfdf.webp" alt="Nap’s native desktop workspace, showing project sessions in a sidebar and an agent conversation beside them." width={1380} height={872} priority sizes="(max-width: 1000px) 92vw, 920px" />
+            <NapProductImage alt="Nap’s native desktop workspace, showing project sessions in a sidebar and an agent conversation beside them." sizes="(max-width: 1000px) 90vw, 920px" />
             <figcaption>A place for your projects, your conversations, and the next thing you want to make.</figcaption>
           </figure>
 
@@ -43,7 +43,7 @@ export default function WhyPost() {
           <p>That is why this workspace exists. Your agents, all together. Your attention, back on the thing you came to make.</p>
         </article>
       </section>
-      <LiquidField />
+      <DeferredLiquidField />
     </main>
   );
 }

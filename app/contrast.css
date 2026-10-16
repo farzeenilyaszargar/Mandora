@@ -125,3 +125,5 @@
 .nap-agents li[data-agent="OpenCode"] img { filter: invert(1); }
 .nap-full-width-product img { border: 1px solid #30302c; border-radius: 10px; }
 .nap-article-image img { border: 1px solid #30302c; }
+
+.nap-full-width-product > picture, .nap-article-image > picture { display: block; }

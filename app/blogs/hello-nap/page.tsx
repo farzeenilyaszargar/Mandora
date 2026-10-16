@@ -1,6 +1,6 @@
 import NapHeader from "../../components/nap-header";
 import type { Metadata } from "next";
-import LiquidField from "../../components/liquid-field";
+import DeferredLiquidField from "../../components/deferred-liquid-field";
 import "../../contrast.css";
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export default function WhyWeStartedPost() {
           <p>For now, the idea is the same as the name on the homepage: your agents, all together. A little less friction. A little more room to make something.</p>
         </article>
       </section>
-      <LiquidField />
+      <DeferredLiquidField />
     </main>
   );
 }
