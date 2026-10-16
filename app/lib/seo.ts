@@ -4,8 +4,8 @@ export const site = {
   name: "Nap",
   alternateName: "Nap Code",
   url: "https://nap.cx",
-  title: "Nap Code — Native AI Coding App for Mac",
-  description: "Nap brings Claude Code, Codex, Cursor, OpenCode, and Grok Bot into one native AI coding app for Mac. Build and review code without separate CLI setup.",
+  title: "Nap | The Interface For All Your Agents",
+  description: "Nap brings your coding agents into one native app for Mac. Open projects, chat with agents, and review code changes—all without separate CLI setup.",
   image: "/opengraph-image",
 };
 
