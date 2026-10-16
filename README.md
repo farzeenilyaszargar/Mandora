@@ -1,72 +1,40 @@
 # Nap Website
 
-Landing website for Nap, a native interface for running coding agents from one focused workspace.
-
-## Tech Stack
-
-- Next.js App Router
-- React
-- TypeScript
-- Tailwind CSS
-- `next/font` with Fustat and Ma Shan Zheng
+Nap’s dark product website with a liquid cursor interaction, product UI preview, agent support, and blog articles.
 
 ## Pages
 
-- `/` - A deliberately overbuilt dark SaaS page dismantles itself over two seconds, revealing three lines of plain HTML. A real macOS download stays available throughout. Reduced-motion visitors see the plain page immediately.
-- `/docs` - Documentation-style page with a left topic nav and scroll-aware active section.
-- `/waitlist` - Waitlist form for Windows/Linux interest.
+- `/` — Product landing page.
+- `/blogs` — Blog listing.
+- `/blogs/hello-nap` — Why We Started.
+- `/blogs/why` — Why This?
 
-The old `/download` page has been removed. The homepage links directly to the latest macOS DMG on GitHub. Other pages retain the shared download modal, with Windows/Linux interest collected through the waitlist.
+The former documentation, application, and waitlist pages and their form APIs have been removed. The site does not require Supabase credentials to serve its current pages.
 
-## Getting Started
-
-Install dependencies:
+## Development
 
 ```bash
 npm install
-```
-
-Run the development server on port 3000:
-
-```bash
 npm run dev -- --port 3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [localhost:3000](http://localhost:3000).
 
-## Scripts
+## Production build
 
 ```bash
-npm run dev
 npm run build
 npm run start
-npm run lint
 ```
 
-## Project Notes
+## Source
 
-- Main page: `app/page.tsx`
-- Shared download modal: `app/components/download-modal.tsx`
-- Docs interactive content: `app/docs/docs-client.tsx`
-- Waitlist form logic: `app/waitlist/waitlist-form.tsx`
-- Waitlist API route: `app/api/waitlist/route.ts`
-- Supabase migration: `supabase/migrations/20260824170000_create_wishlist_saves.sql`
-- Static assets live in `public/`
+- Homepage: `app/page.tsx`
+- Shared navigation: `app/components/nap-header.tsx`
+- Download button: `app/components/nap-download.tsx`
+- Liquid interaction: `app/components/liquid-field.tsx`
+- Site styles: `app/contrast.css`
+- Blog pages: `app/blogs/`
+- Static assets and sitemap: `public/`
 
-## Supabase
-
-The waitlist form writes to the `public.wishlist_saves` table in Supabase project `ywfkomtyadqkyugiibhi`.
-
-Required environment variables:
-
-```bash
-SUPABASE_URL=https://ywfkomtyadqkyugiibhi.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-```
-
-Apply the migration with Supabase CLI after linking the project:
-
-```bash
-supabase link --project-ref ywfkomtyadqkyugiibhi
-supabase db push
-```
+The download button links to the existing GitHub release asset. Release and installation verification are currently deferred.
