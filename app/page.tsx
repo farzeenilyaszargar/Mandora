@@ -40,9 +40,9 @@ export default function Home() {
             ["Codex CLI", "/codex-cli-agent-logo.png"],
             ["Cursor", "/cursor-agent-logo.png"],
             ["OpenCode", "/opencode-agent-logo.png"],
-            ["Grok CLI", "/grok-cli-agent-logo.png"],
+            ["Grok Bot", "/grok-cli-agent-logo.png"],
           ].map(([name, logo]) => (
-            <li key={name}><Image src={logo} alt="" width={36} height={36} /><span>{name}</span></li>
+            <li key={name}><Image src={logo} alt="" width={36} height={36} className={name === "Grok Bot" ? "nap-agent-logo-inverted" : undefined} /><span>{name}</span></li>
           ))}
         </ul>
       </section>
