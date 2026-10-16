@@ -119,3 +119,5 @@
   .nap-home-page .nap-hero-bottom { margin-top: 22px; gap: 20px; }
 }
 @media (max-height: 580px) and (min-width: 701px) { .nap-home-page > .nap-hero { padding-top: 85px; padding-bottom: 25px; } }
+
+.nap-agents li img.nap-agent-logo-original { position: relative; z-index: 21; }
