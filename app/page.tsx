@@ -40,7 +40,7 @@ export default function Home() {
             ["Codex", "/codex-logo-transparent-09ce3f44.png"],
             ["Cursor", "/cursor-logo-transparent-eabc3389.png"],
             ["OpenCode", "/opencode-logo-transparent-da77959b.png"],
-            ["Grok Bot", "/grok-bot-logo-transparent-17e21802.png"],
+            ["Grok Bot", "/grok-bot-logo-original.png"],
           ].map(([name, logo]) => (
             <li key={name}><Image src={logo} alt="" width={36} height={36} className={name === "OpenCode" || name === "Grok Bot" ? "nap-agent-logo-small" : name === "Codex" || name === "Claude Code" ? "nap-agent-logo-original" : undefined} /><span>{name}</span></li>
           ))}
