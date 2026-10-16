@@ -35,7 +35,15 @@ export default function Home() {
       <section className="nap-agents nap-section" aria-labelledby="agents-title">
         <p id="agents-title" className="nap-section-label">THE AGENTS YOU ALREADY USE. A SPACE THAT FEELS LIKE YOURS.</p>
         <ul>
-          {["Claude Code", "Codex CLI", "Cursor", "OpenCode", "Grok CLI"].map((agent) => <li key={agent}>{agent}</li>)}
+          {[
+            ["Claude Code", "/claude-code-agent-logo.png"],
+            ["Codex CLI", "/codex-cli-agent-logo.png"],
+            ["Cursor", "/cursor-agent-logo.png"],
+            ["OpenCode", "/opencode-agent-logo.png"],
+            ["Grok CLI", "/grok-cli-agent-logo.png"],
+          ].map(([name, logo]) => (
+            <li key={name}><Image src={logo} alt="" width={36} height={36} /><span>{name}</span></li>
+          ))}
         </ul>
       </section>
 
