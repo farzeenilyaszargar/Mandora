@@ -68,7 +68,7 @@ export default function Home() {
         <NapDownload />
       </section>
       <footer className="nap-site-footer nap-section">
-        <div className="nap-footer-bottom"><span>© 2026 NAP</span><span>A LITTLE LESS FRICTION. A LOT MORE FLOW.</span></div>
+        <div className="nap-footer-bottom"><span>© 2026 NAP</span><a href="https://x.com/napverse" target="_blank" rel="noopener noreferrer">TWITTER @napverse ↗</a><span>A LITTLE LESS FRICTION. A LOT MORE FLOW.</span></div>
       </footer>
       <DeferredLiquidField />
     </main>
