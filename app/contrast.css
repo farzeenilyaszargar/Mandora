@@ -130,3 +130,9 @@
 
 .nap-step-symbol svg { display: block; width: 56px; height: 56px; }
 @media (max-width: 700px) { .nap-step-symbol svg { width: 48px; height: 48px; } }
+
+.nap-footer-bottom { align-items: center; }
+.nap-footer-right { display: flex; align-items: center; justify-content: flex-end; gap: 24px; }
+.nap-footer-right a { font-size: 12px; color: #f3f3ed; }
+.nap-footer-right a:hover { opacity: .65; }
+@media (max-width: 700px) { .nap-footer-bottom { align-items: flex-start; } .nap-footer-right { gap: 14px; } .nap-footer-right span { max-width: 170px; text-align: right; } }
