@@ -1,4 +1,4 @@
-.contrast-page { -webkit-user-select: none; user-select: none; position: relative; isolation: isolate; height: 100svh; overflow: hidden; background: #fafaf8; color: #111; font-family: Arial, Helvetica, sans-serif; }
+.contrast-page { -webkit-user-select: none; user-select: none; position: relative; isolation: isolate; height: 100svh; overflow: hidden; background: #0b0b0b; color: #f3f3ed; color-scheme: dark; font-family: Arial, Helvetica, sans-serif; }
 .contrast-page a { color: inherit; text-decoration: none; }
 .nap-header { position: absolute; top: 28px; left: 4%; right: 4%; display: flex; align-items: center; justify-content: space-between; z-index: 1; }
 .nap-wordmark { font-size: 42px; font-weight: 800; letter-spacing: -3px; line-height: 1; }
@@ -7,18 +7,18 @@
 .nap-docs:hover { opacity: .6; }
 .nap-hero { height: 100%; width: 100%; display: flex; align-items: center; padding: 110px 4% 85px; }
 .nap-copy { width: 100%; }
-.nap-eyebrow { margin: 0 0 32px 1%; font-family: monospace; font-size: 10px; letter-spacing: 1.6px; color: #6b6b65; }
+.nap-eyebrow { margin: 0 0 32px 1%; font-family: monospace; font-size: 10px; letter-spacing: 1.6px; color: #a1a199; }
 .nap-copy h1 { font-size: min(12vw, 21svh); font-weight: 900; letter-spacing: -.085em; line-height: .86; margin: 0 0 0 -.7%; }
 .nap-copy h1 > span { display: block; white-space: nowrap; }
 .nap-copy h1 > span:last-child { text-align: right; margin-top: .025em; }
 .nap-hero-bottom { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin: 42px 1% 0; }
-.nap-description { max-width: 330px; font-size: 16px; line-height: 1.65; letter-spacing: -.25px; color: #71716a; }
+.nap-description { max-width: 330px; font-size: 16px; line-height: 1.65; letter-spacing: -.25px; color: #aaa9a0; }
 .nap-action { position: relative; z-index: 1; width: fit-content; flex-shrink: 0; }
-.nap-download { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 25px 28px; width: 330px; border-radius: 8px; background: #080808; color: #fff !important; font-size: 20px; font-weight: 600; box-shadow: 0 3px 5px #00000012; transition: background .2s, transform .2s; }
+.nap-download { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 25px 28px; width: 330px; border-radius: 8px; background: #f3f3ed; color: #101010 !important; font-size: 20px; font-weight: 600; box-shadow: 0 3px 12px #00000030; transition: background .2s, transform .2s; }
 .nap-download svg { width: 20px; height: 23px; transform: translateY(-2px); }
-.nap-download:hover { background: #2a2a2a; transform: translateY(-2px); }
-.nap-download-note { font-size: 10px; margin-top: 13px; color: #777770; text-align: center; }
-.contrast-page a:focus-visible { outline: 2px solid #777; outline-offset: 5px; }
+.nap-download:hover { background: #dcdcd3; transform: translateY(-2px); }
+.nap-download-note { font-size: 10px; margin-top: 13px; color: #96968e; text-align: center; }
+.contrast-page a:focus-visible { outline: 2px solid #ddd; outline-offset: 5px; }
 .liquid-field { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20; mix-blend-mode: difference; filter: url("#nap-liquid-merge"); }
 .liquid-filter { position: absolute; width: 0; height: 0; pointer-events: none; }
 @media (min-width: 1800px) { .nap-hero-bottom { margin-top: 55px; } .nap-description { font-size: 19px; max-width: 390px; } .nap-download { width: 370px; padding: 28px 30px; font-size: 22px; } }
@@ -28,10 +28,10 @@
 
 .nap-nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 42px); }
 
-.nap-blog-label { font-family: monospace; font-size: 10px; letter-spacing: 1px; color: #71716a; }
+.nap-blog-label { font-family: monospace; font-size: 10px; letter-spacing: 1px; color: #aaa9a0; }
 .nap-blog-article { max-width: 680px; margin: 0 auto; }
 .nap-blog-article h1 { font-size: clamp(38px, 5vw, 72px); font-weight: 700; letter-spacing: -.065em; line-height: 1.05; margin-top: 20px; }
-.nap-blog-article p { margin-top: 24px; font-size: clamp(14px, 1.3vw, 17px); line-height: 1.7; color: #62625c; }
+.nap-blog-article p { margin-top: 24px; font-size: clamp(14px, 1.3vw, 17px); line-height: 1.7; color: #b6b6ad; }
 
 .nap-article-page { height: auto; min-height: 100svh; }
 .nap-article-page .nap-hero { height: auto; min-height: 100svh; display: block; padding-top: 150px; padding-bottom: 90px; }
@@ -42,20 +42,20 @@
 .nap-blog-index { width: 100%; }
 .nap-blog-intro { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 70px; }
 .nap-blog-intro h1 { font-size: clamp(52px, 6vw, 96px); line-height: 1; font-weight: 800; letter-spacing: -.065em; }
-.nap-blog-intro p { font-size: 13px; color: #71716a; line-height: 1.6; }
-.nap-blog-row { display: grid; grid-template-columns: 56px 1.3fr .8fr; align-items: center; gap: 28px; border-top: 1px solid #d1d1ca; padding: 42px 0; }
-.nap-blog-row:last-child { border-bottom: 1px solid #d1d1ca; }
+.nap-blog-intro p { font-size: 13px; color: #aaa9a0; line-height: 1.6; }
+.nap-blog-row { display: grid; grid-template-columns: 56px 1.3fr .8fr; align-items: center; gap: 28px; border-top: 1px solid #33332f; padding: 42px 0; }
+.nap-blog-row:last-child { border-bottom: 1px solid #33332f; }
 .nap-blog-row h2 { font-size: clamp(30px, 4vw, 64px); font-weight: 500; letter-spacing: -.06em; line-height: 1.1; text-decoration-thickness: 1px; text-underline-offset: .16em; }
-.nap-blog-row p { color: #71716a; font-size: 13px; line-height: 1.65; max-width: 260px; }
+.nap-blog-row p { color: #aaa9a0; font-size: 13px; line-height: 1.65; max-width: 260px; }
 .nap-blog-row:hover h2, .nap-blog-row:focus-visible h2 { text-decoration: underline; }
 @media (max-width: 700px) { .nap-blog-intro { margin-bottom: 46px; } .nap-blog-intro p { font-size: 11px; } .nap-blog-row { grid-template-columns: 24px 1fr; column-gap: 16px; row-gap: 15px; padding: 28px 0; } .nap-blog-row h2 { font-size: clamp(27px, 7vw, 42px); } .nap-blog-row p { grid-column: 2; font-size: 12px; } }
 
-.nap-blog-number { align-self: start; margin-top: 10px; font-family: monospace; font-size: 11px; color: #85857e; }
+.nap-blog-number { align-self: start; margin-top: 10px; font-family: monospace; font-size: 11px; color: #92928a; }
 @media (max-width: 700px) { .nap-blog-number { margin-top: 6px; } }
 
 .nap-article-image { width: min(920px, 92vw); margin: 42px 0 42px 50%; transform: translateX(-50%); }
 .nap-article-image img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 16px 42px -16px #00000035; }
-.nap-article-image figcaption { margin-top: 16px; color: #85857e; text-align: center; font-size: 11px; line-height: 1.6; padding: 0 12px; }
+.nap-article-image figcaption { margin-top: 16px; color: #92928a; text-align: center; font-size: 11px; line-height: 1.6; padding: 0 12px; }
 @media (max-width: 700px) { .nap-article-image { width: 90vw; margin-top: 30px; margin-bottom: 30px; } }
 
 .nap-home-page { height: auto; min-height: 100svh; }
@@ -67,26 +67,26 @@
 
 .nap-home-page > .liquid-field { position: fixed; }
 .nap-section { margin-left: 4%; margin-right: 4%; }
-.nap-section-label { font-family: monospace; font-size: 10px; line-height: 1.7; letter-spacing: 1px; color: #7b7b73; }
+.nap-section-label { font-family: monospace; font-size: 10px; line-height: 1.7; letter-spacing: 1px; color: #999990; }
 .nap-agents { padding: 65px 0 80px; }
 .nap-agents .nap-section-label { text-align: center; }
 .nap-agents ul { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 28px; margin-top: 35px; list-style: none; }
 .nap-agents li { display: flex; align-items: center; gap: 12px; white-space: nowrap; font-size: clamp(17px, 2.1vw, 34px); font-weight: 600; letter-spacing: -.055em; }
 .nap-workflow h3 { font-size: clamp(23px, 2.3vw, 36px); font-weight: 500; letter-spacing: -.055em; line-height: 1.15; }
-.nap-workflow-steps p { font-size: 14px; color: #71716a; line-height: 1.8; max-width: 410px; margin-top: 18px; }
+.nap-workflow-steps p { font-size: 14px; color: #aaa9a0; line-height: 1.8; max-width: 410px; margin-top: 18px; }
 .nap-workflow { padding: 85px 0 110px; }
 .nap-section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 35px; }
 .nap-section-heading h2 { font-size: clamp(36px, 4.5vw, 76px); font-weight: 500; letter-spacing: -.065em; line-height: 1.05; }
-.nap-section-heading p { font-size: 13px; line-height: 1.7; color: #71716a; }
+.nap-section-heading p { font-size: 13px; line-height: 1.7; color: #aaa9a0; }
 .nap-workflow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5%; margin-top: 65px; }
 .nap-step-symbol { display: block; padding-top: 25px; padding-bottom: 38px; font-size: 40px; font-weight: 300; }
 .nap-section-heading > a { font-family: monospace; font-size: 11px; white-space: nowrap; }
-.nap-closing { padding: 100px 4% 95px; background: #101010; color: #fafaf8; text-align: center; }
+.nap-closing { padding: 100px 4% 95px; background: #151515; color: #f3f3ed; text-align: center; }
 .nap-closing h2 { font-size: clamp(64px, 12vw, 200px); font-weight: 900; line-height: .85; letter-spacing: -.08em; margin: 40px 0; }
 .nap-closing .nap-download { margin: 0 auto; background: #fafaf8; color: #111 !important; }
 .nap-closing .nap-download:hover { background: #e2e2d8; }
-.nap-site-footer { margin: 0; padding: 0 4% 25px; background: #101010; color: #fafaf8; }
-.nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; margin-top: 0; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #85857e; }
+.nap-site-footer { margin: 0; padding: 0 4% 25px; background: #151515; color: #f3f3ed; }
+.nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; margin-top: 0; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #92928a; }
 @media (max-width: 700px) {
   .nap-section { margin-left: 5%; margin-right: 5%; }
   .nap-agents { padding: 42px 0; }
@@ -121,3 +121,8 @@
 @media (max-height: 580px) and (min-width: 701px) { .nap-home-page > .nap-hero { padding-top: 85px; padding-bottom: 25px; } }
 
 .nap-agents li img.nap-agent-logo-original { position: relative; z-index: 21; }
+
+.nap-agents li[data-agent="Cursor"] img,
+.nap-agents li[data-agent="OpenCode"] img { filter: invert(1); }
+.nap-full-width-product img { border: 1px solid #30302c; border-radius: 10px; }
+.nap-article-image img { border: 1px solid #30302c; }
