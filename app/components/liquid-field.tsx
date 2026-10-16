@@ -11,7 +11,13 @@ export default function LiquidField() {
     const canvas = ref.current;
     if (!canvas) return;
     const context = canvas.getContext("2d");
-    if (!context) return;
+    const mask = document.createElement("canvas");
+    const field = mask.getContext("2d", { willReadFrequently: true });
+    if (!context || !field) return;
+    // Ordered one-bit dithering: every cell is either inverted or untouched.
+    const bayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+    let cell = 4;
+    let bitmap: ImageData;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const drops: Drop[] = [];
     let frame = 0;
@@ -25,10 +31,12 @@ export default function LiquidField() {
       const bounds = canvas!.getBoundingClientRect();
       width = bounds.width;
       height = bounds.height;
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas!.width = Math.round(width * ratio);
-      canvas!.height = Math.round(height * ratio);
-      context!.setTransform(ratio, 0, 0, ratio, 0, 0);
+      cell = width <= 700 ? 3 : 4;
+      canvas!.width = mask.width = Math.ceil(width / cell);
+      canvas!.height = mask.height = Math.ceil(height / cell);
+      bitmap = context!.createImageData(canvas!.width, canvas!.height);
+      field!.setTransform(1 / cell, 0, 0, 1 / cell, 0, 0);
+      field!.filter = "blur(1.6px)";
       radius = Math.max(62, Math.min(width * .075, 135));
       drops.length = 0;
       last = null;
@@ -37,8 +45,8 @@ export default function LiquidField() {
     function render(now: number) {
       const dt = Math.min((now - previous) / 16.667, 2);
       previous = now;
-      context!.clearRect(0, 0, width, height);
-      context!.fillStyle = "#fff";
+      field!.clearRect(0, 0, width, height);
+      field!.fillStyle = "#fff";
       for (let i = drops.length - 1; i >= 0; i--) {
         const drop = drops[i];
         const age = (now - drop.born) / drop.life;
@@ -54,10 +62,24 @@ export default function LiquidField() {
         // The ink spreads first, then draws into narrow rivulets and separating droplets.
         const spread = 1 + Math.sin(age * Math.PI) * .3;
         const size = drop.radius * spread * Math.pow(1 - age, .8);
-        context!.beginPath();
-        context!.ellipse(drop.x, drop.y, size * (1 + .1 * Math.sin(age * 5 + drop.phase)), size, Math.atan2(drop.vy, drop.vx), 0, Math.PI * 2);
-        context!.fill();
+        field!.beginPath();
+        field!.ellipse(drop.x, drop.y, size * (1 + .1 * Math.sin(age * 5 + drop.phase)), size, Math.atan2(drop.vy, drop.vx), 0, Math.PI * 2);
+        field!.fill();
       }
+      const pixels = field!.getImageData(0, 0, mask.width, mask.height).data;
+      const output = bitmap.data;
+      for (let y = 0; y < mask.height; y++) {
+        for (let x = 0; x < mask.width; x++) {
+          const index = (y * mask.width + x) * 4;
+          const alpha = pixels[index + 3] / 255;
+          // Keep a dense ink core, with a scattered bitmap edge as it flows away.
+          const coverage = Math.max(0, Math.min(1, (alpha - .12) / .76)) * .92;
+          const threshold = (bayer[(y % 4) * 4 + x % 4] + .5) / 16;
+          output[index] = output[index + 1] = output[index + 2] = 255;
+          output[index + 3] = coverage > threshold ? 255 : 0;
+        }
+      }
+      context!.putImageData(bitmap, 0, 0);
       frame = drops.length ? requestAnimationFrame(render) : 0;
     }
 
@@ -111,17 +133,5 @@ export default function LiquidField() {
     };
   }, []);
 
-  return (
-    <>
-      <svg className="liquid-filter" aria-hidden="true">
-        <defs>
-          <filter id="nap-liquid-merge" x="-15%" y="-15%" width="130%" height="130%" colorInterpolationFilters="sRGB">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="soft" />
-            <feColorMatrix in="soft" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" />
-          </filter>
-        </defs>
-      </svg>
-      <canvas className="liquid-field" ref={ref} aria-hidden="true" />
-    </>
-  );
+  return <canvas className="liquid-field" ref={ref} aria-hidden="true" />;
 }
