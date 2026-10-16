@@ -1,49 +1,19 @@
+import { site, pages, pageMetadata } from "./lib/seo";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nap-code.com"),
-  title: {
-    default: "Nap | The Interface For All Your Agents",
-    template: "%s | Nap",
-  },
-  description:
-    "Nap is a native app for building with coding agents. Open projects, chat with agents, and review code changes without command-line setup.",
-  keywords: [
-    "Nap",
-    "coding agents",
-    "Claude Code",
-    "Codex",
-    "Cursor",
-    "OpenCode",
-    "Grok Bot",
-    "developer tools",
-    "AI coding",
-  ],
-  applicationName: "Nap",
-  authors: [{ name: "Nap" }],
-  creator: "Nap",
-  publisher: "Nap",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title: "Nap | The Interface For All Your Agents",
-    description:
-      "Open a project, choose a coding agent, and build in one native app. Keep conversations and code changes together.",
-    url: "/",
-    siteName: "Nap",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Nap | The Interface For All Your Agents",
-    description:
-      "Build with Claude Code, Codex, Cursor, OpenCode, and Grok Bot in one native app. No separate CLI installation required.",
-  },
+  ...pageMetadata(pages.home),
+  metadataBase: new URL(site.url),
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.name,
+  keywords: ["Nap", "Nap Code", "nap.cx", "AI coding app", "coding agent workspace", "AI coding workspace", "agentic coding", "Mac coding app", "Claude Code", "Codex", "Cursor", "OpenCode", "Grok Bot"],
   robots: {
     index: true,
     follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
 };
 

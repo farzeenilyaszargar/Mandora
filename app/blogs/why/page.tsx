@@ -1,18 +1,16 @@
-import type { Metadata } from "next";
+import StructuredData from "../../components/structured-data";
+import { pages, pageMetadata, articleSchema } from "../../lib/seo";
 import NapProductImage from "../../components/nap-product-image";
 import NapHeader from "../../components/nap-header";
 import DeferredLiquidField from "../../components/deferred-liquid-field";
 import "../../contrast.css";
 
-export const metadata: Metadata = {
-  title: "Why This?",
-  description: "How Nap brings projects, agent conversations, and code review into one native app, without separate CLI setup.",
-  alternates: { canonical: "/blogs/why" },
-};
+export const metadata = pageMetadata(pages.why, true);
 
 export default function WhyPost() {
   return (
     <main className="contrast-page nap-article-page">
+      <StructuredData data={articleSchema(pages.why)} />
       <NapHeader />
       <section className="nap-hero">
         <article className="nap-blog-article">

@@ -3,6 +3,14 @@ import { readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return ["nap-code.com", "www.nap-code.com", "www.nap.cx"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: "https://nap.cx/:path*",
+      permanent: true,
+    }));
+  },
   async headers() {
     // Only content-versioned files get immutable caching; HTML stays revalidatable.
     return readdirSync(join(process.cwd(), "public"))

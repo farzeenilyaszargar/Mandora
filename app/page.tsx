@@ -1,20 +1,26 @@
+import StructuredData from "./components/structured-data";
+import { pages, pageMetadata, site } from "./lib/seo";
 import WorkflowIcon from "./components/workflow-icon";
 import NapProductImage from "./components/nap-product-image";
 import NapDownload from "./components/nap-download";
 import Image from "next/image";
 import NapHeader from "./components/nap-header";
-import type { Metadata } from "next";
 import DeferredLiquidField from "./components/deferred-liquid-field";
 import "./contrast.css";
 
-export const metadata: Metadata = {
-  title: { absolute: "Nap — Your agents. All together." },
-  description: "Build with coding agents in one native app. Open a project, choose an agent, and review the changes in Nap. No command-line setup required.",
-};
+export const metadata = pageMetadata(pages.home);
 
 export default function Home() {
   return (
     <main className="contrast-page nap-home-page">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          { "@type": "Organization", "@id": `${site.url}/#organization`, name: site.name, alternateName: site.alternateName, url: site.url, sameAs: ["https://x.com/napverse"] },
+          { "@type": "WebSite", "@id": `${site.url}/#website`, name: site.name, alternateName: [site.alternateName, "nap.cx"], url: site.url, publisher: { "@id": `${site.url}/#organization` }, inLanguage: "en" },
+          { "@type": "SoftwareApplication", "@id": `${site.url}/#app`, name: site.name, alternateName: site.alternateName, url: site.url, applicationCategory: "DeveloperApplication", operatingSystem: "macOS", description: site.description, screenshot: `${site.url}/nap-ui-240fdfdf.webp`, publisher: { "@id": `${site.url}/#organization` }, featureList: ["Native coding agent interface", "Project conversations", "Agent selection", "Code change review"] },
+        ],
+      }} />
       <NapHeader />
 
       <section className="nap-hero" aria-labelledby="nap-title">
@@ -22,7 +28,7 @@ export default function Home() {
           <p className="nap-eyebrow">A LITTLE LESS FRICTION.</p>
           <h1 id="nap-title"><span>YOUR AGENTS.</span><span>ALL TOGETHER.</span></h1>
           <div className="nap-hero-bottom">
-          <p className="nap-description">Build with coding agents in one native app. Open a project, describe what you want, and review the changes.</p>
+          <p className="nap-description">Nap brings AI coding agents into one native app for Mac. Open a project, describe what you want, and review the code changes.</p>
           <div className="nap-action">
             <NapDownload />
             <p className="nap-download-note">Your next good idea starts here.</p>

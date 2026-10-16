@@ -35,7 +35,10 @@ npm run start
 - Liquid interaction: `app/components/liquid-field.tsx`
 - Site styles: `app/contrast.css`
 - Blog pages: `app/blogs/`
-- Static assets and sitemap: `public/`
+- Static assets: `public/`
+- SEO configuration: `app/lib/seo.ts`
+- Crawler routes: `app/sitemap.ts` and `app/robots.ts`
+- Domain launch checklist: `docs/seo-launch.md`
 
 The download button links to the existing GitHub release asset. Release and installation verification are currently deferred.
 

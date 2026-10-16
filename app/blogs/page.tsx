@@ -1,18 +1,24 @@
+import StructuredData from "../components/structured-data";
+import { pages, pageMetadata, site } from "../lib/seo";
 import Link from "next/link";
 import NapHeader from "../components/nap-header";
-import type { Metadata } from "next";
 import DeferredLiquidField from "../components/deferred-liquid-field";
 import "../contrast.css";
 
-export const metadata: Metadata = {
-  title: "Blogs",
-  description: "Notes and updates from Nap.",
-  alternates: { canonical: "/blogs" },
-};
+export const metadata = pageMetadata(pages.blogs);
 
 export default function BlogsPage() {
   return (
     <main className="contrast-page nap-article-page">
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "@id": `${site.url}/blogs#blog`,
+        name: "Nap Blog",
+        url: `${site.url}/blogs`,
+        description: pages.blogs.description,
+        blogPost: [pages.story, pages.why].map((page) => ({ "@type": "BlogPosting", "@id": `${site.url}${page.path}#article`, url: `${site.url}${page.path}`, headline: page === pages.story ? "Why We Started" : "Why This?" })),
+      }} />
       <NapHeader />
       <section className="nap-hero">
         <div className="nap-blog-index">
