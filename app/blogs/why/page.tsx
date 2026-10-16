@@ -22,7 +22,7 @@ export default function WhyPost() {
           <p>That small distance between wanting to work and actually working is what interests us. It is the reason for Nap.</p>
 
           <figure className="nap-article-image">
-            <Image src="/nap-app-hero.png" alt="Nap’s native desktop workspace, showing project sessions in a sidebar and an agent conversation beside them." width={1380} height={872} priority sizes="(max-width: 1000px) 92vw, 920px" />
+            <Image src="/nap-ui-240fdfdf.webp" alt="Nap’s native desktop workspace, showing project sessions in a sidebar and an agent conversation beside them." width={1380} height={872} priority sizes="(max-width: 1000px) 92vw, 920px" />
             <figcaption>A place for your projects, your conversations, and the next thing you want to make.</figcaption>
           </figure>
 

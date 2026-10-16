@@ -38,3 +38,5 @@ npm run start
 - Static assets and sitemap: `public/`
 
 The download button links to the existing GitHub release asset. Release and installation verification are currently deferred.
+
+Images are served from content-versioned WebP assets. The cursor effect uses viewport-sized canvases and pauses for hidden tabs, reduced motion, and touch-only devices.

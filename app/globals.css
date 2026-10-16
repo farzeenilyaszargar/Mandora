@@ -1,143 +1,16 @@
 @import "tailwindcss";
 
-/* Keep the homepage independent of the styled application pages. */
-html:has(.barebones),
-body:has(.barebones),
-.barebones,
-.barebones * {
-  all: revert;
-}
-
-html:has(.barebones),
-body:has(.barebones) {
-  background: #0c0c0c;
-  color: #f4f4f4;
-  color-scheme: dark;
-  font-family: var(--font-fustat), Arial, sans-serif;
-  line-height: 1.5;
-}
-
-body:has(.barebones) {
-  font-size: 1rem;
-  margin: 0;
-}
-
-.barebones {
-  box-sizing: border-box;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 64px 24px;
-  text-align: center;
-}
-
-.barebones .nap-mark {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-  filter: invert(1);
-}
-
-.barebones h1 {
-  margin: 16px 0 0;
-  font-size: 76px;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: 0;
-}
-
-.barebones .nap-description {
-  max-width: 420px;
-  margin: 20px 0 32px;
-  font-size: 22px;
-  color: #aaa;
-}
-
-.barebones .nap-download {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 48px;
-  box-sizing: border-box;
-  border: 1px solid #505050;
-  border-radius: 7px;
-  padding: 12px 22px;
-  background: linear-gradient(#3d3d3d 0%, #303030 49%, #242424 50%, #292929 100%);
-  box-shadow: inset 0 1px 0 #ffffff26, 0 2px 3px #00000040, 0 6px 16px #00000033;
-  color: #f4f4f4;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.barebones .nap-download img {
-  width: 18px;
-  height: 22px;
-  object-fit: contain;
-  filter: invert(1);
-}
-
-.barebones .nap-download:hover {
-  border-color: #737373;
-  background: linear-gradient(#484848, #303030);
-}
-
-.barebones .nap-download:focus-visible {
-  outline: 2px solid #f4f4f4;
-  outline-offset: 3px;
-}
-
-.barebones .nap-note {
-  margin: 48px 0 0;
-  color: #929292;
-  font-size: 13px;
-}
-
-@media (max-width: 480px) {
-  .barebones h1 {
-    font-size: 60px;
-  }
-
-  .barebones .nap-description {
-    max-width: 280px;
-    font-size: 18px;
-  }
-}
-
 :root {
-  background: #000;
-  color: #fff;
+  background: #0b0b0b;
+  color: #f3f3ed;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  background: #000;
-  color: #fff;
-  font-family: var(--font-fustat), sans-serif;
+  margin: 0;
+  background: #0b0b0b;
+  color: #f3f3ed;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-.font-ma-shan-zheng {
-  font-family: var(--font-ma-shan-zheng), cursive;
-}
-
-@keyframes counter-digit-slide {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-counter-digit-slide {
-  animation: counter-digit-slide 220ms ease-out both;
-}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

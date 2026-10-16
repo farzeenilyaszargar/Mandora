@@ -1,18 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fustat, Ma_Shan_Zheng } from "next/font/google";
 import "./globals.css";
-
-export const fustat = Fustat({
-  weight: "400",
-  subsets: ["arabic", "latin"],
-  variable: "--font-fustat",
-});
-
-export const maShanZheng = Ma_Shan_Zheng({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-ma-shan-zheng",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nap-code.com"),
@@ -71,7 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${fustat.variable} ${maShanZheng.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
       <body className="min-h-full flex flex-col bg-black text-white">{children}</body>
     </html>
