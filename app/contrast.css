@@ -19,7 +19,8 @@
 .nap-download:hover { background: #2a2a2a; transform: translateY(-2px); }
 .nap-download-note { font-size: 10px; margin-top: 13px; color: #777770; text-align: center; }
 .contrast-page a:focus-visible { outline: 2px solid #777; outline-offset: 5px; }
-.liquid-field { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20; mix-blend-mode: difference; image-rendering: pixelated; }
+.liquid-field { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20; mix-blend-mode: difference; filter: url("#nap-liquid-merge"); }
+.liquid-filter { position: absolute; width: 0; height: 0; pointer-events: none; }
 @media (min-width: 1800px) { .nap-hero-bottom { margin-top: 55px; } .nap-description { font-size: 19px; max-width: 390px; } .nap-download { width: 370px; padding: 28px 30px; font-size: 22px; } }
 @media (max-width: 700px) { .nap-header { top: 22px; left: 5%; right: 5%; } .nap-wordmark { font-size: 34px; } .nap-docs { font-size: 11px; gap: 12px; } .nap-hero { padding: 85px 5% 70px; } .nap-eyebrow { margin: 0 0 30px; font-size: 8px; } .nap-copy h1 { font-size: 11.7vw; line-height: .95; } .nap-copy h1 > span:last-child { margin-top: 10px; } .nap-hero-bottom { flex-direction: column; align-items: flex-start; gap: 30px; margin: 30px 0 0; } .nap-description { max-width: 270px; font-size: 14px; line-height: 1.6; } .nap-action { align-self: flex-end; } .nap-download { width: 290px; padding: 22px 25px; font-size: 18px; } .nap-download-note { font-size: 9px; margin-top: 12px; } }
 @media (max-height: 580px) { .nap-hero { padding-top: 85px; padding-bottom: 60px; } .nap-eyebrow { margin-bottom: 18px; } .nap-copy h1 { font-size: min(11.7vw, 19svh); } .nap-hero-bottom { margin-top: 22px; gap: 16px; } .nap-download { padding: 17px 23px; } .nap-description { font-size: 12px; } }
@@ -85,7 +86,7 @@
 .nap-closing .nap-download { margin: 0 auto; background: #fafaf8; color: #111 !important; }
 .nap-closing .nap-download:hover { background: #e2e2d8; }
 .nap-site-footer { margin: 0; padding: 0 4% 25px; background: #101010; color: #fafaf8; }
-.nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; margin-top: 0; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #85857e; }
+.nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; margin-top: 0; border-top: 1px solid #353531; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #85857e; }
 @media (max-width: 700px) {
   .nap-section { margin-left: 5%; margin-right: 5%; }
   .nap-agents { padding: 42px 0; }
@@ -107,5 +108,3 @@
 
 .nap-agents li img.nap-agent-logo-small { width: 28px; height: 28px; }
 @media (max-width: 700px) { .nap-agents li img.nap-agent-logo-small { width: 22px; height: 22px; } }
-
-.liquid-field-white { mix-blend-mode: normal; }
