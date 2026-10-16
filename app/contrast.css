@@ -79,7 +79,7 @@
 .nap-section-heading h2 { font-size: clamp(36px, 4.5vw, 76px); font-weight: 500; letter-spacing: -.065em; line-height: 1.05; }
 .nap-section-heading p { font-size: 13px; line-height: 1.7; color: #71716a; }
 .nap-workflow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5%; margin-top: 65px; }
-.nap-step-symbol { display: block; border-top: 1px solid #ccc; padding-top: 25px; padding-bottom: 38px; font-size: 40px; font-weight: 300; }
+.nap-step-symbol { display: block; padding-top: 25px; padding-bottom: 38px; font-size: 40px; font-weight: 300; }
 .nap-section-heading > a { font-family: monospace; font-size: 11px; white-space: nowrap; }
 .nap-closing { padding: 100px 4% 95px; background: #101010; color: #fafaf8; text-align: center; }
 .nap-closing h2 { font-size: clamp(64px, 12vw, 200px); font-weight: 900; line-height: .85; letter-spacing: -.08em; margin: 40px 0; }
