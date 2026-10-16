@@ -63,8 +63,6 @@ export default function Home() {
         <NapDownload />
       </section>
       <footer className="nap-site-footer nap-section">
-        <div className="nap-footer-top"><a href="/" className="nap-wordmark" aria-label="Nap home">nap<span>®</span></a><nav aria-label="Footer navigation"><a href="/blogs">BLOGS</a><a href="https://github.com/farzeenilyaszargar/NotNap/releases">CHANGELOGS</a></nav></div>
-        <p>Nap brings the coding agents you already use into one native workspace. Less switching between windows, less searching for where you left off, and more room to focus on what you’re building. Your agents, your projects, your train of thought—all together, so you can get back to making.</p>
         <div className="nap-footer-bottom"><span>© 2026 NAP</span><span>A LITTLE LESS FRICTION. A LOT MORE FLOW.</span></div>
       </footer>
       <LiquidField />
