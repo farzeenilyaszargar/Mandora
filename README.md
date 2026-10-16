@@ -1,6 +1,6 @@
 # Nap Website
 
-Nap’s dark product website with a liquid cursor interaction, product UI preview, agent support, and blog articles.
+Nap is a native app for building with coding agents: open a project, choose an agent, chat, and review code changes in the app. Users do not need to install or operate a separate CLI. This repository contains the dark product website, UI preview, liquid cursor interaction, and blog articles.
 
 ## Pages
 

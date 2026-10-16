@@ -23,12 +23,12 @@ export default function BlogsPage() {
           <Link className="nap-blog-row" href="/blogs/hello-nap">
             <span className="nap-blog-number">01</span>
             <h2>Why We Started</h2>
-            <p>One workspace, fewer interruptions. The idea that became Nap.</p>
+            <p>A native app for building with coding agents, from the first prompt to the next change.</p>
           </Link>
           <Link className="nap-blog-row" href="/blogs/why">
             <span className="nap-blog-number">02</span>
             <h2>Why This?</h2>
-            <p>Your choice of agent can change. Your workspace should still feel like yours.</p>
+            <p>Open a project, work with an agent, and review the result—all inside Nap.</p>
           </Link>
         </div>
       </section>

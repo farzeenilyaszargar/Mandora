@@ -9,7 +9,7 @@ import "./contrast.css";
 
 export const metadata: Metadata = {
   title: { absolute: "Nap — Your agents. All together." },
-  description: "One native workspace for the coding agents you already use. Download Nap for MacOS.",
+  description: "Build with coding agents in one native app. Open a project, choose an agent, and review the changes in Nap. No command-line setup required.",
 };
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
           <p className="nap-eyebrow">A LITTLE LESS FRICTION.</p>
           <h1 id="nap-title"><span>YOUR AGENTS.</span><span>ALL TOGETHER.</span></h1>
           <div className="nap-hero-bottom">
-          <p className="nap-description">One native workspace for the coding agents you already use. Get into your flow.</p>
+          <p className="nap-description">Build with coding agents in one native app. Open a project, describe what you want, and review the changes.</p>
           <div className="nap-action">
             <NapDownload />
             <p className="nap-download-note">Your next good idea starts here.</p>
@@ -35,7 +35,7 @@ export default function Home() {
         <NapProductImage eager alt="Nap’s native workspace showing project sessions and an agent conversation." sizes="(max-width: 700px) 90vw, 92vw" />
       </figure>
       <section className="nap-agents nap-section" aria-labelledby="agents-title">
-        <p id="agents-title" className="nap-section-label">THE AGENTS YOU ALREADY USE. A SPACE THAT FEELS LIKE YOURS.</p>
+        <p id="agents-title" className="nap-section-label">WORK WITH YOUR CODING AGENTS, RIGHT INSIDE NAP.</p>
         <ul>
           {[
             ["Claude Code", "/claude-code-logo-5a6c64a5.webp"],
@@ -51,11 +51,11 @@ export default function Home() {
 
 
       <section className="nap-workflow nap-section" aria-labelledby="workflow-title">
-        <div className="nap-section-heading"><h2 id="workflow-title">Less setup.<br />More getting somewhere.</h2><p>A familiar place to start.<br />An easier place to return to.</p></div>
+        <div className="nap-section-heading"><h2 id="workflow-title">Less setup.<br />More getting somewhere.</h2><p>Open a project. Choose an agent.<br />Start building, right inside Nap.</p></div>
         <div className="nap-workflow-steps">
-          <article><WorkflowIcon kind="project" /><h3>Bring your project.</h3><p>Start with the code you are working on and the question you want to explore.</p></article>
-          <article><WorkflowIcon kind="agent" /><h3>Choose your agent.</h3><p>Use the CLI that fits the task, with its own account and configuration.</p></article>
-          <article><WorkflowIcon kind="work" /><h3>Stay with the work.</h3><p>Follow the conversation, inspect the activity, and decide what comes next.</p></article>
+          <article><WorkflowIcon kind="project" /><h3>Open your project.</h3><p>Bring your code into Nap and start a conversation about what you want to build or change.</p></article>
+          <article><WorkflowIcon kind="agent" /><h3>Choose your agent.</h3><p>Pick the agent you want to work with directly in Nap. No separate CLI installation required.</p></article>
+          <article><WorkflowIcon kind="work" /><h3>Review and keep going.</h3><p>See what your agent did, review the code changes, and continue the conversation in the same app.</p></article>
         </div>
       </section>
 

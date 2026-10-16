@@ -6,7 +6,7 @@ import "../../contrast.css";
 
 export const metadata: Metadata = {
   title: "Why This?",
-  description: "Your choice of coding agent can change. Your workspace should still feel like yours. The thinking behind Nap.",
+  description: "How Nap brings projects, agent conversations, and code review into one native app, without separate CLI setup.",
   alternates: { canonical: "/blogs/why" },
 };
 
@@ -18,29 +18,29 @@ export default function WhyPost() {
         <article className="nap-blog-article">
           <span className="nap-blog-label">PRODUCT NOTES · 2 MIN READ</span>
           <h1>Why This?</h1>
-          <p>You open a project with a clear idea of what you want to build. A few minutes later, you are looking for the right session, reopening a conversation, and remembering which window belongs to which task. The idea is still there. You just have to find your way back to it.</p>
-          <p>That small distance between wanting to work and actually working is what interests us. It is the reason for Nap.</p>
+          <p>A good coding session has a simple rhythm. You describe a goal, work through it with an agent, and review what changed. Nap puts that rhythm at the center of a native app.</p>
+          <p>Your project, the conversation, and the work that follows all share the same space. You can stay with the problem from the first question to the next change.</p>
 
           <figure className="nap-article-image">
             <NapProductImage alt="Nap’s native desktop workspace, showing project sessions in a sidebar and an agent conversation beside them." sizes="(max-width: 1000px) 90vw, 920px" />
             <figcaption>A place for your projects, your conversations, and the next thing you want to make.</figcaption>
           </figure>
 
-          <h2>The conversation is part of the work.</h2>
-          <p>When you build with a coding agent, the conversation holds more than instructions. It holds the approach you decided against, the explanation that made something click, and the detail you will need when you return tomorrow. Keeping that thread close to the project matters.</p>
-          <p>Nap brings sessions and conversations into one native workspace. The aim is to make finding your place feel ordinary: open the project, pick up the thread, keep going.</p>
+          <h2>Open a project. Start a conversation.</h2>
+          <p>Bring a project into Nap, choose an agent, and describe what you want to build, fix, or understand. You work through the app’s interface. No separate CLI installation is required.</p>
+          <p>A clear starting point helps: what should happen, what happens today, and which details matter. The conversation gives you room to refine that request as you learn more.</p>
 
-          <h2>Choose the agent. Keep your space.</h2>
-          <p>You may prefer Claude Code for one task and Codex for another. You might already work with Cursor, OpenCode, or Grok CLI. Those choices are personal, and they can change as the work changes.</p>
-          <p>We want the surrounding workspace to feel familiar through those changes. A consistent place to work means fewer small decisions about where things live and more attention for what the agent is helping you do.</p>
+          <h2>Choose the agent that fits.</h2>
+          <p>Claude Code, Codex, Cursor, OpenCode, and Grok Bot each have a place in the way people build. Nap brings those choices into one native workspace.</p>
+          <p>You can follow a familiar flow around your project and conversation while working with the agent you prefer. The interface gives that work a consistent shape.</p>
 
-          <h2>The details add up.</h2>
-          <p>A readable conversation. A session you can find again. A composer with room for the next question. These are small pieces of an interface, but they are also the pieces you spend your day with.</p>
-          <p>We care about how those moments fit together. Does the layout help you understand where you are? Is the next action clear? Can you step away and return without reconstructing the whole afternoon? Those questions guide the experience we want to build.</p>
+          <h2>See the work. Make the call.</h2>
+          <p>An agent’s response is the beginning of a review. What did it do? Which files changed? Does the result match what you asked for? Nap keeps the conversation and agent activity together so you can follow the work.</p>
+          <p>Read the result, inspect the code changes, and ask a follow-up question when something needs another pass. Your judgment stays part of the process.</p>
 
-          <h2>More room for your own thinking.</h2>
-          <p>The work still needs your judgment: deciding what is worth building, noticing when something feels wrong, and knowing when a result is good enough to ship. Your tools should leave room for that.</p>
-          <p>That is why this workspace exists. Your agents, all together. Your attention, back on the thing you came to make.</p>
+          <h2>Return with your context.</h2>
+          <p>Projects rarely happen in one sitting. Keeping sessions organized gives you a place to return to, with the conversation that explains how you got there.</p>
+          <p>That is why Nap takes this shape: a native app built around the whole coding session. Open your project, work with your agent, and keep moving.</p>
         </article>
       </section>
       <DeferredLiquidField />

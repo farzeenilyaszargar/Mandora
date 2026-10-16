@@ -13,7 +13,8 @@ export default function WorkflowIcon({ kind }: Props) {
         {kind === "agent" && (
           <>
             <rect x="7" y="10" width="43" height="35" rx="4" />
-            <path d="M7 20h43m-34 8 5 5-5 5m12 0h8" />
+            <path d="M7 20h43M16 39c0-8 15-8 15 0m6-12h7m-7 7h5" />
+            <circle cx="23.5" cy="27" r="4" />
             <circle cx="14" cy="15" r=".8" fill="currentColor" stroke="none" />
             <circle cx="19" cy="15" r=".8" fill="currentColor" stroke="none" />
             <path d="M14 45v6a4 4 0 0 0 4 4h18" />

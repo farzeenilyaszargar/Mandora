@@ -8,15 +8,15 @@ export const metadata: Metadata = {
     template: "%s | Nap",
   },
   description:
-    "Nap is one native app for Claude Code, Codex CLI, Cursor, OpenCode, Grok CLI, and the coding agents you already use.",
+    "Nap is a native app for building with coding agents. Open projects, chat with agents, and review code changes without command-line setup.",
   keywords: [
     "Nap",
     "coding agents",
     "Claude Code",
-    "Codex CLI",
+    "Codex",
     "Cursor",
     "OpenCode",
-    "Grok CLI",
+    "Grok Bot",
     "developer tools",
     "AI coding",
   ],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nap | The Interface For All Your Agents",
     description:
-      "Run your coding agents from one fast native workspace for sessions, context, commands, and handoffs.",
+      "Open a project, choose a coding agent, and build in one native app. Keep conversations and code changes together.",
     url: "/",
     siteName: "Nap",
     type: "website",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Nap | The Interface For All Your Agents",
     description:
-      "One native app for Claude Code, Codex CLI, Cursor, OpenCode, Grok CLI, and the coding agents you already use.",
+      "Build with Claude Code, Codex, Cursor, OpenCode, and Grok Bot in one native app. No separate CLI installation required.",
   },
   robots: {
     index: true,

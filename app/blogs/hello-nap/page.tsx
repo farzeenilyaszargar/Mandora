@@ -5,7 +5,7 @@ import "../../contrast.css";
 
 export const metadata: Metadata = {
   title: "Why We Started",
-  description: "Why Nap brings your coding agents into one native workspace, with less switching and more room to think.",
+  description: "Why we are building a native app to open projects, work with coding agents, and review changes in one place.",
   alternates: { canonical: "/blogs/hello-nap" },
 };
 
@@ -17,23 +17,24 @@ export default function WhyWeStartedPost() {
         <article className="nap-blog-article">
           <span className="nap-blog-label">2 MIN READ</span>
           <h1>Why We Started</h1>
-          <p>Good tools give you room to think. They help you stay with an idea long enough to turn it into something real. That is the idea behind Nap: one native workspace for the coding agents you already use, with a little less getting in the way.</p>
+          <p>We started Nap to make building with coding agents feel straightforward. Open an app, choose a project, and tell an agent what you want to do. Read its response, look at the changes, and decide what happens next. That whole loop belongs in one place.</p>
+          <p>A native interface gives that work a home: your projects, your conversations, and the changes taking shape around them.</p>
 
-          <h2>The work between the work</h2>
-          <p>A coding session is rarely just writing code. There is a question to explore, a change to review, an approach to rethink, and a thread to pick up after a break. When all of that is scattered across windows, finding your place becomes a task of its own.</p>
-          <p>Each switch can be small. Together, those switches make it harder to keep the shape of a problem in your head. We think the space around your agents deserves as much attention as the agents themselves.</p>
+          <h2>Start with what you want to build.</h2>
+          <p>A session might begin with a bug you can reproduce, a feature you have been thinking about, or a part of the code you want to understand. Nap gives you a place to bring that question to an agent and work through the answer.</p>
+          <p>You can describe the goal in the conversation, follow the agent’s activity, and review the result. The experience stays inside the app, without a separate CLI installation.</p>
 
-          <h2>Your agents. One familiar place.</h2>
-          <p>You might reach for Claude Code on one project, Codex on another, or keep Cursor and OpenCode in your workflow. Your choice of agent should follow the work. Nap brings those tools into a shared native interface, giving the surrounding experience a familiar home.</p>
-          <p>The goal is simple: open your workspace, find the conversation you need, and get back to making. Less time arranging the tools. More attention for what you are trying to build.</p>
+          <h2>Your agents. One familiar app.</h2>
+          <p>You might prefer Claude Code for one task and Codex for another. Nap brings your coding agents into a shared interface, so choosing an agent is part of working on a project.</p>
+          <p>The surrounding experience should stay familiar: find your project, open a conversation, and get going. Your choice of agent can change while the place you work stays consistent.</p>
 
-          <h2>Room to find your flow</h2>
-          <p>Flow looks different for everyone. Sometimes it means moving quickly through a small fix. Sometimes it means slowing down, asking better questions, and trying a few directions before one feels right.</p>
-          <p>We want Nap to make room for both. A focused workspace should feel useful when you need it and quiet when you do not. The measure is how easily you can return to your own train of thought.</p>
+          <h2>Keep the decisions close.</h2>
+          <p>The useful part of a conversation often lives between the prompts. There is the approach you ruled out, the detail you clarified, and the explanation that helped you understand a change. Those things are part of the project too.</p>
+          <p>Keeping sessions and conversations together makes it easier to return after a break. You can find your thread and continue with the reasoning still close at hand.</p>
 
-          <h2>More to come</h2>
-          <p>This blog will be a place for product updates, design decisions, and notes about working with coding agents. We will share the thinking behind the details as Nap takes shape.</p>
-          <p>For now, the idea is the same as the name on the homepage: your agents, all together. A little less friction. A little more room to make something.</p>
+          <h2>Make room for the work.</h2>
+          <p>Our aim is a focused app that helps you move from an idea to a change you understand. You still decide what to ask for, what to keep, and where to go next.</p>
+          <p>That is the idea behind Nap: your agents, all together, with more room for your own thinking.</p>
         </article>
       </section>
       <DeferredLiquidField />
