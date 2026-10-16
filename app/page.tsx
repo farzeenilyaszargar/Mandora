@@ -39,17 +39,6 @@ export default function Home() {
         </ul>
       </section>
 
-      <section className="nap-features nap-section" aria-labelledby="features-title">
-        <div>
-          <p className="nap-section-label">ROOM TO THINK.</p>
-          <h2 id="features-title">The whole<br />thread.<br /><span>In one place.</span></h2>
-        </div>
-        <div className="nap-feature-list">
-          <article><h3>A home for every project.</h3><p>Keep sessions connected to the project they belong to. Find the conversation you need and pick up where your thinking left off.</p></article>
-          <article><h3>See what happened.</h3><p>Read responses, follow tool activity, and understand file changes in the same workspace. Keep the work and the conversation close.</p></article>
-          <article><h3>Your choice of agent.</h3><p>Work with the coding agents you already know through a shared native interface. Let the task guide your choice of tool.</p></article>
-        </div>
-      </section>
 
       <section className="nap-workflow nap-section" aria-labelledby="workflow-title">
         <div className="nap-section-heading"><h2 id="workflow-title">Less setup.<br />More getting somewhere.</h2><p>A familiar place to start.<br />An easier place to return to.</p></div>
@@ -60,22 +49,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="nap-local nap-section" aria-labelledby="local-title">
-        <p className="nap-section-label">NATIVE BY DESIGN.</p>
-        <h2 id="local-title">Your machine.<br />Your workspace.</h2>
-        <div><p>Nap keeps projects, sessions, and transcripts on your machine. A native app built around the place your code already lives.</p><p>Your agents still connect to their own services. You keep using your existing provider accounts and CLI configuration.</p></div>
-      </section>
 
-      <section className="nap-faq nap-section" aria-labelledby="faq-title">
-        <h2 id="faq-title">A few good<br />questions.</h2>
-        <div className="nap-faq-list">
-          <details><summary>What is Nap?<span aria-hidden="true">＋</span></summary><p>Nap is a native desktop workspace for coding agents. It brings projects, sessions, conversations, and tool activity into one interface.</p></details>
-          <details><summary>Is Nap another coding agent?<span aria-hidden="true">＋</span></summary><p>Nap is the workspace around your agents. They continue to run through their own CLIs; Nap gives their sessions and output a shared home.</p></details>
-          <details><summary>Do I need my own agent accounts?<span aria-hidden="true">＋</span></summary><p>Yes. Use your existing provider accounts and install and configure the agent CLI you want to work with. Downloading Nap does not include a provider subscription.</p></details>
-          <details><summary>Does everything run offline?<span aria-hidden="true">＋</span></summary><p>Nap stores workspace data locally. The agents you use may send prompts and project context to their upstream services, depending on your provider and configuration.</p></details>
-          <details><summary>Which platform can I download?<span aria-hidden="true">＋</span></summary><p>The download on this page is the MacOS build. See CHANGELOGS for release notes and available release assets.</p></details>
-        </div>
-      </section>
 
       <section className="nap-journal nap-section" aria-labelledby="journal-title">
         <div className="nap-section-heading"><h2 id="journal-title">Behind the build.</h2><a href="/blogs">ALL BLOGS ↗</a></div>

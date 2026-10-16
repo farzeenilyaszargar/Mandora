@@ -72,32 +72,14 @@
 .nap-agents .nap-section-label { text-align: center; }
 .nap-agents ul { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 25px; margin-top: 35px; list-style: none; }
 .nap-agents li { font-size: clamp(17px, 2.1vw, 34px); font-weight: 600; letter-spacing: -.055em; }
-.nap-features { padding: 130px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10%; }
-.nap-features h2 { margin-top: 25px; font-size: clamp(48px, 6.6vw, 110px); line-height: .98; font-weight: 600; letter-spacing: -.075em; }
-.nap-features h2 span { color: #95958c; }
-.nap-feature-list article { padding: 30px 0; border-top: 1px solid #d6d6ce; }
-.nap-feature-list article:first-child { padding-top: 0; border: 0; }
-.nap-feature-list h3, .nap-workflow h3 { font-size: clamp(23px, 2.3vw, 36px); font-weight: 500; letter-spacing: -.055em; line-height: 1.15; }
-.nap-feature-list p, .nap-workflow-steps p { font-size: 14px; color: #71716a; line-height: 1.8; max-width: 410px; margin-top: 18px; }
+.nap-workflow h3 { font-size: clamp(23px, 2.3vw, 36px); font-weight: 500; letter-spacing: -.055em; line-height: 1.15; }
+.nap-workflow-steps p { font-size: 14px; color: #71716a; line-height: 1.8; max-width: 410px; margin-top: 18px; }
 .nap-workflow { padding: 85px 0 110px; border-top: 1px solid #d6d6ce; }
 .nap-section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 35px; }
-.nap-section-heading h2, .nap-faq h2 { font-size: clamp(36px, 4.5vw, 76px); font-weight: 500; letter-spacing: -.065em; line-height: 1.05; }
+.nap-section-heading h2 { font-size: clamp(36px, 4.5vw, 76px); font-weight: 500; letter-spacing: -.065em; line-height: 1.05; }
 .nap-section-heading p { font-size: 13px; line-height: 1.7; color: #71716a; }
 .nap-workflow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5%; margin-top: 65px; }
 .nap-step-symbol { display: block; border-top: 1px solid #ccc; padding-top: 25px; padding-bottom: 38px; font-size: 40px; font-weight: 300; }
-.nap-local { background: #eaeae3; padding: 65px 5%; }
-.nap-local h2 { font-size: clamp(48px, 7vw, 116px); letter-spacing: -.075em; line-height: .97; font-weight: 600; margin-top: 30px; }
-.nap-local > div { display: grid; grid-template-columns: 1fr 1fr; gap: 8%; margin: 40px 0 0 37%; }
-.nap-local p:not(.nap-section-label) { font-size: 13px; line-height: 1.8; color: #62625c; }
-.nap-faq { display: grid; grid-template-columns: .85fr 1.15fr; gap: 8%; padding: 140px 0 90px; }
-.nap-faq-list details { border-top: 1px solid #d6d6ce; }
-.nap-faq-list details:last-child { border-bottom: 1px solid #d6d6ce; }
-.nap-faq-list summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 25px 0; font-size: 16px; letter-spacing: -.3px; }
-.nap-faq-list summary::-webkit-details-marker { display: none; }
-.nap-faq-list summary span { font-size: 22px; transition: transform .2s; }
-.nap-faq-list details[open] summary span { transform: rotate(45deg); }
-.nap-faq-list details p { color: #71716a; font-size: 14px; line-height: 1.8; padding: 0 35px 25px 0; }
-.nap-faq-list summary:focus-visible { outline: 2px solid #777; outline-offset: 4px; }
 .nap-journal { padding: 30px 0 120px; }
 .nap-journal .nap-section-heading { margin-bottom: 38px; }
 .nap-section-heading > a { font-family: monospace; font-size: 11px; white-space: nowrap; }
@@ -109,35 +91,25 @@
 .nap-closing h2 { font-size: clamp(64px, 12vw, 200px); font-weight: 900; line-height: .85; letter-spacing: -.08em; margin: 40px 0; }
 .nap-closing .nap-download { margin: 0 auto; background: #fafaf8; color: #111 !important; }
 .nap-closing .nap-download:hover { background: #e2e2d8; }
-.nap-site-footer { padding: 55px 0 25px; }
+.nap-site-footer { margin: 0; padding: 55px 4% 25px; background: #101010; color: #fafaf8; }
 .nap-footer-top { display: flex; justify-content: space-between; align-items: center; }
 .nap-footer-top nav { display: flex; gap: 30px; font-size: 11px; }
 .nap-site-footer > p { margin-top: 35px; font-size: 11px; line-height: 1.9; color: #85857e; max-width: 900px; }
-.nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 35px; margin-top: 30px; border-top: 1px solid #d6d6ce; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #85857e; }
+.nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 35px; margin-top: 30px; border-top: 1px solid #353531; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #85857e; }
 @media (max-width: 700px) {
   .nap-section { margin-left: 5%; margin-right: 5%; }
   .nap-agents { padding: 42px 0; }
   .nap-agents ul { justify-content: center; column-gap: 28px; row-gap: 20px; }
   .nap-section-label { font-size: 9px; }
-  .nap-features { grid-template-columns: 1fr; gap: 45px; padding: 65px 0; }
-  .nap-features h2 br:nth-child(2) { display: none; }
-  .nap-features h2 span::before { content: ' '; }
-  .nap-feature-list p, .nap-workflow-steps p { font-size: 13px; }
+  .nap-workflow-steps p { font-size: 13px; }
   .nap-workflow { padding: 55px 0 65px; }
   .nap-section-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
   .nap-workflow-steps { grid-template-columns: 1fr; gap: 32px; margin-top: 35px; }
   .nap-step-symbol { padding-bottom: 20px; font-size: 32px; }
-  .nap-local { padding: 40px 7%; }
-  .nap-local > div { grid-template-columns: 1fr; gap: 18px; margin: 30px 0 0; }
-  .nap-faq { grid-template-columns: 1fr; gap: 35px; padding: 65px 0; }
-  .nap-faq h2 br { display: none; }
-  .nap-faq-list summary { font-size: 14px; padding: 23px 0; }
-  .nap-faq-list details p { font-size: 13px; }
   .nap-journal { padding-bottom: 65px; }
   .nap-closing { padding: 65px 5%; }
   .nap-closing h2 { margin: 30px 0; }
   .nap-footer-top nav { gap: 20px; font-size: 10px; }
-  .nap-site-footer { padding-top: 40px; }
+  .nap-site-footer { margin: 0; padding: 40px 5% 25px; }
   .nap-footer-bottom { font-size: 8px; line-height: 1.6; }
 }
-@media (prefers-reduced-motion: reduce) { .nap-faq-list summary span { transition: none; } }
