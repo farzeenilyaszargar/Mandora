@@ -86,7 +86,7 @@
 .nap-closing .nap-download { margin: 0 auto; background: #fafaf8; color: #111 !important; }
 .nap-closing .nap-download:hover { background: #e2e2d8; }
 .nap-site-footer { margin: 0; padding: 0 4% 25px; background: #101010; color: #fafaf8; }
-.nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; margin-top: 0; border-top: 1px solid #353531; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #85857e; }
+.nap-footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; margin-top: 0; font-family: monospace; font-size: 9px; letter-spacing: .4px; color: #85857e; }
 @media (max-width: 700px) {
   .nap-section { margin-left: 5%; margin-right: 5%; }
   .nap-agents { padding: 42px 0; }
