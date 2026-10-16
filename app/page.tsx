@@ -42,7 +42,7 @@ export default function Home() {
             ["OpenCode", "/opencode-agent-logo.png"],
             ["Grok Bot", "/grok-cli-agent-logo.png"],
           ].map(([name, logo]) => (
-            <li key={name}><Image src={logo} alt="" width={36} height={36} /><span>{name}</span></li>
+            <li key={name}><Image src={logo} alt="" width={36} height={36} className={name === "OpenCode" || name === "Grok Bot" ? "nap-agent-logo-small" : undefined} /><span>{name}</span></li>
           ))}
         </ul>
       </section>
