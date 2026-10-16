@@ -6,12 +6,16 @@ type Drop = { x: number; y: number; vx: number; vy: number; born: number; radius
 
 export default function LiquidField() {
   const ref = useRef<HTMLCanvasElement>(null);
+  const outlineRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = ref.current;
-    if (!canvas) return;
+    const outline = outlineRef.current;
+    if (!canvas || !outline) return;
     const context = canvas.getContext("2d");
-    if (!context) return;
+    const outlineContext = outline.getContext("2d");
+    if (!context || !outlineContext) return;
+    const product = document.querySelector<HTMLElement>(".nap-full-width-product");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const drops: Drop[] = [];
     let frame = 0;
@@ -26,9 +30,10 @@ export default function LiquidField() {
       width = bounds.width;
       height = bounds.height;
       const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas!.width = Math.round(width * ratio);
-      canvas!.height = Math.round(height * ratio);
+      canvas!.width = outline!.width = Math.round(width * ratio);
+      canvas!.height = outline!.height = Math.round(height * ratio);
       context!.setTransform(ratio, 0, 0, ratio, 0, 0);
+      outlineContext!.setTransform(ratio, 0, 0, ratio, 0, 0);
       radius = Math.max(62, Math.min(width * .075, 135));
       drops.length = 0;
       last = null;
@@ -57,6 +62,18 @@ export default function LiquidField() {
         context!.beginPath();
         context!.ellipse(drop.x, drop.y, size * (1 + .1 * Math.sin(age * 5 + drop.phase)), size, Math.atan2(drop.vy, drop.vx), 0, Math.PI * 2);
         context!.fill();
+      }
+      outlineContext!.clearRect(0, 0, width, height);
+      if (product) {
+        const image = product.getBoundingClientRect();
+        const bounds = canvas!.getBoundingClientRect();
+        const top = Math.max(0, image.top - bounds.top);
+        const right = Math.max(0, bounds.right - image.right);
+        const bottom = Math.max(0, bounds.bottom - image.bottom);
+        const left = Math.max(0, image.left - bounds.left);
+        outline!.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px)`;
+        outline!.style.visibility = image.bottom > bounds.top && image.top < bounds.bottom ? "visible" : "hidden";
+        outlineContext!.drawImage(canvas!, 0, 0, width, height);
       }
       frame = drops.length ? requestAnimationFrame(render) : 0;
     }
@@ -93,10 +110,18 @@ export default function LiquidField() {
         drops.length = 0;
         last = null;
         context!.clearRect(0, 0, width, height);
+        outlineContext!.clearRect(0, 0, width, height);
+      }
+    }
+    function scroll() {
+      if (!frame && !reduced.matches) {
+        previous = performance.now();
+        frame = requestAnimationFrame(render);
       }
     }
     resize();
     window.addEventListener("resize", resize);
+    window.addEventListener("scroll", scroll, { passive: true });
     window.addEventListener("pointermove", move, { passive: true });
     document.documentElement.addEventListener("pointerleave", leave);
     window.addEventListener("blur", leave);
@@ -104,6 +129,7 @@ export default function LiquidField() {
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("scroll", scroll);
       window.removeEventListener("pointermove", move);
       document.documentElement.removeEventListener("pointerleave", leave);
       window.removeEventListener("blur", leave);
@@ -119,9 +145,16 @@ export default function LiquidField() {
             <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="soft" />
             <feColorMatrix in="soft" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" />
           </filter>
+          <filter id="nap-liquid-outline" x="-15%" y="-15%" width="130%" height="130%" colorInterpolationFilters="sRGB">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="soft" />
+            <feColorMatrix in="soft" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="merged" />
+            <feMorphology in="merged" operator="erode" radius="1.25" result="inner" />
+            <feComposite in="merged" in2="inner" operator="out" />
+          </filter>
         </defs>
       </svg>
       <canvas className="liquid-field" ref={ref} aria-hidden="true" />
+      <canvas className="liquid-image-outline" ref={outlineRef} aria-hidden="true" />
     </>
   );
 }
