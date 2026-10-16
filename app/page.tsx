@@ -37,7 +37,7 @@ export default function Home() {
         <ul>
           {[
             ["Claude Code", "/claude-code-agent-logo.png"],
-            ["Codex CLI", "/codex-cli-agent-logo.png"],
+            ["Codex", "/codex-cli-agent-logo.png"],
             ["Cursor", "/cursor-agent-logo.png"],
             ["OpenCode", "/opencode-agent-logo.png"],
             ["Grok Bot", "/grok-cli-agent-logo.png"],
