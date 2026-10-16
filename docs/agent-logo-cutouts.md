@@ -4,7 +4,7 @@ Created with the built-in ImageGen editing tool, with transparent background ena
 
 ## claude-code
 
-Saved asset: public/claude-code-agent-logo.png
+Saved asset: public/claude-code-logo-transparent-2232e143.png
 
 Prompt:
 
@@ -12,7 +12,7 @@ Use case: background-extraction. Edit target: the attached claude-code agent log
 
 ## codex-cli
 
-Saved asset: public/codex-cli-agent-logo.png
+Saved asset: public/codex-logo-transparent-09ce3f44.png
 
 Prompt:
 
@@ -20,7 +20,7 @@ Use case: background-extraction. Edit target: the attached codex-cli agent logo.
 
 ## cursor
 
-Saved asset: public/cursor-agent-logo.png
+Saved asset: public/cursor-logo-transparent-eabc3389.png
 
 Prompt:
 
@@ -28,7 +28,7 @@ Use case: background-extraction. Edit target: the attached cursor agent logo. Re
 
 ## opencode
 
-Saved asset: public/opencode-agent-logo.png
+Saved asset: public/opencode-logo-transparent-da77959b.png
 
 Prompt:
 
@@ -36,7 +36,7 @@ Use case: background-extraction. Edit target: the attached opencode agent logo. 
 
 ## grok-cli
 
-Saved asset: public/grok-cli-agent-logo.png
+Saved asset: public/grok-bot-logo-transparent-17e21802.png
 
 Prompt:
 
