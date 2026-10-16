@@ -78,7 +78,7 @@
 .nap-section-heading h2 { font-size: clamp(36px, 4.5vw, 76px); font-weight: 500; letter-spacing: -.065em; line-height: 1.05; }
 .nap-section-heading p { font-size: 13px; line-height: 1.7; color: #aaa9a0; }
 .nap-workflow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5%; margin-top: 65px; }
-.nap-step-symbol { display: block; padding-top: 25px; padding-bottom: 38px; font-size: 40px; font-weight: 300; }
+.nap-step-symbol { display: block; padding-top: 25px; padding-bottom: 30px; color: #d8d8d0; }
 .nap-section-heading > a { font-family: monospace; font-size: 11px; white-space: nowrap; }
 .nap-closing { padding: 100px 4% 95px; background: #151515; color: #f3f3ed; text-align: center; }
 .nap-closing h2 { font-size: clamp(64px, 12vw, 200px); font-weight: 900; line-height: .85; letter-spacing: -.08em; margin: 40px 0; }
@@ -95,7 +95,7 @@
   .nap-workflow { padding: 55px 0 65px; }
   .nap-section-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
   .nap-workflow-steps { grid-template-columns: 1fr; gap: 32px; margin-top: 35px; }
-  .nap-step-symbol { padding-bottom: 20px; font-size: 32px; }
+  .nap-step-symbol { padding-bottom: 20px; }
   .nap-closing { padding: 65px 5%; }
   .nap-closing h2 { margin: 30px 0; }
   .nap-site-footer { margin: 0; padding: 0 5% 25px; }
@@ -127,3 +127,6 @@
 .nap-article-image img { border: 1px solid #30302c; }
 
 .nap-full-width-product > picture, .nap-article-image > picture { display: block; }
+
+.nap-step-symbol svg { display: block; width: 56px; height: 56px; }
+@media (max-width: 700px) { .nap-step-symbol svg { width: 48px; height: 48px; } }

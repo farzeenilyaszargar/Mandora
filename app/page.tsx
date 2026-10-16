@@ -1,3 +1,4 @@
+import WorkflowIcon from "./components/workflow-icon";
 import NapProductImage from "./components/nap-product-image";
 import NapDownload from "./components/nap-download";
 import Image from "next/image";
@@ -52,9 +53,9 @@ export default function Home() {
       <section className="nap-workflow nap-section" aria-labelledby="workflow-title">
         <div className="nap-section-heading"><h2 id="workflow-title">Less setup.<br />More getting somewhere.</h2><p>A familiar place to start.<br />An easier place to return to.</p></div>
         <div className="nap-workflow-steps">
-          <article><span className="nap-step-symbol" aria-hidden="true">＋</span><h3>Bring your project.</h3><p>Start with the code you are working on and the question you want to explore.</p></article>
-          <article><span className="nap-step-symbol" aria-hidden="true">↗</span><h3>Choose your agent.</h3><p>Use the CLI that fits the task, with its own account and configuration.</p></article>
-          <article><span className="nap-step-symbol" aria-hidden="true">↳</span><h3>Stay with the work.</h3><p>Follow the conversation, inspect the activity, and decide what comes next.</p></article>
+          <article><WorkflowIcon kind="project" /><h3>Bring your project.</h3><p>Start with the code you are working on and the question you want to explore.</p></article>
+          <article><WorkflowIcon kind="agent" /><h3>Choose your agent.</h3><p>Use the CLI that fits the task, with its own account and configuration.</p></article>
+          <article><WorkflowIcon kind="work" /><h3>Stay with the work.</h3><p>Follow the conversation, inspect the activity, and decide what comes next.</p></article>
         </div>
       </section>
 
