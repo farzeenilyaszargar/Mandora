@@ -4,10 +4,10 @@ import { join } from "node:path";
 
 const nextConfig: NextConfig = {
   async redirects() {
-    return ["nap-code.com", "www.nap-code.com", "www.nap.cx"].map((host) => ({
+    return ["nap-code.com", "www.nap-code.com"].map((host) => ({
       source: "/:path*",
       has: [{ type: "host" as const, value: host }],
-      destination: "https://nap.cx/:path*",
+      destination: "https://www.nap.cx/:path*",
       permanent: true,
     }));
   },

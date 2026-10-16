@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const site = {
   name: "Nap",
   alternateName: "Nap Code",
-  url: "https://nap.cx",
+  url: "https://www.nap.cx",
   title: "Nap | The Interface For All Your Agents",
   description: "Nap brings your coding agents into one native app for Mac. Open projects, chat with agents, and review code changes—all without separate CLI setup.",
   image: "/opengraph-image",
