@@ -6,18 +6,22 @@ type Drop = { x: number; y: number; vx: number; vy: number; born: number; radius
 
 export default function LiquidField() {
   const ref = useRef<HTMLCanvasElement>(null);
+  const whiteRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = ref.current;
-    if (!canvas) return;
+    const whiteCanvas = whiteRef.current;
+    if (!canvas || !whiteCanvas) return;
     const context = canvas.getContext("2d");
+    const whiteContext = whiteCanvas.getContext("2d");
     const mask = document.createElement("canvas");
     const field = mask.getContext("2d", { willReadFrequently: true });
-    if (!context || !field) return;
-    // Ordered one-bit dithering: every cell is either inverted or untouched.
+    if (!context || !field || !whiteContext) return;
+    // Keep inversion and white bitmap disturbance on independent layers.
     const bayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
     let cell = 4;
     let bitmap: ImageData;
+    let whiteBitmap: ImageData;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const drops: Drop[] = [];
     let frame = 0;
@@ -31,10 +35,11 @@ export default function LiquidField() {
       const bounds = canvas!.getBoundingClientRect();
       width = bounds.width;
       height = bounds.height;
-      cell = width <= 700 ? 3 : 4;
-      canvas!.width = mask.width = Math.ceil(width / cell);
-      canvas!.height = mask.height = Math.ceil(height / cell);
+      cell = width <= 700 ? 2 : 3;
+      canvas!.width = whiteCanvas!.width = mask.width = Math.ceil(width / cell);
+      canvas!.height = whiteCanvas!.height = mask.height = Math.ceil(height / cell);
       bitmap = context!.createImageData(canvas!.width, canvas!.height);
+      whiteBitmap = whiteContext!.createImageData(canvas!.width, canvas!.height);
       field!.setTransform(1 / cell, 0, 0, 1 / cell, 0, 0);
       field!.filter = "blur(1.6px)";
       radius = Math.max(62, Math.min(width * .075, 135));
@@ -68,18 +73,23 @@ export default function LiquidField() {
       }
       const pixels = field!.getImageData(0, 0, mask.width, mask.height).data;
       const output = bitmap.data;
+      const white = whiteBitmap.data;
       for (let y = 0; y < mask.height; y++) {
         for (let x = 0; x < mask.width; x++) {
           const index = (y * mask.width + x) * 4;
           const alpha = pixels[index + 3] / 255;
-          // Keep a dense ink core, with a scattered bitmap edge as it flows away.
-          const coverage = Math.max(0, Math.min(1, (alpha - .12) / .76)) * .92;
+          const coverage = Math.max(0, Math.min(1, (alpha - .12) / .76));
           const threshold = (bayer[(y % 4) * 4 + x % 4] + .5) / 16;
           output[index] = output[index + 1] = output[index + 2] = 255;
-          output[index + 3] = coverage > threshold ? 255 : 0;
+          // Solid contrast remains underneath: the bitmap never punches black holes.
+          output[index + 3] = alpha > .42 ? 255 : 0;
+          white[index] = white[index + 1] = white[index + 2] = 255;
+          // Only opaque white pixels are added, with ordered dithering around the edges.
+          white[index + 3] = coverage * .32 > threshold ? 255 : 0;
         }
       }
       context!.putImageData(bitmap, 0, 0);
+      whiteContext!.putImageData(whiteBitmap, 0, 0);
       frame = drops.length ? requestAnimationFrame(render) : 0;
     }
 
@@ -115,6 +125,7 @@ export default function LiquidField() {
         drops.length = 0;
         last = null;
         context!.clearRect(0, 0, width, height);
+        whiteContext!.clearRect(0, 0, width, height);
       }
     }
     resize();
@@ -133,5 +144,10 @@ export default function LiquidField() {
     };
   }, []);
 
-  return <canvas className="liquid-field" ref={ref} aria-hidden="true" />;
+  return (
+    <>
+      <canvas className="liquid-field" ref={ref} aria-hidden="true" />
+      <canvas className="liquid-field liquid-field-white" ref={whiteRef} aria-hidden="true" />
+    </>
+  );
 }

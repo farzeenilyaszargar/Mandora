@@ -107,3 +107,5 @@
 
 .nap-agents li img.nap-agent-logo-small { width: 28px; height: 28px; }
 @media (max-width: 700px) { .nap-agents li img.nap-agent-logo-small { width: 22px; height: 22px; } }
+
+.liquid-field-white { mix-blend-mode: normal; }
