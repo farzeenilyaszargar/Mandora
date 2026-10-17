@@ -58,6 +58,7 @@ for (const [file, path, title] of routes) {
   }
   const images = [...html.matchAll(/<img\b[^>]*>/g)].map(([tag]) => attributes(tag));
   for (const image of images) {
+    assert.ok(Object.hasOwn(image, "alt"), `${path}: every image has an alt attribute (empty is valid for decorative images)`);
     assert.ok(image.width && image.height, `${path}: images reserve layout space`);
     if (image.src?.startsWith("/")) assert.ok(existsSync(resolve(root, "public", image.src.slice(1))), `${path}: image exists`);
   }
