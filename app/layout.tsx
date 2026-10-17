@@ -1,5 +1,6 @@
-import { site, pages, pageMetadata } from "./lib/seo";
+import { site, pages, pageMetadata, siteSchema, indexing } from "./lib/seo";
 import type { Metadata, Viewport } from "next";
+import StructuredData from "./components/structured-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -9,19 +10,18 @@ export const metadata: Metadata = {
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.name,
-  keywords: ["Nap", "Nap Code", "nap.cx", "AI coding app", "coding agent workspace", "AI coding workspace", "agentic coding", "Mac coding app", "Claude Code", "Codex", "Cursor", "OpenCode", "Grok Bot"],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  icons: { apple: [{ url: site.logo, sizes: "256x256", type: "image/png" }] },
+  robots: indexing,
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
   },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  themeColor: "#0b0b0b",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className="h-full antialiased"
     >
-      <body className="min-h-full flex flex-col bg-black text-white">{children}</body>
+      <body className="min-h-full flex flex-col bg-black text-white"><StructuredData data={siteSchema()} />{children}</body>
     </html>
   );
 }

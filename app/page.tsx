@@ -1,5 +1,5 @@
 import StructuredData from "./components/structured-data";
-import { pages, pageMetadata, site } from "./lib/seo";
+import { pages, pageMetadata, homeSchema } from "./lib/seo";
 import WorkflowIcon from "./components/workflow-icon";
 import NapProductImage from "./components/nap-product-image";
 import NapDownload from "./components/nap-download";
@@ -12,14 +12,7 @@ export const metadata = pageMetadata(pages.home);
 export default function Home() {
   return (
     <main className="contrast-page nap-home-page">
-      <StructuredData data={{
-        "@context": "https://schema.org",
-        "@graph": [
-          { "@type": "Organization", "@id": `${site.url}/#organization`, name: site.name, alternateName: site.alternateName, url: site.url, sameAs: ["https://x.com/napverse"] },
-          { "@type": "WebSite", "@id": `${site.url}/#website`, name: site.name, alternateName: [site.alternateName, "nap.cx"], url: site.url, publisher: { "@id": `${site.url}/#organization` }, inLanguage: "en" },
-          { "@type": "SoftwareApplication", "@id": `${site.url}/#app`, name: site.name, alternateName: site.alternateName, url: site.url, applicationCategory: "DeveloperApplication", operatingSystem: "macOS", description: site.description, screenshot: `${site.url}/nap-ui-240fdfdf.webp`, publisher: { "@id": `${site.url}/#organization` }, featureList: ["Native coding agent interface", "Project conversations", "Agent selection", "Code change review"] },
-        ],
-      }} />
+      <StructuredData data={homeSchema()} />
       <NapHeader />
 
       <section className="nap-hero" aria-labelledby="nap-title">
@@ -56,7 +49,7 @@ export default function Home() {
 
 
       <section className="nap-workflow nap-section" aria-labelledby="workflow-title">
-        <div className="nap-section-heading"><h2 id="workflow-title">Less setup.<br />More getting somewhere.</h2><p>Open a project. Choose an agent.<br />Start building, right inside Nap.</p></div>
+        <div className="nap-section-heading"><h2 id="workflow-title">Less setup.<br />More getting somewhere.</h2><p>A native AI coding workspace for Mac.<br />Open a project. Choose an agent. Start building.</p></div>
         <div className="nap-workflow-steps">
           <article><WorkflowIcon kind="project" /><h3>Open your project.</h3><p>Bring your code into Nap and start a conversation about what you want to build or change.</p></article>
           <article><WorkflowIcon kind="agent" /><h3>Choose your agent.</h3><p>Pick the agent you want to work with directly in Nap.</p></article>

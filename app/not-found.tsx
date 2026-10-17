@@ -9,6 +9,11 @@ import "./not-found.css";
 export const metadata: Metadata = {
   title: { absolute: pageTitle("Page Not Found") },
   description: "This page took a nap. Head back home to explore Nap.",
+  keywords: [],
+  alternates: { canonical: null },
+  robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+  openGraph: null,
+  twitter: null,
 };
 
 export default function NotFound() {
