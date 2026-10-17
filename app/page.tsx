@@ -27,7 +27,7 @@ export default function Home() {
           <p className="nap-eyebrow">A LITTLE LESS FRICTION.</p>
           <h1 id="nap-title"><span>YOUR AGENTS.</span><span>ALL TOGETHER.</span></h1>
           <div className="nap-hero-bottom">
-          <p className="nap-description">Nap brings AI coding agents into one native app for Mac. Open a project, describe what you want, and review the code changes.</p>
+          <p className="nap-description">Build the software you wish existed. Nap brings your coding agents together in one workspace, giving your biggest ideas room to become real.</p>
           <div className="nap-action">
             <NapDownload />
             <p className="nap-download-note">Your next good idea starts here.</p>
