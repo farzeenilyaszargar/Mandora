@@ -3,7 +3,6 @@ import { pages, pageMetadata, site } from "./lib/seo";
 import WorkflowIcon from "./components/workflow-icon";
 import NapProductImage from "./components/nap-product-image";
 import NapDownload from "./components/nap-download";
-import Image from "next/image";
 import NapHeader from "./components/nap-header";
 import DeferredLiquidField from "./components/deferred-liquid-field";
 import "./contrast.css";
@@ -50,7 +49,7 @@ export default function Home() {
             ["OpenCode", "/opencode-logo-16e2d629.webp"],
             ["Grok Bot", "/grok-bot-logo-fa760b00.webp"],
           ].map(([name, logo]) => (
-            <li key={name} data-agent={name}><Image src={logo} alt="" width={36} height={36} unoptimized className={name === "OpenCode" || name === "Grok Bot" ? "nap-agent-logo-small" : name === "Codex" || name === "Claude Code" ? "nap-agent-logo-original" : undefined} /><span>{name}</span></li>
+            <li key={name} data-agent={name}><img src={logo} alt="" width={36} height={36} loading="lazy" decoding="async" className={name === "OpenCode" || name === "Grok Bot" ? "nap-agent-logo-small" : name === "Codex" || name === "Claude Code" ? "nap-agent-logo-original" : undefined} /><span>{name}</span></li>
           ))}
         </ul>
       </section>

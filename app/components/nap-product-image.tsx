@@ -9,7 +9,6 @@ export default function NapProductImage({ eager = false, sizes, alt }: Props) {
         srcSet="/nap-ui-480-eb1ddc82.webp 480w, /nap-ui-828-266c4627.webp 828w, /nap-ui-240fdfdf.webp 1380w"
         sizes={sizes}
       />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/nap-ui-240fdfdf.webp"
         alt={alt}

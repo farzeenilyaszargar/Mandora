@@ -169,3 +169,24 @@ test('large-display trails keep canvas backing stores bounded', () => {
   }
   app.cleanup();
 });
+
+test('the decorative renderer loads only after eligible pointer input', () => {
+  for (const options of [{}, { touch: true }, { reduced: true }, { fine: false }, { saveData: true }, { hidden: true }]) {
+    let ready = false, cleanup;
+    const window = target({ matchMedia: (query) => ({ matches: query.includes('reduced') ? !!options.reduced : options.fine !== false }) });
+    const document = { hidden: !!options.hidden };
+    const Component = compile('deferred-liquid-field.tsx', {
+      'next/dynamic': { default: () => () => null },
+      react: { useState: () => [false, (value) => { ready = value; }], useEffect: (fn) => { cleanup = fn(); } },
+      'react/jsx-runtime': { jsx: () => null },
+    }, { window, document, navigator: { connection: { saveData: !!options.saveData } } }).default;
+    Component();
+    assert.equal(ready, false, 'no renderer during initial load or idle');
+    window.events.get('pointermove')({ pointerType: options.touch ? 'touch' : 'mouse' });
+    const eligible = Object.keys(options).length === 0;
+    assert.equal(ready, eligible);
+    if (eligible) assert.equal(window.events.size, 0, 'activation listener is removed immediately');
+    cleanup();
+    assert.equal(window.events.size, 0);
+  }
+});

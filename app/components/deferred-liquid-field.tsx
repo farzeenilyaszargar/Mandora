@@ -13,40 +13,15 @@ export default function DeferredLiquidField() {
   useEffect(() => {
     const fine = window.matchMedia("(any-pointer: fine)");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let idle: number | undefined;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    let scheduled = false;
-    let activated = false;
-    function activate() {
-      scheduled = false;
-      if (!activated && fine.matches && !reduced.matches) {
-        activated = true;
-        setReady(true);
-      }
-    }
-    function schedule() {
-      if (scheduled || activated || !fine.matches || reduced.matches) return;
-      scheduled = true;
-      if (typeof window.requestIdleCallback === "function") {
-        idle = window.requestIdleCallback(activate, { timeout: 1200 });
-      } else {
-        timer = setTimeout(activate, 150);
-      }
-    }
-    // Load the decorative effect after critical content, or on desktop interaction.
-    if (document.readyState === "complete") schedule();
-    window.addEventListener("load", schedule, { once: true });
-    window.addEventListener("pointermove", activate, { once: true, passive: true });
-    fine.addEventListener("change", schedule);
-    reduced.addEventListener("change", schedule);
-    return () => {
-      if (idle !== undefined) window.cancelIdleCallback(idle);
-      clearTimeout(timer);
-      window.removeEventListener("load", schedule);
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    function activate(event: PointerEvent) {
+      if (event.pointerType === "touch" || document.hidden || !fine.matches || reduced.matches || connection?.saveData) return;
+      // No idle download: visitors who only read/scroll never fetch the renderer.
       window.removeEventListener("pointermove", activate);
-      fine.removeEventListener("change", schedule);
-      reduced.removeEventListener("change", schedule);
-    };
+      setReady(true);
+    }
+    window.addEventListener("pointermove", activate, { passive: true });
+    return () => window.removeEventListener("pointermove", activate);
   }, []);
   return ready ? <LiquidField /> : null;
 }
