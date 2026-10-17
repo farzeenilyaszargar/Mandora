@@ -1,0 +1,24 @@
+.nap-not-found { height: auto; min-height: 100svh; display: flex; flex-direction: column; padding: 130px 4% 26px; }
+.nap-lost { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 0 75px; }
+.nap-lost > .nap-section-label { letter-spacing: 2px; }
+.nap-lost-code { margin: 36px 0 32px; font-size: clamp(180px, 30vw, 440px); line-height: .78; font-weight: 900; letter-spacing: -.09em; transform: translateX(-.045em); }
+.nap-lost-zero { color: #0b0b0b; -webkit-text-stroke: 1.5px #777770; }
+.nap-lost h2 { margin: 0; font-size: clamp(26px, 3vw, 42px); font-weight: 500; letter-spacing: -.055em; line-height: 1.15; }
+.nap-lost-description { margin: 18px 0 28px; color: #aaa9a0; font-size: 13px; line-height: 1.75; }
+.nap-lost-home { width: auto; min-width: 190px; padding: 19px 30px; font-size: 15px; }
+.nap-lost-footer { display: flex; justify-content: space-between; gap: 20px; font-family: monospace; font-size: 9px; line-height: 1.6; letter-spacing: .5px; color: #92928a; }
+@supports not (-webkit-text-stroke: 1px white) { .nap-lost-zero { color: #777770; } }
+@media (max-width: 700px) {
+  .nap-not-found { padding: 105px 5% 22px; }
+  .nap-lost { padding: 25px 0 65px; }
+  .nap-lost-code { font-size: 37vw; margin: 38px 0 30px; }
+  .nap-lost-description { font-size: 12px; }
+  .nap-lost-home { width: auto; padding: 18px 28px; font-size: 14px; }
+  .nap-lost-footer { font-size: 8px; }
+  .nap-lost-footer > :last-child { text-align: right; }
+}
+@media (max-height: 700px) and (min-width: 701px) {
+  .nap-not-found { padding-top: 100px; }
+  .nap-lost { padding: 15px 0 35px; }
+  .nap-lost-code { font-size: min(25vw, 35svh); margin: 25px 0; }
+}
