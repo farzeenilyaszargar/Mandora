@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- Node test harness loads CommonJS and transpiles TS without a browser. */
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -9,11 +10,11 @@ function compile(name, dependencies = {}, globals = {}) {
   const code = ts.transpileModule(fs.readFileSync(filename, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
   }).outputText;
-  const module = { exports: {} };
+  const compiledModule = { exports: {} };
   new Function('require', 'module', 'exports', ...Object.keys(globals), code)(
-    (id) => dependencies[id], module, module.exports, ...Object.values(globals),
+    (id) => dependencies[id], compiledModule, compiledModule.exports, ...Object.values(globals),
   );
-  return module.exports;
+  return compiledModule.exports;
 }
 const { LiquidContourBuilder } = compile('liquid-contour.ts');
 function inside({ points, loops }, x, y) {
@@ -43,11 +44,11 @@ function target(extra = {}) {
   const events = new Map();
   return { ...extra, events, addEventListener: (name, fn) => events.set(name, fn), removeEventListener: (name) => events.delete(name) };
 }
-function mount({ fine = true, reduced = false, product = true } = {}) {
+function mount({ fine = true, reduced = false, product = true, supported = true, canvasFailure = false, drawFailure = false } = {}) {
   let now = 100, next = 0, cleanup, reads = 0, strokes = 0, curves = 0;
   const frames = new Map();
-  const context = () => ({ clearRect() {}, beginPath() {}, rect() {}, clip() {}, save() {}, restore() {}, fill() {}, stroke() { strokes++; } });
-  const canvases = Array.from({ length: 2 }, () => ({ width: 0, height: 0, style: {}, getContext: context }));
+  const context = () => ({ setTransform() {}, clearRect() {}, beginPath() {}, rect() {}, clip() {}, save() {}, restore() {}, fill() { if (drawFailure) throw new Error("GPU reset"); }, stroke() { strokes++; } });
+  const canvases = Array.from({ length: 2 }, () => target({ width: 0, height: 0, style: {}, getContext() { if (canvasFailure) throw new Error("Canvas blocked"); return context(); } }));
   const refs = canvases.map((current) => ({ current }));
   const motion = target({ matches: reduced }), pointer = target({ matches: fine });
   const window = target({ innerWidth: 1440, innerHeight: 900, matchMedia: (query) => query.includes('reduced') ? motion : pointer });
@@ -57,7 +58,7 @@ function mount({ fine = true, reduced = false, product = true } = {}) {
     react: { useRef: () => refs.shift(), useEffect: (fn) => { cleanup = fn(); } },
     'react/jsx-runtime': { jsx: () => null, jsxs: () => null },
     './liquid-contour': { LiquidContourBuilder },
-  }, { window, document, performance: { now: () => now }, Path2D: Path,
+  }, { window, document, CSS: { supports: () => supported }, performance: { now: () => now }, Path2D: Path,
     requestAnimationFrame: (fn) => { frames.set(++next, fn); return next; }, cancelAnimationFrame: (id) => frames.delete(id),
   }).default;
   Component();
@@ -66,7 +67,7 @@ function mount({ fine = true, reduced = false, product = true } = {}) {
     get reads() { return reads; }, get strokes() { return strokes; }, get curves() { return curves; },
     emit(name, value) { window.events.get(name)?.(value); },
     tick(ms = 17) { now += ms; const pending = [...frames.values()]; frames.clear(); pending.forEach((fn) => fn(now)); },
-    cleanup() { cleanup(); },
+    cleanup() { cleanup?.(); },
   };
 }
 test('rendering stays local, clips the image outline, caches layout, and stops when idle', () => {
@@ -107,5 +108,64 @@ test('liquid contours stay closed at viewport corners', () => {
   app.tick();
   assert.ok(app.curves > 0, 'an edge-crossing drop must still form a visible closed path');
   assert.ok(parseFloat(app.canvases[0].style.left) < 0);
+  app.cleanup();
+});
+
+
+test('unsupported blending and unavailable canvases leave the page untouched', () => {
+  for (const options of [{ supported: false }, { canvasFailure: true }]) {
+    const app = mount(options);
+    assert.equal(app.window.events.size, 0);
+    assert.equal(app.frames.size, 0);
+    app.cleanup();
+  }
+});
+
+test('canvas failures and lost contexts clear the effect safely', () => {
+  const failed = mount({ drawFailure: true });
+  failed.emit('pointermove', { clientX: 300, clientY: 300, pointerType: 'mouse' });
+  failed.tick();
+  assert.equal(failed.frames.size, 0);
+  assert.equal(failed.canvases[0].style.visibility, 'hidden');
+  failed.emit('pointermove', { clientX: 500, clientY: 300, pointerType: 'mouse' });
+  assert.equal(failed.frames.size, 0);
+  failed.cleanup();
+  const app = mount();
+  app.emit('pointermove', { clientX: 300, clientY: 300, pointerType: 'mouse' }); app.tick();
+  app.canvases[0].events.get('contextlost')();
+  assert.equal(app.frames.size, 0);
+  app.emit('pointermove', { clientX: 500, clientY: 300, pointerType: 'mouse' });
+  assert.equal(app.frames.size, 0);
+  app.canvases[0].events.get('contextrestored')();
+  app.emit('pointermove', { clientX: 500, clientY: 300, pointerType: 'mouse' }); app.tick();
+  assert.equal(app.canvases[0].style.visibility, 'visible');
+  app.cleanup();
+  assert.equal(app.canvases[0].events.size, 0);
+});
+
+test('sustained slow rendering falls back without leaving an overlay', () => {
+  const app = mount();
+  for (let i = 0; i < 55; i++) {
+    app.emit('pointermove', { clientX: 300 + i * 10, clientY: 300, pointerType: 'mouse' });
+    app.tick(85);
+  }
+  assert.equal(app.frames.size, 0);
+  assert.equal(app.canvases[0].style.visibility, 'hidden');
+  app.cleanup();
+});
+
+
+test('large-display trails keep canvas backing stores bounded', () => {
+  const app = mount();
+  app.window.innerWidth = 7680; app.window.innerHeight = 4320;
+  app.emit('resize');
+  app.emit('pointermove', { clientX: 100, clientY: 100, pointerType: 'mouse' });
+  app.tick();
+  app.emit('pointermove', { clientX: 7400, clientY: 4100, pointerType: 'mouse' });
+  app.tick();
+  for (const canvas of app.canvases) {
+    assert.ok(canvas.width <= 2048 && canvas.height <= 2048);
+    assert.ok(canvas.width * canvas.height < 2_005_000);
+  }
   app.cleanup();
 });

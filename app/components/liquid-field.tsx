@@ -13,8 +13,16 @@ export default function LiquidField() {
     const canvas = ref.current;
     const outline = outlineRef.current;
     if (!canvas || !outline) return;
-    const context = canvas.getContext("2d");
-    const outlineContext = outline.getContext("2d");
+    // This layer is optional: unsupported/privacy-restricted canvases must never
+    // obscure the page with an unblended white shape or break navigation.
+    if (typeof Path2D !== "function" || typeof CSS === "undefined" ||
+        !CSS.supports("mix-blend-mode", "difference")) return;
+    let context: CanvasRenderingContext2D | null;
+    let outlineContext: CanvasRenderingContext2D | null;
+    try {
+      context = canvas.getContext("2d");
+      outlineContext = outline.getContext("2d");
+    } catch { return; }
     if (!context || !outlineContext) return;
     const product = document.querySelector<HTMLElement>(".nap-full-width-product");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -22,7 +30,11 @@ export default function LiquidField() {
     const builder = new LiquidContourBuilder();
     const drops: Drop[] = [];
     const circles: LiquidCircle[] = [];
-    const interval = 1000 / 120;
+    let interval = 1000 / 120;
+    let maxDrops = 96;
+    let slowFrames = 0;
+    let stopped = false;
+    let contextLost = false;
     const simulationStep = 1000 / 60;
     let frame = 0;
     let previous = 0;
@@ -34,12 +46,14 @@ export default function LiquidField() {
     let allocatedWidth = 0;
     let allocatedHeight = 0;
 
-    function enabled() { return !reduced.matches && fine.matches && !document.hidden; }
+    function enabled() { return !stopped && !contextLost && !reduced.matches && fine.matches && !document.hidden; }
     function reset() {
       cancelAnimationFrame(frame);
       frame = 0;
       drops.length = 0;
       last = null;
+      previous = 0;
+      slowFrames = 0;
       canvas!.width = outline!.width = 1;
       canvas!.height = outline!.height = 1;
       allocatedWidth = allocatedHeight = 0;
@@ -56,9 +70,16 @@ export default function LiquidField() {
       const nextWidth = Math.max(allocatedWidth, Math.ceil(w / 128) * 128);
       const nextHeight = Math.max(allocatedHeight, Math.ceil(h / 128) * 128);
       if (nextWidth !== allocatedWidth || nextHeight !== allocatedHeight) {
-        canvas!.width = nextWidth;
-        canvas!.height = nextHeight;
-        if (product) { outline!.width = nextWidth; outline!.height = nextHeight; }
+        // Bound backing-store memory even on very wide/high-resolution displays.
+        // Paths and CSS dimensions stay in viewport coordinates.
+        const scale = Math.min(1, 2048 / nextWidth, 2048 / nextHeight,
+          Math.sqrt(2_000_000 / (nextWidth * nextHeight)));
+        for (const layer of [canvas!, ...(product ? [outline!] : [])]) {
+          layer.width = Math.ceil(nextWidth * scale);
+          layer.height = Math.ceil(nextHeight * scale);
+        }
+        context!.setTransform(scale, 0, 0, scale, 0, 0);
+        if (product) outlineContext!.setTransform(scale, 0, 0, scale, 0, 0);
         allocatedWidth = nextWidth;
         allocatedHeight = nextHeight;
       }
@@ -70,10 +91,17 @@ export default function LiquidField() {
       }
     }
     function render(now: number) {
+      // A driver/canvas failure disables only the decoration for this mount.
+      try { draw(now); }
+      catch { stopped = true; reset(); }
+    }
+    function draw(now: number) {
       frame = 0;
       if (!enabled()) { reset(); return; }
       if (now - previous < interval - .5) { frame = requestAnimationFrame(render); return; }
-      const dt = Math.min((now - previous) / simulationStep, 2);
+      const started = performance.now();
+      const elapsed = now - previous;
+      const dt = Math.min(elapsed / simulationStep, 2);
       previous = now;
       const damping = Math.pow(.975, dt);
       circles.length = 0;
@@ -139,6 +167,23 @@ export default function LiquidField() {
       } else {
         canvas!.style.visibility = outline!.style.visibility = "hidden";
       }
+      // Sustained slow frames, including compositor delays, lower the workload.
+      // Do not react to a single GC pause, a tab switch, or initial activation.
+      const cost = performance.now() - started;
+      const slow = maxDrops === 96 ? cost > 10 || elapsed > 40 : cost > 20 || elapsed > 70;
+      slowFrames = slow ? slowFrames + 1 : Math.max(0, slowFrames - 1);
+      if (slowFrames >= 24) {
+        if (maxDrops === 96) {
+          maxDrops = 48;
+          interval = 1000 / 60;
+          if (drops.length > maxDrops) drops.splice(0, drops.length - maxDrops);
+          slowFrames = 0;
+        } else {
+          stopped = true;
+          reset();
+          return;
+        }
+      }
       if (drops.length) frame = requestAnimationFrame(render);
       else reset();
     }
@@ -159,13 +204,19 @@ export default function LiquidField() {
         const t = i / steps, phase = now * .002 + t * .4;
         drops.push({ x: from.x + dx * t, y: from.y + dy * t, vx, vy, born: now, radius: radius * (.8 + .2 * Math.sin(phase)), phase, life: 1700 + 400 * Math.sin(phase) ** 2 });
       }
-      if (drops.length > 96) drops.splice(0, drops.length - 96);
+      if (drops.length > maxDrops) drops.splice(0, drops.length - maxDrops);
       last = { x, y, time: now };
       if (!frame) { previous = now - interval; frame = requestAnimationFrame(render); }
     }
+    function lost() { contextLost = true; reset(); }
+    function restored() { contextLost = false; resize(); }
     function leave() { last = null; }
     function scroll() { clipDirty = true; }
     resize();
+    for (const layer of [canvas, outline]) {
+      layer.addEventListener("contextlost", lost);
+      layer.addEventListener("contextrestored", restored);
+    }
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", scroll, { passive: true });
     window.addEventListener("pointermove", move, { passive: true });
@@ -176,6 +227,10 @@ export default function LiquidField() {
     fine.addEventListener("change", resize);
     return () => {
       reset();
+      for (const layer of [canvas, outline]) {
+        layer.removeEventListener("contextlost", lost);
+        layer.removeEventListener("contextrestored", restored);
+      }
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", scroll);
       window.removeEventListener("pointermove", move);

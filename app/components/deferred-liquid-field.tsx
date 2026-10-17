@@ -3,7 +3,10 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-const LiquidField = dynamic(() => import("./liquid-field"), { ssr: false });
+const LiquidField = dynamic(
+  () => import("./liquid-field").catch(() => ({ default: () => null })),
+  { ssr: false },
+);
 
 export default function DeferredLiquidField() {
   const [ready, setReady] = useState(false);
