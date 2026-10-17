@@ -19,8 +19,7 @@
 .nap-download:hover { background: #dcdcd3; transform: translateY(-2px); }
 .nap-download-note { font-size: 10px; margin-top: 13px; color: #96968e; text-align: center; }
 .contrast-page a:focus-visible { outline: 2px solid #ddd; outline-offset: 5px; }
-.liquid-field { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 20; mix-blend-mode: difference; filter: url("#nap-liquid-merge"); }
-.liquid-filter { position: absolute; width: 0; height: 0; pointer-events: none; }
+.liquid-field { position: fixed; top: 0; left: 0; width: 0; height: 0; pointer-events: none; z-index: 20; visibility: hidden; mix-blend-mode: difference; }
 @media (min-width: 1800px) { .nap-hero-bottom { margin-top: 55px; } .nap-description { font-size: 16px; max-width: 390px; } .nap-download { width: 370px; padding: 28px 30px; font-size: 22px; } }
 @media (max-width: 700px) { .nap-header { top: 22px; left: 5%; right: 5%; } .nap-wordmark { font-size: 34px; } .nap-docs { font-size: 13px; gap: 12px; } .nap-hero { padding: 85px 5% 70px; } .nap-eyebrow { margin: 0 0 30px; font-size: 8px; } .nap-copy h1 { font-size: 11.7vw; line-height: .95; } .nap-copy h1 > span:last-child { margin-top: 10px; } .nap-hero-bottom { flex-direction: column; align-items: flex-start; gap: 30px; margin: 30px 0 0; } .nap-description { max-width: 270px; font-size: 12px; line-height: 1.6; } .nap-action { align-self: flex-end; } .nap-download { width: 290px; padding: 22px 25px; font-size: 18px; } .nap-download-note { font-size: 9px; margin-top: 12px; } }
 @media (max-height: 580px) { .nap-hero { padding-top: 85px; padding-bottom: 60px; } .nap-eyebrow { margin-bottom: 18px; } .nap-copy h1 { font-size: min(11.7vw, 19svh); } .nap-hero-bottom { margin-top: 22px; gap: 16px; } .nap-download { padding: 17px 23px; } .nap-description { font-size: 12px; } }
@@ -108,7 +107,7 @@
 .nap-agents li img.nap-agent-logo-small { width: 28px; height: 28px; }
 @media (max-width: 700px) { .nap-agents li img.nap-agent-logo-small { width: 22px; height: 22px; } }
 
-.liquid-image-outline { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 22; pointer-events: none; opacity: .45; visibility: hidden; filter: url("#nap-liquid-outline"); }
+.liquid-image-outline { position: fixed; top: 0; left: 0; width: 0; height: 0; z-index: 22; pointer-events: none; opacity: .45; visibility: hidden; }
 
 .nap-home-page .nap-eyebrow { margin-bottom: 22px; }
 .nap-home-page .nap-hero-bottom { margin-top: 28px; }
