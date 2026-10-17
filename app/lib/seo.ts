@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 
+export const pageTitle = (label: string) => `Nap | ${label}`;
+
 export const site = {
   name: "Nap",
   alternateName: "Nap Code",
   url: "https://www.nap.cx",
-  title: "Nap | The Interface For All Your Agents",
+  title: pageTitle("The Interface For All Your Agents"),
   description: "Nap brings your coding agents into one native app for Mac. Open projects, chat with agents, and review code changes in one workspace.",
   image: "/opengraph-image",
 };
 
 export const pages = {
   home: { path: "/", title: site.title, description: site.description },
-  blogs: { path: "/blogs", title: "Nap Blog — AI Coding Agents & Product Stories", description: "Explore the ideas behind Nap, the native AI coding app for Mac. Read about building with coding agents, project conversations, and reviewing code changes." },
-  story: { path: "/blogs/hello-nap", title: "Why We Started — The Story Behind Nap", description: "Why we started Nap: a native AI coding app that brings projects, coding agents, conversations, and code review into one workspace for Mac." },
-  why: { path: "/blogs/why", title: "Why This? — Building with AI Coding Agents in Nap", description: "See how Nap brings Claude Code, Codex, and other AI coding agents into a native Mac app. Open a project, chat with an agent, and review code changes." },
+  blogs: { path: "/blogs", title: pageTitle("Blogs"), description: "Explore the ideas behind Nap, the native AI coding app for Mac. Read about building with coding agents, project conversations, and reviewing code changes." },
+  story: { path: "/blogs/hello-nap", title: pageTitle("Why We Started"), description: "Why we started Nap: a native AI coding app that brings projects, coding agents, conversations, and code review into one workspace for Mac." },
+  why: { path: "/blogs/why", title: pageTitle("Why This?"), description: "See how Nap brings Claude Code, Codex, and other AI coding agents into a native Mac app. Open a project, chat with an agent, and review code changes." },
 };
 
 type Page = (typeof pages)[keyof typeof pages];

@@ -1,8 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { pageTitle } from "./lib/seo";
 import NapHeader from "./components/nap-header";
 import DeferredLiquidField from "./components/deferred-liquid-field";
 import "./contrast.css";
 import "./not-found.css";
+
+export const metadata: Metadata = {
+  title: { absolute: pageTitle("Page Not Found") },
+  description: "This page took a nap. Head back home to explore Nap.",
+};
 
 export default function NotFound() {
   return (
